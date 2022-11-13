@@ -1,16 +1,16 @@
 import React from "react";
 
-export { Input };
-
-const Input = ({ ref, inputClass, labelText, labelClass, containerClass }) => {
+const Input = ({ inputClass, labelText, labelClass, containerClass }) => {
   return (
-    <div className={`pt-8 ${containerClass}`}>
+    <div className={`pt-8 grid grid-flow-row ${containerClass}`}>
       <label
         className={`font-normal text-4xl font-button text-gray-200 ${labelClass}`}
       >
         {labelText}
       </label>
-      <input className={`bg-gray-200 rounded-3xl w-72 h-16 ${inputClass}`} />
+      <input className={`bg-gray-200 rounded-2xl h-16 w-full ${inputClass}`} />
     </div>
   );
 };
+
+export { Input };

@@ -1,17 +1,13 @@
-export { Text };
-
 const Text = ({ text, isHeader, customTheme }) => {
   return (
     <>
       {isHeader ? (
-        <h3 className={`font-normal font-button text-white ${customTheme}`}>
-          {text}
-        </h3>
+        <h3 className={`font-normal ${customTheme}`}>{text}</h3>
       ) : (
-        <p className={`font-normal font-button text-white ${customTheme}`}>
-          {text}
-        </p>
+        <p className={`font-normal ${customTheme}`}>{text}</p>
       )}
     </>
   );
 };
+
+export { Text };
