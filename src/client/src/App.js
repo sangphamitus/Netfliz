@@ -5,7 +5,7 @@ import { Form } from "./components/Form";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-[#082032]">
       {/* <NavBar /> */}
       <Button theme={"bg-gray-200"}>
         <p className="text-5xl font-button text-red-600">LOGIN</p>

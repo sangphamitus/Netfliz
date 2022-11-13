@@ -5,19 +5,21 @@ import { Text } from "./Text";
 
 const Form = ({ formClass, isLogin }) => {
   return (
-    <form className={`bg-black max-w-screen-sm h-auto ${formClass}`}>
+    <form
+      className={`bg-black bg-opacity-75 max-w-screen-sm h-auto ${formClass}`}
+    >
       <div className="pt-12 px-14 pb-20">
         {isLogin ? (
           <>
             <Text
-              customTheme="text-5xl text-pink-600 font-button"
+              customTheme="text-[3.5rem] text-pink-600 font-button"
               isHeader={true}
               text={"SIGN IN"}
             />
 
             <Input labelText={"USERNAME"}></Input>
             <Input labelText={"PASSWORD"}></Input>
-            <div className="grid grid-flow-col">
+            <div className="grid grid-flow-col pt-2.5">
               <Text
                 className=""
                 customTheme="text-xl text-pink-600 font-medium"
@@ -31,9 +33,9 @@ const Form = ({ formClass, isLogin }) => {
                 text="Don't have account ?"
               />
             </div>
-            <Button theme={"bg-pink-600 rounded-2xl w-full h-auto mt-20"}>
+            <Button theme={"bg-pink-600 rounded-2xl w-full h-full mt-20"}>
               <Text
-                customTheme="text-5xl text-gray-200 font-button"
+                customTheme="text-[3.5rem] leading-none text-gray-200 font-button"
                 isHeader={false}
                 text="SIGN IN"
               />
@@ -42,7 +44,7 @@ const Form = ({ formClass, isLogin }) => {
         ) : (
           <>
             <Text
-              customTheme="text-5xl text-pink-600 font-button"
+              customTheme="text-[3.5rem] text-pink-600 font-button"
               isHeader={true}
               text={"SIGNUP"}
             />
@@ -50,9 +52,9 @@ const Form = ({ formClass, isLogin }) => {
             <Input labelText={"USERNAME"}></Input>
             <Input labelText={"PASSWORD"}></Input>
             <Input labelText={"CONFIRM PASSWORD"}></Input>
-            <Button theme={"bg-pink-600 rounded-2xl w-full h-auto mt-20"}>
+            <Button theme={"bg-pink-600 rounded-2xl w-full h-full mt-20"}>
               <Text
-                customTheme="text-5xl text-gray-200 font-button"
+                customTheme="text-[3.5rem] leading-none text-gray-200 font-button"
                 isHeader={false}
                 text="SIGNUP"
               />

@@ -4,7 +4,7 @@ const Input = ({ inputClass, labelText, labelClass, containerClass }) => {
   return (
     <div className={`pt-8 grid grid-flow-row ${containerClass}`}>
       <label
-        className={`font-normal text-4xl font-button text-gray-200 ${labelClass}`}
+        className={`font-normal text-4xl font-button mb-2 text-gray-200 ${labelClass}`}
       >
         {labelText}
       </label>
