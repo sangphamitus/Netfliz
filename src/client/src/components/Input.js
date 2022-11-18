@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ inputTheme, labelText, labelTheme, containerTheme, placeHolder}) => { 
+const Input = ({ inputTheme, labelText, labelTheme, containerTheme, placeHolder}) => {
   return (
     <div className={`pt-8 grid grid-flow-row ${containerTheme}`}>
       <label
