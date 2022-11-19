@@ -1,10 +1,13 @@
 import React from "react";
 import { Text } from "./Text";
 import NetflizLogo from '../assets/images/pink2-logo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
+import { Button } from "./Button";
 
 const Footer = () => {
     return(
-        <div className="bg-[#2C394B] py-16 px-14 height-260 flex">
+        <div className="bg-[#2C394B] py-14 px-14 height-260 flex">
             <div>
                     <ul>
                         <li style ={{listStyle:'none'}}> 
@@ -24,8 +27,27 @@ const Footer = () => {
                         </li>
                     </ul>
             </div>
-            <div className="ml-auto mr-0 mt-10">
-                <img src={NetflizLogo} className='logo' alt='logo' width="160rem" />
+            <div className="ml-80">
+                <ul>
+                    <li style ={{listStyle:'none'}} className="mb-2"> 
+                        <Text text="Follow us" isHeader={false} customTheme="text-[1.5rem] text-white font-button" />
+                    </li>
+                    <li>
+                        <a href="/">
+                            <FontAwesomeIcon icon={faFacebook} className="h-8 mr-3" inverse/>
+                        </a>
+                        <a href="/">
+                            <FontAwesomeIcon icon={faTwitter} className="h-8 mr-3" inverse/>
+                        </a>
+                        <a href="/">
+                            <FontAwesomeIcon icon={faInstagram} className="h-8 mr-3" inverse/>
+                        </a>
+                        
+                    </li>
+                </ul>
+            </div>
+            <div className="ml-auto mr-8 my-auto">
+                <a href="/"><img src={NetflizLogo} className='logo' alt='logo' width="160rem" /></a>
             </div>
         </div> 
     )
