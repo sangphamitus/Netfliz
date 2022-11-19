@@ -38,8 +38,8 @@ const NavBar = () => {
         <Input inputTheme={'p-4 h-15 ml-12'} placeHolder={'Input movie name, category, actor'} containerTheme={'pt-0 w-[37rem] mb-2'}>
 
         </Input>
-        <Button className='nav-toggle' onClick={toggleLinks} theme="bg-white mt-2 ml-2 w-16 rounded-full">
-            <FontAwesomeIcon icon={faMagnifyingGlass}/>   
+        <Button className='nav-toggle' onClick={toggleLinks} theme="mt-2 ml-2 w-16 rounded-full">
+            <FontAwesomeIcon icon={faMagnifyingGlass} inverse size="2x"/>   
         </Button>
     
       </section>
