@@ -2,11 +2,13 @@
 import { Button } from "./components/Button";
 import { Form } from "./components/Form";
 // import { NavBar } from "./components/NavBar";
+import { Banner } from "./components/Banner";
 
 function App() {
   return (
     <div className="App bg-[#082032]">
       {/* <NavBar /> */}
+      <Banner />
       <Button theme={"bg-gray-200"}>
         <p className="text-5xl font-button text-red-600">LOGIN</p>
       </Button>
