@@ -27,7 +27,7 @@ const NavBar = () => {
             <FontAwesomeIcon icon={faBars} />   
 
           </button>
-        <img src={NetflizLogo} className='logo w-[160px]' alt='logo' />
+          <a href="/"><img src={NetflizLogo} className='logo w-[160px]' alt='logo' /></a>
       </div>
       <div className='links-container' ref={linksContainerRef}>
         <ul className='links' ref={linksRef}>
