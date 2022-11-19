@@ -8,7 +8,7 @@ const Input = ({ inputTheme, labelText, labelTheme, containerTheme, placeHolder}
       >
         {labelText}
       </label>
-      <input className={`bg-gray-200 rounded-2xl h-16 w-full ${inputTheme}`} placeholder= {placeHolder}/>
+      <input className={`bg-gray-200 rounded-2xl h-16 w-auto ${inputTheme}`} placeholder= {placeHolder}/>
     </div>
   );
 };

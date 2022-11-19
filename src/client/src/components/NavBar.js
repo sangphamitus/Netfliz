@@ -21,32 +21,32 @@ const NavBar = () => {
     }
   }, [showLinks]);
   return (
-    <div className='nav-center flex flex-row justify-between bg-slate-900 min-[800px]:text-center max-[1170px]:bg-sky-300 mx-auto my-0 items-center' >
+    <div className='nav-center flex flex-row bg-[rgb(0,0,0,0.75)]' >
       <div className='nav-header pl-6'>
         <button className='nav-toggle hidden' onClick={toggleLinks}>
             <FontAwesomeIcon icon={faBars} />   
 
           </button>
-        <img src={NetflizLogo} className='logo' alt='logo' width="160rem" />
+        <img src={NetflizLogo} className='logo w-[160px]' alt='logo' />
       </div>
       <div className='links-container' ref={linksContainerRef}>
         <ul className='links' ref={linksRef}>
         </ul>
         
       </div>
-      <section className='flex'>
-        <Input inputTheme={'p-4'} placeHolder={'Input movie name, category, actor'}>
+      <section className='flex mr-4 ml-auto'>
+        <Input inputTheme={'p-4 h-15 ml-12'} placeHolder={'Input movie name, category, actor'} containerTheme={'pt-0 w-[37rem] mb-2'}>
 
         </Input>
-        <Button className='nav-toggle' onClick={toggleLinks} theme="bg-red-500">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />   
+        <Button className='nav-toggle' onClick={toggleLinks} theme="bg-white mt-2 ml-2 w-16 rounded-full">
+            <FontAwesomeIcon icon={faMagnifyingGlass}/>   
         </Button>
     
       </section>
-      <Button theme={"bg-gray-200"} >
-        <p className="text-5xl font-button text-red-600">LOGIN</p>
+      <Button theme={"bg-gray-200 my-2 mr-5"} >
+        <p className="text-5xl font-button text-[#CD0574]">LOGIN</p>
       </Button>
-      <Button theme={"bg-red-600"}>
+      <Button theme={"bg-[#CD0574] my-2 mr-5"}>
         <p className="text-5xl font-button text-gray-200">SIGNUP</p>
       </Button>
 
