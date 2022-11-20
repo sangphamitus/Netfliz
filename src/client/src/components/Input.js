@@ -1,14 +1,14 @@
 import React from "react";
 
-const Input = ({ inputClass, labelText, labelClass, containerClass }) => {
+const Input = ({ inputTheme, labelText, labelTheme, containerTheme, placeHolder}) => {
   return (
-    <div className={`pt-8 grid grid-flow-row ${containerClass}`}>
+    <div className={`pt-8 grid grid-flow-row ${containerTheme}`}>
       <label
-        className={`font-normal text-4xl font-button mb-2 text-gray-200 ${labelClass}`}
+        className={`font-normal text-4xl font-button mb-2 text-gray-200 ${labelTheme}`}
       >
         {labelText}
       </label>
-      <input className={`bg-gray-200 rounded-2xl h-16 w-full ${inputClass}`} />
+      <input className={`bg-gray-200 rounded-2xl h-16 w-auto ${inputTheme}`} placeholder= {placeHolder}/>
     </div>
   );
 };
