@@ -1,19 +1,28 @@
 import React from 'react'
-import Carousel from 'better-react-carousel'
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
+
+const items = [
+   <img src={require('../assets/images/banner1.jpg')} alt="banner1"  />,
+   <img src={require('../assets/images/banner2.jpg')} alt="banner2"  />,
+   <img src={require('../assets/images/banner3.jpg')} alt="banner3"  />
+]
 
 const Banner = () => {
   return (
-    <Carousel loop={true} srollSnap={true}>
-      <Carousel.Item>
-        <img src={require('../img/banner1.jpg')} alt="banner1" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img src={require('../img/banner2.jpg')} alt="banner2" />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img src={require('../img/banner3.jpg')} alt="banner3" />
-      </Carousel.Item>
-    </Carousel>
+    <AliceCarousel 
+      autoPlay={true}
+      autoPlayControls={false}
+      autoPlayStrategy="none"
+      autoPlayDirection='ltr'
+      autoPlayInterval={1000}
+      animationDuration={2000}
+      animationType="fadeout"
+      infinite={true}
+      disableDotsControls={true}
+      disableButtonsControls={true}
+      items={items}
+    />
   )
 }
 
