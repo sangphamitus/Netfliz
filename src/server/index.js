@@ -27,6 +27,7 @@ app.use(cookieParser('netfliz'));
 
 app.get("/", require("./controller/redirect.c"));
 app.use("/users", require("./router/user.r"));
+app.use("/videos", require("./router/video.r"));
 app.get('/logout',(req,res,next)=>{
     console.log(req.body);
     try{

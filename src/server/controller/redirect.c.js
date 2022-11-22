@@ -1,7 +1,8 @@
-const e = require('express');
+
 const app =require('express');
 const router=app.Router();
 const userC= require("../controller/user.c");
+const videoC = require('./video.c');
 
 router.get('/', userC.userAuthentication,(req,res,next)=>{
     if(req.session.permission) 

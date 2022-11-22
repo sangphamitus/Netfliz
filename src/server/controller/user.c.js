@@ -4,7 +4,7 @@ const hashLength = 64;
 const {
     getClient
 } = require("../.config/postgres");
-const e = require('express');
+
 module.exports = {
     registerUser: async (req, res, next) => {
         try {
