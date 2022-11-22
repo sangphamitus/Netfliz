@@ -2,17 +2,18 @@ import React from "react";
 import AliceCarousel from "react-alice-carousel";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { Text } from "./Text";
+import { Card } from "./Card";
 
 const responsive = {
 	0: { items: 5 },
 };
 
 let new_movies = ['Spider-Man_ Into the Spider-Verse 1', 'Black Panther_ Wakanda Forever 1', 'John Wick Chapter 4 1', 'Everything Everywhere All at Once - Movie Poster 1', 'Avatar 2022- Movie Poster 1'].map((name, index) => {
-	return <img key={index} alt="" className={` w-full h-full rounded-[10px] mb-[5px] pr-6 `} src={require(`../assets/images/${name}.jpg`)} />
+	return <Card imgSrc={require(`../assets/images/${name}.jpg`)} />
 });
 
 let hot_movies = ['Smile - Movie Poster 1', 'House of the Dragon - TV Poster 1', 'Minions Rise of Gru Poster 1', 'The Northman Poster 1', 'Creed 3 - Movie Poster 2'].map((name, index) => {
-	return <img key={index} alt="" className={` w-full h-full rounded-[10px] mb-[5px] pr-6 `} src={require(`../assets/images/${name}.jpg`)} />
+	return <Card imgSrc={require(`../assets/images/${name}.jpg`)} />
 });
 
 const ListMovies = ({title}) => {
