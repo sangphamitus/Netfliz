@@ -1,12 +1,16 @@
-import React from "react";
+import React from 'react';
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Text } from "../components/Text";
 import { Form } from "../components/Form"
+import { NavBar } from '../components/NavBar';
 
-const Signup = () => {
+function SignUpPage() {
     return(
-        <Form>
+      <div className="bg-local ... bg-login-background">
+        <NavBar/>
+        <div className='flex justify-center py-20'>
+        <Form formClass={'w-full'}>
              <Text
               customTheme="text-[3.5rem] text-pink-600 font-button"
               isHeader={true}
@@ -16,16 +20,18 @@ const Signup = () => {
             <Input labelText={"USERNAME"}></Input>
             <Input labelText={"PASSWORD"}></Input>
             <Input labelText={"CONFIRM PASSWORD"}></Input>
-            <Button theme={"bg-pink-600 rounded-2xl w-full h-full mt-20"}>
+            <Button theme={"bg-pink-600 rounded-2xl w-full h-auto mt-20"}>
               <Text
                 customTheme="text-[3.5rem] leading-none text-gray-200 font-button"
                 isHeader={false}
                 text="SIGNUP"
               />
             </Button>
-        </Form>
+        </Form> 
+        </div>
         
+      </div>
     )
-}
-
-export {Signup};
+  }
+  
+export default SignUpPage;

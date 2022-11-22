@@ -1,20 +1,24 @@
-import React from "react";
+import React from 'react';
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Text } from "../components/Text";
 import { Form } from "../components/Form"
+import { NavBar } from '../components/NavBar';
 
-const Login = () => {
+function LogInPage() {
     return(
-        <Form>
-            <Text
+      <div className="bg-scroll bg-login-background">
+        <NavBar/>
+        <div className='flex justify-center py-20'>
+        <Form formClass={'w-full'}>
+        <Text
               customTheme="text-[3.5rem] text-pink-600 font-button"
               isHeader={true}
               text={"SIGN IN"}
             />
 
-            <Input labelText={"USERNAME"}></Input>
-            <Input labelText={"PASSWORD"}></Input>
+            <Input labelText={"USERNAME"} placeHolder="Email or username"></Input>
+            <Input labelText={"PASSWORD"} placeHolder="Password"></Input>
             <div className="grid grid-flow-col pt-2.5">
               <Text
                 className=""
@@ -36,9 +40,11 @@ const Login = () => {
                 text="SIGN IN"
               />
             </Button>
-        </Form>
+        </Form> 
+        </div>
         
+      </div>
     )
-}
-
-export {Login};
+  }
+  
+export default LogInPage;
