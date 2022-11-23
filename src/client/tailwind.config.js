@@ -6,6 +6,9 @@ module.exports = {
     fontFamily: {
       button: ["Bebas Neue", "cursive", "sans-serif"],
     },
+    backgroundImage: {
+      'login-background': "url('/src/assets/images/background_login.jpg')",
+    }
   },
   plugins: [],
 };
