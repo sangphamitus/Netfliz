@@ -5,9 +5,10 @@ const Input = ({
   labelTheme,
   containerTheme,
   placeHolder,
+  textColor
 }) => {
   return (
-    <div className={`pt-8 grid grid-flow-row ${containerTheme}`}>
+    <div className={`pt-8 grid grid-flow-row ${containerTheme} text-${textColor}`}>
       {labelText && (
         <label
           className={`font-normal text-4xl font-button mb-2 text-gray-200 ${labelTheme}`}

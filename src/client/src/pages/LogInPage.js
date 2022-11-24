@@ -4,6 +4,7 @@ import { Input } from "../components/Input";
 import { Text } from "../components/Text";
 import { Form } from "../components/Form"
 import { NavBar } from '../components/NavBar';
+import { Footer} from '../components/Footer';
 
 function LogInPage() {
     return(
@@ -40,9 +41,10 @@ function LogInPage() {
                 text="SIGN IN"
               />
             </Button>
-        </Form> 
-        </div>
+        </Form>
         
+        </div>
+        <Footer/> 
       </div>
     )
   }

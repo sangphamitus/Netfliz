@@ -16,7 +16,7 @@ const Banner = () => {
       autoPlayStrategy="none"
       autoPlayDirection='ltr'
       autoPlayInterval={1500}
-      animationDuration={1000}
+      animationDuration={4000}
       animationType="slide"
       infinite={true}
       disableDotsControls={true}

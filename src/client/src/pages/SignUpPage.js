@@ -4,6 +4,7 @@ import { Input } from "../components/Input";
 import { Text } from "../components/Text";
 import { Form } from "../components/Form"
 import { NavBar } from '../components/NavBar';
+import { Footer} from '../components/Footer';
 
 function SignUpPage() {
     return(
@@ -28,8 +29,9 @@ function SignUpPage() {
               />
             </Button>
         </Form> 
-        </div>
         
+        </div>
+        <Footer/>
       </div>
     )
   }
