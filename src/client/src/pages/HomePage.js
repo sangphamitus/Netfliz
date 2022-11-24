@@ -6,7 +6,7 @@ import { ListMovies } from "../components/ListMovies";
 
 function HomePage() {
     return (
-    <div>
+    <div className="App bg-[#082032]">
         <NavBar />
         <Banner />
         <ListMovies title={"NEW MOVIES"} />
