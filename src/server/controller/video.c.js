@@ -5,12 +5,14 @@ module.exports={
         try {
             const {
                 name,
-                url
+                url,
+                image,
+                ratting
             } = req.body;
+        
             
-
             console.log(`${name},${url}`)
-            const rs = await videoM.addVideo(name,url);
+            const rs = await videoM.addVideo(name,url,image,ratting);
             console.log(rs);
             if (rs == null) {
                 res.status(200).send({
@@ -68,6 +70,9 @@ module.exports={
               
                 </div>
                 <h1>${rs.name}</h1>
+                <div>
+                    <img src=${rs.image}></img>
+                </div>
                 </div>`)
 
             }
@@ -76,5 +81,51 @@ module.exports={
             console.log(err);
             next(err);
         }
-    }
+    },
+    getNewVideo:async (req, res, next)=> {
+        try {
+  
+            const rs = await videoM.getNewVideo(6);
+            console.log(rs);
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "available video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        }
+    },
+    getHotVideo:async (req, res, next)=> {
+        try {
+  
+            const rs = await videoM.getHotVideo(6);
+            console.log(rs);
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "available video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        }
+    },
 }
