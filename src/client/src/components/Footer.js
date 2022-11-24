@@ -3,7 +3,8 @@ import { Text } from "./Text";
 import NetflizLogo from '../assets/images/pink2-logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram} from '@fortawesome/free-brands-svg-icons'
-import { Button } from "./Button";
+//import { Button } from "./Button";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return(
@@ -47,7 +48,7 @@ const Footer = () => {
                 </ul>
             </div>
             <div className="ml-auto mr-8 my-auto">
-                <a href="/"><img src={NetflizLogo} className='logo' alt='logo' width="160rem" /></a>
+                <Link to="/HomePage"><img src={NetflizLogo} className='logo' alt='logo' width="160rem" /></Link>
             </div>
         </div> 
     )
