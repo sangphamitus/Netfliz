@@ -24,10 +24,16 @@ app.use(session({
 }))
 app.use(cookieParser('netfliz'));
 
+const errorHandler=(err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    res.status(statusCode)
+        .send(err.messages);
+}
 
-app.get("/", require("./controller/redirect.c"));
-app.use("/users", require("./router/user.r"));
-app.use("/videos", require("./router/video.r"));
+
+app.get("/", require("./controller/redirect.c"),errorHandler);
+app.use("/users", require("./router/user.r"),errorHandler);
+app.use("/videos", require("./router/video.r"),errorHandler);
 app.get('/logout',(req,res,next)=>{
     console.log(req.body);
     try{
@@ -40,11 +46,7 @@ app.get('/logout',(req,res,next)=>{
     }
     res.send("<h1>Logout</h1>")
 });
-app.use((err, req, res, next) => {
-    const statusCode = err.statusCode || 500;
-    res.status(statusCode)
-        .send(err.messages);
-})
+
 dotenv.config()
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}     visit on: http://127.0.0.1:${PORT}/ `))
