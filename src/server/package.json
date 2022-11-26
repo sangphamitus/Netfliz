@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-cookie": "^4.17.1",
+    "express-session": "^1.17.3",
+    "firebase-admin": "^11.2.1",
+    "firebase-functions": "^4.0.2",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "pg-promise": "^10.15.0"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  }
+}

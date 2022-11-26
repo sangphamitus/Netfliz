@@ -27,7 +27,7 @@ const NavBar = () => {
         <button className="nav-toggle hidden" onClick={toggleLinks}>
           <FontAwesomeIcon icon={faBars} />
         </button>
-        <Link to="/HomePage">
+        <Link to="/">
           <img
             src={NetflizLogo}
             className="logo w-[160px] max-w-none"
@@ -60,10 +60,10 @@ const NavBar = () => {
       </div>
       <div className='mr-0 ml-auto'>
         <Button theme={"bg-gray-200 my-2 mr-5 w-28 rounded-full"}>
-          <Link className="text-4xl font-button text-[#CD0574]" to='/LogInPage'>LOGIN</Link>
+          <Link className="text-4xl font-button text-[#CD0574]" to='/LogIn'>LOGIN</Link>
         </Button>
         <Button theme={"bg-[#CD0574] my-2 mr-5 w-28 rounded-full"}>
-          <Link className="text-4xl font-button text-gray-200" to='/SignUpPage'>SIGNUP</Link>
+          <Link className="text-4xl font-button text-gray-200" to='/SignUp'>SIGNUP</Link>
         </Button>
       </div>
     </div>
