@@ -5,15 +5,18 @@ import App from "./App";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogInPage from "./pages/LogInPage";
 import SignUpPage from "./pages/SignUpPage";
+import CategoriesPage from "./pages/CategoriesPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
     <Routes>
+      <Route path='/' element={<App />} />
       <Route path='/HomePage' element={<App />} />
       <Route path='/LogInPage' element={<LogInPage />} />
       <Route path='/SignUpPage' element={<SignUpPage />} />
+      <Route path='/CategoriesPage' element={<CategoriesPage />} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>

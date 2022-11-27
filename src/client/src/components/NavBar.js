@@ -40,14 +40,14 @@ const NavBar = () => {
       </div>
       <div className="nav-header px-6">
         <Button theme={"bg-opacity-100 my-2"}>
-          <Link className="text-4xl font-button text-[#CD0574]" to='/'>Category</Link>
+          <Link className="text-4xl font-button text-[#CD0574]" to='/CategoriesPage'>Category</Link>
         </Button>
       </div>
-      <div className="flex mr-0 w-5 ml-auto">
+      <div className="flex mr-0 max-w-screen-md w-full ml-auto">
         <Input
           inputTheme={"p-4 h-15 max-2w-xl w-auto bg-black bg-opacity-25"} 
           placeHolder={"Input movie name, category, actor"}
-          containerTheme={"pt-2 mb-2 w-auto bg-opacity-25"}
+          containerTheme={"pt-2 mb-2 w-full bg-opacity-25"}
           textColor={"white"}
         ></Input>
         <Button

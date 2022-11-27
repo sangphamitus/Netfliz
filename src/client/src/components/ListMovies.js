@@ -16,6 +16,14 @@ let hot_movies = ['Smile - Movie Poster 1', 'House of the Dragon - TV Poster 1',
 	return <Card imgSrc={require(`../assets/images/${name}.jpg`)} />
 });
 
+let action_movies = ['John Wick - Movie Post','John Wick Chapter 4 1','American Psycho (2000)  - Movie Poster','The Woman King - Movie Poster','Creed 3 - Movie Poster 2'].map((name, index) => {
+	return <Card imgSrc={require(`../assets/images/${name}.jpg`)} />
+});
+
+let dramas_movies = ['The Queen - Movie Poster','The Fabelmans - Movie Poster','Bones and All - Movie Poster','Amsterdam - Movie Poster','Jupiter - NASA Tourism Posters'].map((name, index) => {
+	return <Card imgSrc={require(`../assets/images/${name}.jpg`)} />
+});
+
 const ListMovies = ({title}) => {
     return (
 	<div>
@@ -26,17 +34,12 @@ const ListMovies = ({title}) => {
 		/>
         <AliceCarousel
 			responsive={responsive}
-			autoPlay={true}
 			autoPlayControls={false}
-			autoPlayDirection='ltr'
-			autoPlayInterval={700}
-			animationDuration={1000}
-			autoPlayStrategy="none"
-			animationType="slide"
 			infinite={true}
 			disableDotsControls={true}
-			disableButtonsControls={true}
-			items={title === "NEW MOVIES" ? new_movies : hot_movies}
+			items={title === "NEW MOVIES" ? new_movies : 
+					title === "HOT MOVIES" ? hot_movies :
+					title === "ACTION MOVIES" ? action_movies : dramas_movies } 
         />
 	</div>
     )
