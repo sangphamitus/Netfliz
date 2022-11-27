@@ -48,7 +48,7 @@ const Footer = () => {
                 </ul>
             </div>
             <div className="ml-auto mr-8 my-auto">
-                <Link to="/HomePage"><img src={NetflizLogo} className='logo' alt='logo' width="160rem" /></Link>
+                <Link to="/"><img src={NetflizLogo} className='logo' alt='logo' width="160rem" /></Link>
             </div>
         </div> 
     )
