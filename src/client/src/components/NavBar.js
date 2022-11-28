@@ -27,7 +27,7 @@ const NavBar = ({isLogin}) => {
         <button className="nav-toggle hidden" onClick={toggleLinks}>
           <FontAwesomeIcon icon={faBars} />
         </button>
-        <Link to="/HomePage">
+        <Link to="/">
           <img
             src={NetflizLogo}
             className="logo w-[140px] max-w-none"
