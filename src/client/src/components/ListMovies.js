@@ -9,7 +9,7 @@ const responsive = {
 };
 
 
-const ListMovies = ({title,list_movies_data}) => {
+const ListMovies = ({title, list_movies_data}) => {
 	const [listMovies,setlistMovies] = useState([]);
 
 	
@@ -34,7 +34,7 @@ const ListMovies = ({title,list_movies_data}) => {
 	<div>
 		<Text 
 			text={title}
-			customTheme="text-[60px] text-pink-600 font-button"
+			customTheme="text-[3rem] text-pink-600 font-button px-6"
 			isHeader={true}
 		/>
         <AliceCarousel
@@ -50,6 +50,7 @@ const ListMovies = ({title,list_movies_data}) => {
 			disableDotsControls={true}
 			disableButtonsControls={true}
 			items={listMovies}
+			paddingLeft={22}
         />
 	</div>
     )
