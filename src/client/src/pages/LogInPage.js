@@ -39,7 +39,7 @@ function LogInPage() {
     }
     return(
       <div className="bg-scroll bg-login-background">
-        <NavBar/>
+        <NavBar isLogin={"none"} allowSearch={false}/>
         <div className='flex justify-center py-20'>
         <Form formClass={'w-full'}>
         <Text
@@ -67,7 +67,7 @@ function LogInPage() {
                  
               />
             </div>
-            <Button theme={"bg-pink-600 rounded-2xl w-full h-full mt-20"}
+            <Button theme={"h-16 p-3 bg-pink-600 rounded-2xl w-full h-full mt-20"}
             onClick={submitClickHandler}
              >
               <Text

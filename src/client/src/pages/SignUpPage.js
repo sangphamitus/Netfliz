@@ -60,7 +60,7 @@ function SignUpPage() {
 
     return(
       <div className="bg-local ... bg-login-background">
-        <NavBar/>
+        <NavBar isLogin={"none"} allowSearch={false}/>
         <div className='flex justify-center py-20'>
         <Form formClass={'w-full'}>
              <Text
@@ -72,7 +72,7 @@ function SignUpPage() {
             <Input labelText={"USERNAME"} onChange={usernameChangeHandler}></Input>
             <Input labelText={"PASSWORD"} onChange={passwordChangeHandler} type="password"></Input>
             <Input labelText={"CONFIRM PASSWORD"} onChange={repasswordChangeHandler} type="password"></Input>
-            <Button theme={"bg-pink-600 rounded-2xl w-full h-auto mt-20"} onClick={submitClickHandler}>
+            <Button theme={"h-16 p-3 bg-pink-600 rounded-2xl w-full h-auto mt-20"} onClick={submitClickHandler}>
               <Text
                 customTheme="text-[3.5rem] leading-none text-gray-200 font-button"
                 isHeader={false}
