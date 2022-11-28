@@ -12,7 +12,7 @@ function WatchMoviePage() {
 
     return(
         <div className="App bg-[#082032]">
-            <NavBar />
+            <NavBar isLogin={false}/>
             <div>
                 <iframe className='w-full h-[35rem] mb-14' src="https://www.youtube.com/embed/QQbzxrBbGz8" title="Test video for Netfliz" 
                     frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
