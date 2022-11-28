@@ -9,6 +9,7 @@ import { ListMovies } from "../components/ListMovies";
 import axios from 'axios';
 
 function WatchMoviePage() {
+
     return(
         <div className="App bg-[#082032]">
             <NavBar />

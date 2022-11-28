@@ -19,7 +19,7 @@ const Input = ({
         </label>
       )}
       <input
-        className={`rounded-2xl h-16 w-auto ${inputTheme} pl-4`}
+        className={`rounded-2xl h-10 w-auto ${inputTheme} pl-4`}
         placeholder={placeHolder}
         onChange={onChange}
         type={type?type:'text'}
