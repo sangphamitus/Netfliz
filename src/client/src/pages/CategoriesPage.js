@@ -6,7 +6,7 @@ import { ListMovies } from "../components/ListMovies";
 function CategoriesPage() {
     return (
         <div className="App bg-[#082032]">
-            <NavBar />
+            <NavBar isLogin={false} allowSearch={true}/>
             <ListMovies title={"ACTION MOVIES"} />
             <ListMovies title={"DRAMAS MOVIES"} />
             <Footer />

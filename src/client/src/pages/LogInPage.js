@@ -39,7 +39,7 @@ function LogInPage() {
     }
     return(
       <div className="bg-scroll bg-login-background">
-        <NavBar/>
+        <NavBar isLogin={"none"} allowSearch={false}/>
         <div className='flex justify-center py-20'>
         <Form formClass={'w-full'}>
         <Text
