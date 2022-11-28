@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogInPage from "./pages/LogInPage";
 import SignUpPage from "./pages/SignUpPage";
 import CategoriesPage from "./pages/CategoriesPage"
+import WatchMoviePage from "./pages/WatchMoviePage";
+
 function App() {
   return (
   <div className="App bg-[#082032]">
