@@ -29,7 +29,7 @@ const ListMovies = ({title,list_movies_data}) => {
 	<div>
 		<Text 
 			text={title}
-			customTheme="text-[60px] text-pink-600 font-button"
+			customTheme="text-[2rem] text-pink-600 font-button px-5"
 			isHeader={true}
 		/>
         <AliceCarousel
@@ -37,8 +37,9 @@ const ListMovies = ({title,list_movies_data}) => {
 			autoPlayControls={false}
 			infinite={true}
 			disableDotsControls={true}
-			disableButtonsControls={true}
+			disableButtonsControls={false}
 			items={listMovies}
+			paddingLeft={22}
         />
 	</div>
     )

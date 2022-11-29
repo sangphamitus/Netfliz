@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogInPage from "./pages/LogInPage";
 import SignUpPage from "./pages/SignUpPage";
 import CategoriesPage from "./pages/CategoriesPage"
+import WatchMoviePage from "./pages/WatchMoviePage";
+
 function App() {
   return (
   <div className="App bg-[#082032]">
@@ -12,6 +14,7 @@ function App() {
       <Route path='/LogInPage' element={<LogInPage />} />
       <Route path='/SignUpPage' element={<SignUpPage />} />
       <Route path='/CategoriesPage' element={<CategoriesPage />} />
+      <Route path='/WatchMoviePage' element={<WatchMoviePage/>}/>
     </Routes>
     </BrowserRouter>
   </div>
