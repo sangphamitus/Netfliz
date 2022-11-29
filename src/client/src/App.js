@@ -11,9 +11,10 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route exact path='/' element={<HomePage />} />
-      <Route path='/LogInPage' element={<WatchMoviePage />} />
+      <Route path='/LogInPage' element={<LogInPage />} />
       <Route path='/SignUpPage' element={<SignUpPage />} />
       <Route path='/CategoriesPage' element={<CategoriesPage />} />
+      <Route path='/WatchMoviePage' element={<WatchMoviePage/>}/>
     </Routes>
     </BrowserRouter>
   </div>
