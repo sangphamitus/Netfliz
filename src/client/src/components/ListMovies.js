@@ -11,9 +11,6 @@ const responsive = {
 
 const ListMovies = ({title,list_movies_data}) => {
 	const [listMovies,setlistMovies] = useState([]);
-
-	
-
 	useEffect(()=>
 	{
 		let movies_input=[];
@@ -28,28 +25,21 @@ const ListMovies = ({title,list_movies_data}) => {
 			:(<Card imgSrc={item.image} />)
 			}))
 	},[list_movies_data])
-
-	
     return (
 	<div>
 		<Text 
 			text={title}
-			customTheme="text-[60px] text-pink-600 font-button"
+			customTheme="text-[2rem] text-pink-600 font-button px-5"
 			isHeader={true}
 		/>
         <AliceCarousel
 			responsive={responsive}
-			autoPlay={true}
 			autoPlayControls={false}
-			autoPlayDirection='ltr'
-			autoPlayInterval={700}
-			animationDuration={1000}
-			autoPlayStrategy="none"
-			animationType="slide"
 			infinite={true}
 			disableDotsControls={true}
-			disableButtonsControls={true}
+			disableButtonsControls={false}
 			items={listMovies}
+			paddingLeft={22}
         />
 	</div>
     )
