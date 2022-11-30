@@ -5,6 +5,8 @@ import SignUpPage from "./pages/SignUpPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import MovieInfoPage from "./pages/MovieInfoPage";
 
+import WatchMoviePage from "./pages/WatchMoviePage";
+
 function App() {
   return (
   <div className="App bg-[#082032]">
@@ -15,6 +17,7 @@ function App() {
       <Route path='/SignUpPage' element={<SignUpPage />} />
       <Route path='/CategoriesPage' element={<CategoriesPage />} />
       <Route path='/MovieInfoPage' element={<MovieInfoPage />} />
+      <Route path='/WatchMoviePage' element={<WatchMoviePage/>}/>
     </Routes>
     </BrowserRouter> 
   </div>
