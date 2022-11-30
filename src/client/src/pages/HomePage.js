@@ -38,7 +38,7 @@ function HomePage() {
     return (
     <div className="App bg-[#082032]">
         <NavBar />
-        <Banner />
+        <Banner /> 
         <ListMovies title={"NEW MOVIES"} list_movies_data={newMovies} />
         <ListMovies title={"HOT MOVIES"} list_movies_data={hotMovies}/>
         <Footer/>

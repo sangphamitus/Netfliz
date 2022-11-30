@@ -73,7 +73,7 @@ function SignUpPage() {
             <Input labelText={"PASSWORD"} onChange={passwordChangeHandler} type="password"></Input>
             <Input labelText={"CONFIRM PASSWORD"} onChange={repasswordChangeHandler} type="password"></Input>
             <Button theme={"bg-pink-600 rounded-2xl w-full h-auto mt-20"} onClick={submitClickHandler}>
-              <Text
+              <Text 
                 customTheme="text-[3.5rem] leading-none text-gray-200 font-button"
                 isHeader={false}
                 text="SIGNUP"

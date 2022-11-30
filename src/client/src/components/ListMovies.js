@@ -12,8 +12,6 @@ const responsive = {
 const ListMovies = ({title,list_movies_data}) => {
 	const [listMovies,setlistMovies] = useState([]);
 
-	
-
 	useEffect(()=>
 	{
 		let movies_input=[];
@@ -23,6 +21,7 @@ const ListMovies = ({title,list_movies_data}) => {
 			movies_input=list_movies_data;
 		
 		console.log(movies_input)
+		
 		setlistMovies( Object.values(movies_input).map(item => {
 			return list_movies_data===undefined? (<Card imgSrc={require(`../assets/images/${item}.jpg`)} />)
 			:(<Card imgSrc={item.image} />)
