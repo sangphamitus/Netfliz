@@ -94,4 +94,55 @@ module.exports = {
             return rs.rows;
           }
     },
+    getFilterVideo:async(filter)=>{
+        var client=await getClient();
+        let query=`SELECT * 
+        FROM public."Videos"
+        Where `
+
+        let first=true;
+        filter.forEach(element => {
+            if(element!="")
+            {
+                if(first!=true)
+                {
+                    query+=`and `
+                    
+                }
+             if(first===true) first=false 
+                query+=`"type" like '%${element}%' `
+            } 
+           
+        });
+
+        console.log(query);
+        var rs = await client.query(query)
+        if(rs.rows.length==0){
+            return null;
+          }
+          else{
+            return rs.rows;
+          }
+        
+         
+    },
+    getSearchVideo:async(key)=>{
+        var client=await getClient();
+        let query=`SELECT * 
+        FROM public."Videos"
+        WHERE LOWER("name") like  LOWER('%${key}%')  `
+
+       
+
+        console.log(query);
+        var rs = await client.query(query)
+        if(rs.rows.length==0){
+            return null;
+          }
+          else{
+            return rs.rows;
+          }
+        
+         
+    }
 }

@@ -46,31 +46,31 @@ const NavBar = ({isLogin, allowSearch}) => {
       <div className="flex mr-0 max-w-screen-md w-full ml-auto ">
         {allowSearch === true ?
           <div className="flex mr-0 max-w-screen-md w-full ml-auto ">
-          <Input
+        <Input
             inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25"} 
-            placeHolder={"Input movie name, category, actor"}
+          placeHolder={"Input movie name, category, actor"}
             containerTheme={"pt-2 mb-2 w-full bg-opacity-25"}
-            textColor={"white"}
-          ></Input>
-          <Button
-            className="nav-toggle"
-            onClick={toggleLinks}
-            theme="mt-2 w-14 rounded-full ml-0"
-          >
-            <FontAwesomeIcon icon={faMagnifyingGlass} inverse size="2x" />
-          </Button>
+          textColor={"white"}
+        ></Input>
+        <Button
+          className="nav-toggle"
+          onClick={toggleLinks}
+          theme="mt-2 w-14 rounded-full ml-0"
+        >
+          <FontAwesomeIcon icon={faMagnifyingGlass} inverse size="2x" />
+        </Button>
         </div> :
         <div></div>}
       </div>
       <div>
         {isLogin === true ? 
-        <div className='mr-0 ml-auto'>
+      <div className='mr-0 ml-auto'>
           <Button theme={"bg-gray-200 p-1 my-2 mr-5 w-20 rounded-md"}>
             <Link className="text-2xl font-button text-[#CD0574]" to='/LogInPage'>LOGIN</Link>
-          </Button>
+        </Button>
           <Button theme={"bg-[#CD0574] p-1 my-2 mr-5 w-20 rounded-md"}>
             <Link className="text-2xl font-button text-gray-200" to='/SignUpPage'>SIGNUP</Link>
-          </Button>
+        </Button>
         </div> : isLogin === false ?
         <div className='mr-3 ml-auto mt-2 p-1 w-10 rounded-full'>
           <button className="nav-toggle" onClick={toggleLinks}>

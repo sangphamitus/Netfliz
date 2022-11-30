@@ -128,4 +128,52 @@ module.exports={
             next(err);
         }
     },
+    getFilterVideo:async(req,res,next)=>{
+        try {
+            const {type}=req.query;
+            console.log(req.query);
+            const spliter= type.split(',');
+            const rs = await videoM.getFilterVideo(spliter);
+            console.log(rs);
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "unavailable video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        } 
+    },
+    getSearchVideo:async(req,res,next)=>{
+        try {
+            const {key}=req.query;
+            const rs = await videoM.getSearchVideo(key);
+            console.log(rs);
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "unavailable video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        } 
+    }
 }

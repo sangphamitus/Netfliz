@@ -8,6 +8,6 @@ router.post('/add', videoC.addVideo,()=>{next()});
 router.post('/new', videoC.getNewVideo,()=>{next()});
 router.post('/hot', videoC.getHotVideo,()=>{next()});
 router.get('/watch',videoC.getVideo,()=>{next()});
-
-
+router.get('/filter',videoC.getFilterVideo,()=>{next()});
+router.get('/search',videoC.getSearchVideo,()=>{next()});
 module.exports =router
