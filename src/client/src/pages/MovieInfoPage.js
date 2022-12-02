@@ -15,7 +15,7 @@ function MovieInfoPage() {
                 <iframe className="w-full h-[620px] relative z-0" src="https://www.youtube.com/embed/BcDK7lkzzsU" title="Smile | Official Trailer (2022 Movie)" 
                         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></iframe>
                 <div className=" absolute top-[215px] left-[50px] z-[1]">
-                    <Text text={"SMILE"} isHeader={true} customTheme={"text-6xl text-white p-[5px]"}/>
+                    <Text text={"SMILE"} isHeader={true} customTheme={"text-6xl text-white"}/>
                     <Rate />
                     <p className="max-w-[250px] text-white font-normal">
                     After witnessing a bizarre, traumatic incident involving a patient, 
