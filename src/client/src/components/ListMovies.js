@@ -3,6 +3,9 @@ import AliceCarousel from "react-alice-carousel";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { Text } from "./Text";
 import { Card } from "./Card";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const responsive = {
 	0: { items: 5 },
@@ -40,9 +43,15 @@ const ListMovies = ({title,list_movies_data}) => {
 			disableButtonsControls={false}
 			items={listMovies}
 			paddingLeft={22}
+			renderPrevButton={() => {
+				return <FontAwesomeIcon icon={faAngleLeft} className=' absolute top-[120px] text-[50px] cursor-pointer left-[10px] text-white'  />
+			}}
+			renderNextButton={() => {
+				return <FontAwesomeIcon icon={faAngleRight} className=' absolute top-[120px] text-[50px] cursor-pointer right-[10px] text-white'  />
+			}}
         />
 	</div>
     )
 }
 
-export { ListMovies };
+export { ListMovies }; 

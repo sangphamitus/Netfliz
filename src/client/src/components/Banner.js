@@ -1,6 +1,9 @@
 import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 const items = [
    <img src={require('../assets/images/banner1.jpg')} alt="banner1" />,
@@ -11,17 +14,22 @@ const items = [
 const Banner = () => {
   return (
     <AliceCarousel 
-      autoPlay={true}
-      autoPlayControls={false}
-      autoPlayStrategy="none"
-      autoPlayDirection='ltr'
-      autoPlayInterval={1500}
-      animationDuration={4000}
-      animationType="slide"
-      infinite={true}
-      disableDotsControls={true}
-      disableButtonsControls={true}
-      items={items}
+        autoPlay={false}
+        autoPlayControls={false}
+        autoPlayStrategy="none"
+        autoPlayInterval={1500}
+        animationDuration={1000}
+        animationType="fadeout"
+        infinite={true}
+        disableDotsControls={true}
+        disableButtonsControls={false}
+        items={items}
+        renderPrevButton={() => {
+            return <FontAwesomeIcon icon={faAngleLeft} className=' absolute top-[230px] text-[50px] cursor-pointer left-[10px] text-white' />
+        }}
+        renderNextButton={() => {
+            return <FontAwesomeIcon icon={faAngleRight} className=' absolute top-[230px] text-[50px] cursor-pointer right-[10px] text-white' />
+        }}
     />
   )
 }
