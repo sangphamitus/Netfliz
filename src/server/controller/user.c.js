@@ -2,7 +2,7 @@ const userM = require('../models/user.m');
 const CryptoJS = require('crypto-js');
 const hashLength = 64;
 const {
-    getClient
+    getClient,db
 } = require("../.config/postgres");
 
 module.exports = {
@@ -80,6 +80,7 @@ module.exports = {
                 if (err) next(err)
 
                 req.session.uid = user.uid;
+                req.session.username=username;
                 req.session.permission = user.permission;
 
                 req.session.save(function (err) {

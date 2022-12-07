@@ -57,23 +57,21 @@ module.exports={
     },
     getVideo:async (req, res, next) => {
         try {
-            const {vid}=req.query;
-            console.log(req.query);
+            console.log(req.body);
+            const {vid}=req.body;
+           
             const rs = await videoM.getVideo(vid);
      
             if (rs == null) {
-                res.send(`<h1>Link not avalable</h1>`)
+                res.status(200).send({
+                    data: rs,
+                    message: "available video"
+                });
             } else {
-                res.send(`<div>
-               <div >
-               <iframe width="1060" height="615" src="${rs.link}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              
-                </div>
-                <h1>${rs.name}</h1>
-                <div>
-                    <img src=${rs.image}></img>
-                </div>
-                </div>`)
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
 
             }
             

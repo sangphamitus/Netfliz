@@ -5,17 +5,17 @@ const {
 const queryDB=require("../.config/postgres");
 const CryptoJS = require('crypto-js');
 const {
-    getClient
+    getClient,db
 }=require("../.config/postgres")
 module.exports = {
 
     registerUser: async (username, password, email, permission) => {
         
-    var client=await getClient();
+    var client=db;
     
-        var rs = await client.query(`select * from public.\"Users\" where \"username\" like '${username}'`)
+        var rs = await db.any(`select * from public.\"Users\" where \"username\" like '${username}'`)
       
-        if (rs.rows.length == 0) {
+        if (rs.length == 0) {
           
             const hashedUsername=CryptoJS.SHA256(username,{
                 outputLength:10 }).toString(CryptoJS.enc.Hex);
@@ -23,27 +23,27 @@ module.exports = {
             let query=`insert into  public.\"Users\"(\"uid\",\"username\", \"password\",\"email\",\"permission\") 
             VALUES ('${hashedUsername.slice(0,11)}', '${username}', '${password}', '${email}', ${permission}) `;
             console.log(query)
-            rs = await client.query(query);
+            rs = await db.any(query);
             return true;
         }
         return false
     },
     loginUser: async (username, password) => {
         
-        var client=await getClient();
+        var client=db;
         
-            var rs = await client.query(`select * from public.\"Users\" where \"username\" like '${username}' and \"password\" like '${password}'`)
+            var rs = await db.any(`select * from public.\"Users\" where \"username\" like '${username}' and \"password\" like '${password}'`)
           
            
             return rs
         },
     validUID: async (uid) => {
         
-        var client=await getClient();
+        var client=db;
         
-            var rs = await client.query(`select * from public.\"Users\" where \"uid\" like '${uid}' `)
+            var rs = await db.any(`select * from public.\"Users\" where \"uid\" like '${uid}' `)
           
-            if(rs.rows.length==0){
+            if(rs.length==0){
                 return false;
             }
             else{
