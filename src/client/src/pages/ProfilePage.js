@@ -37,7 +37,7 @@ function ProfilePage() {
                     </div>
                 </div>
                 <div className='h-[181px] grid'>
-                    <Text text={'Tran Hoang Tin'} isHeader={false} customTheme={"text-white font-button text-2xl "} />
+                    <Text text={'User Name'} isHeader={false} customTheme={"text-white font-button text-2xl "} />
                     <Text text={'03/07/2002'} isHeader={false} customTheme={"text-white font-button text-2xl "} />
                     <Text text={'20120385'} isHeader={false} customTheme={"text-white font-button text-2xl "} />
                     <Text text={'tranhoangtin3702@gmail.com'} isHeader={false} customTheme={"text-white font-button text-2xl "} />
