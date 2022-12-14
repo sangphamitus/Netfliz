@@ -19,11 +19,7 @@ function ProfilePage() {
             <div className='flex mx-36 py-14 border-b-2'>
                 <div>
                     <img src={ProfileImage} alt="profileImage" className='w-72'/>
-                    <div className='px-[90px]'>
-                        <a className={"text-white font-button text-sm px-2 "} >CHANGE</a>
-                        <a className={"text-white font-button text-sm px-2 "} >DELETE</a>
-                        
-                    </div>
+
                 </div>
                 <div className='grid'>
                     <div className='pl-12 pr-4 w-[181px] text-right grid'>
@@ -40,7 +36,7 @@ function ProfilePage() {
                         <a className={"text-white font-button text-sm "} >CHANGE PASSWORD</a>
                     </div>
                 </div>
-                <div className='h-[192px] grid'>
+                <div className='h-[181px] grid'>
                     <Text text={'Tran Hoang Tin'} isHeader={false} customTheme={"text-white font-button text-2xl "} />
                     <Text text={'03/07/2002'} isHeader={false} customTheme={"text-white font-button text-2xl "} />
                     <Text text={'20120385'} isHeader={false} customTheme={"text-white font-button text-2xl "} />
@@ -56,7 +52,7 @@ function ProfilePage() {
                     <img src={JohnWick} className={"max-w-xs mt-8"}/>
                     <img src={JohnWick} className={"max-w-xs mt-8"}/>
                 </div>
-                <Button theme={"bg-[#CD0574] mr-5 ml-auto w-20 rounded-md"}>
+                <Button theme={"bg-[#CD0574] ml-auto w-20 rounded-md"}>
                     <p className="text-2xl font-button text-gray-200" >LOG OUT</p>
                 </Button>
             </div>

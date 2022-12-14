@@ -4,6 +4,7 @@ import LogInPage from "./pages/LogInPage";
 import SignUpPage from "./pages/SignUpPage";
 import CategoriesPage from "./pages/CategoriesPage"
 import WatchMoviePage from "./pages/WatchMoviePage";
+import ProfilePage from "./pages/ProfilePage"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path='/SignUpPage' element={<SignUpPage />} />
       <Route path='/CategoriesPage' element={<CategoriesPage />} />
       <Route path='/WatchMoviePage' element={<WatchMoviePage/>}/>
+      <Route path='/ProfilePage' element={<ProfilePage/>}/>
     </Routes>
     </BrowserRouter>
   </div>
