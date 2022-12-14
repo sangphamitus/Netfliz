@@ -8,6 +8,7 @@ import { Rate } from "../components/Rating";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
+import { DescriptionMovie } from "../components/DescriptionMovie";
 
 function MovieInfoPage() {
    
@@ -44,12 +45,12 @@ function MovieInfoPage() {
             <div className="flex p-[20px]">
                 <div>
                 <Text text={"2022 | Action | 1h 55m"} isHeader={false} customTheme={"text-white "}/>
-                <p className="max-w-[600px] text-white font-normal">
+                <DescriptionMovie limit={200}>
                     Cười là phim điện ảnh kinh dị tâm lý Mỹ năm 2022 do Parker Finn biên kịch 
                     và đạo diễn, dựa trên phim ngắn "Laura Has't Slept" năm 2020 của anh. Trong phim, 
                     nữ diễn viên Sosie Bacon vào vai bác sĩ trị liệu Rose Cotter, cô gặp phải 
                     những hiện tượng siêu nhiên kỳ lạ sau khi một bệnh nhân tự tử ngay tại phòng khám.
-                </p>
+                </DescriptionMovie>
                 </div>
                 <div className=" flex flex-col">
                 <Text text={"Đạo diễn: Parker Finn"} isHeader={false} customTheme={"text-white ml-[100px]"}/>

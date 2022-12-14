@@ -14,7 +14,7 @@ const items = [
 const Banner = () => {
   return (
     <AliceCarousel 
-        autoPlay={false}
+        autoPlay={true}
         autoPlayControls={false}
         autoPlayStrategy="none"
         autoPlayInterval={1500}
