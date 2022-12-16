@@ -39,4 +39,9 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default {
+  routeProps: {
+    path: "/",
+    main: HomePage,
+  },
+};
