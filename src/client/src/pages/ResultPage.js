@@ -22,13 +22,17 @@ function ResultPage() {
         <NavBar isLogin={"none"} />
       </div>
       <div className="flex flex-col py-28 px-11">
-        <div className="border-b-2 border-spacing-1 mb-14">
+        <div className="border-b-2 border-spacing-1 mb-7">
           <Text
             customTheme="text-6xl font-button text-[#CD0574]"
             text={`RESULTS FOR "${"EVERY"}"`}
           />
         </div>
         {/* {result.map => ResultItem/>} */}
+        <ResultItem
+          movieName="EVERYTHING everywhere all at once"
+          imgSrc={TestImg}
+        />
         <ResultItem
           movieName="EVERYTHING everywhere all at once"
           imgSrc={TestImg}

@@ -8,7 +8,7 @@ const ResultItem = ({ movieName, imgSrc }) => {
 
   return (
     <div
-      className="flex flex-row justify-between px-20"
+      className="flex flex-row justify-between px-20 py-7"
       onClick={() => console.log("Goi navigate()")}
     >
       <div className="flex flex-col max-w-3xl mr-14 mt-24 font-button text-white  cursor-pointer">
