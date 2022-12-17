@@ -29,7 +29,7 @@ function HomePage() {
   return (
     <div className="App bg-[#082032]">
       <div className="fixed top-0 overflow-hidden w-full z-10">
-        <NavBar isLogin={true} allowSearch={true} />
+        <NavBar isLogin={false} allowSearch={true} />
       </div>
       <Banner />
       <ListMovies title={"NEW MOVIES"} list_movies_data={newMovies} />

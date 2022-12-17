@@ -1,8 +1,10 @@
 import React from "react";
 
-const Button = ({ children, props, theme,onClick}) => {
+const Button = ({ children, props, theme, ...rest }) => {
   return (
-    <button className={`max-w-36 rounded-3xl ${theme}`} onClick={onClick}>{children}</button>
+    <button {...rest} className={`max-w-36 rounded-3xl ${theme}`}>
+      {children}
+    </button>
   );
 };
 

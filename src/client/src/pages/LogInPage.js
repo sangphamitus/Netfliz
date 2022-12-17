@@ -6,8 +6,10 @@ import { Form } from "../components/Form";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function LogInPage() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,7 +36,9 @@ function LogInPage() {
   };
   return (
     <div className="bg-scroll bg-login-background">
-      <NavBar isLogin={"none"} allowSearch={false} />
+      <div className="fixed top-0 overflow-hidden w-full z-10">
+        <NavBar isLogin={"none"} allowSearch={false} />
+      </div>
       <div className="flex justify-center py-20">
         <Form formClass={"w-full"}>
           <Text
@@ -59,15 +63,16 @@ function LogInPage() {
           <div className="grid grid-flow-col pt-2.5">
             <Text
               className=""
-              customTheme="text-xl text-pink-600 font-medium"
+              customTheme="text-xl text-pink-600 font-medium cursor-pointer"
               isHeader={false}
               text="Forgot password"
             />
             <Text
               className=""
-              customTheme="text-xl text-pink-600  text-end font-medium"
+              customTheme="text-xl text-pink-600 text-end font-medium cursor-pointer"
               isHeader={false}
               text="Don't have account ?"
+              onClick={() => navigate({ pathname: "/signup" })}
             />
           </div>
           <Button

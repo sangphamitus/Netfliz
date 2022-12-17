@@ -83,7 +83,7 @@ const NavBar = ({ isLogin = false, allowSearch = true }) => {
         </form>
       )}
       <div>
-        {isLogin === true ? (
+        {isLogin === false ? (
           <div className="mr-0 ml-auto">
             <Button
               theme={
@@ -102,12 +102,14 @@ const NavBar = ({ isLogin = false, allowSearch = true }) => {
               SIGNUP
             </Button>
           </div>
-        ) : (
+        ) : isLogin === true ? (
           <div className="mr-3 ml-auto mt-2 p-1 w-10 rounded-full">
             <button className="nav-toggle" onClick={toggleLinks}>
               <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
             </button>
           </div>
+        ) : (
+          <div></div>
         )}
       </div>
     </div>
