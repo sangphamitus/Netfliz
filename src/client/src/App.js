@@ -6,6 +6,7 @@ import CategoriesPage from "./pages/CategoriesPage";
 import MovieInfoPage from "./pages/MovieInfoPage";
 
 import WatchMoviePage from "./pages/WatchMoviePage";
+import ProfilePage from "./pages/ProfilePage"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path='/CategoriesPage' element={<CategoriesPage />} />
       <Route path='/MovieInfoPage' element={<MovieInfoPage />} />
       <Route path='/WatchMoviePage' element={<WatchMoviePage/>}/>
+      <Route path='/ProfilePage' element={<ProfilePage/>}/>
     </Routes>
     </BrowserRouter> 
   </div>
