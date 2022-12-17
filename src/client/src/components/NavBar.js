@@ -10,7 +10,7 @@ import {
 import NetflizLogo from "../assets/images/pink2-logo.png";
 import { useNavigate } from "react-router-dom";
 
-const NavBar = ({ isLogin, allowSearch }) => {
+const NavBar = ({ isLogin = false, allowSearch = true }) => {
   const navigate = useNavigate();
   const [showLinks, setShowLinks] = React.useState(false);
   const linksContainerRef = React.useRef(null);
@@ -102,14 +102,12 @@ const NavBar = ({ isLogin, allowSearch }) => {
               SIGNUP
             </Button>
           </div>
-        ) : isLogin === false ? (
+        ) : (
           <div className="mr-3 ml-auto mt-2 p-1 w-10 rounded-full">
             <button className="nav-toggle" onClick={toggleLinks}>
               <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
             </button>
           </div>
-        ) : (
-          <div></div>
         )}
       </div>
     </div>

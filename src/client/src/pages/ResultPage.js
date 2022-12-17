@@ -19,13 +19,12 @@ function ResultPage() {
   return (
     <div className="bg-scroll bg-[#082032]">
       <div className="fixed top-0 overflow-hidden w-full z-10">
-        <NavBar isLogin={"none"} allowSearch={false} />
+        <NavBar isLogin={"none"} />
       </div>
-      <div className="flex flex-col py-28 px-24">
+      <div className="flex flex-col py-28 px-11">
         <div className="border-b-2 border-spacing-1 mb-14">
           <Text
-            customTheme="text-5xl font-button text-[#CD0574]"
-            className=""
+            customTheme="text-6xl font-button text-[#CD0574]"
             text={`RESULTS FOR "${"EVERY"}"`}
           />
         </div>

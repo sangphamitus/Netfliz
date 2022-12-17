@@ -8,17 +8,16 @@ const ResultItem = ({ movieName, imgSrc }) => {
 
   return (
     <div
-      className="flex flex-row justify-between"
+      className="flex flex-row justify-between px-20"
       onClick={() => console.log("Goi navigate()")}
     >
       <div className="flex flex-col max-w-3xl mr-14 mt-24 font-button text-white  cursor-pointer">
         <Text
-          customTheme="text-6xl hover:underline hover:text-[#CD0574] underline-offset-2"
+          customTheme="text-8xl hover:underline hover:text-[#CD0574] underline-offset-2"
           text={movieName}
         />
         <Text
-          customTheme="text-2xl underline underline-offset-2 hover:text-[#CD0574]"
-          className=""
+          customTheme="text-3xl underline underline-offset-2 hover:text-[#CD0574]"
           text="See More"
         />
       </div>
