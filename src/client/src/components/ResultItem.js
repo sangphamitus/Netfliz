@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 import { Text } from "./Text";
 
-const ResultItem = ({ movieName, imgSrc }) => {
+const ResultItem = ({ vid,movieName, imgSrc }) => {
   const navigate = useNavigate();
 
   return (
     <div
       className="flex flex-row justify-between px-20 py-7"
-      onClick={() => console.log("Goi navigate()")}
+      onClick={() =>  navigate(`/info?vid=${vid}`)}
     >
       <div className="flex flex-col max-w-3xl mr-14 mt-24 font-button text-white  cursor-pointer">
         <Text

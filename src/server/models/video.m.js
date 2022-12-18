@@ -126,9 +126,7 @@ module.exports = {
         var client=db;
         let query=`SELECT * 
         FROM public."Videos"
-        WHERE LOWER("name") like  LOWER('%${key}%')  `
-
-       
+        WHERE LOWER("name") like  LOWER(N'%${key}%')  `
 
         console.log(query);
         var rs = await db.any(query)

@@ -11,9 +11,9 @@ module.exports={
             } = req.body;
         
             
-            console.log(`${name},${url}`)
+           
             const rs = await videoM.addVideo(name,url,image,ratting);
-            console.log(rs);
+           
             if (rs == null) {
                 res.status(200).send({
                     data: rs,
@@ -36,7 +36,7 @@ module.exports={
         try {
   
             const rs = await videoM.allVideos();
-            console.log(rs);
+          
             if (rs == null) {
                 res.status(200).send({
                     data: rs,
@@ -57,7 +57,7 @@ module.exports={
     },
     getVideo:async (req, res, next) => {
         try {
-            console.log(req.body);
+   
             const {vid}=req.body;
            
             const rs = await videoM.getVideo(vid);
@@ -84,7 +84,7 @@ module.exports={
         try {
   
             const rs = await videoM.getNewVideo(6);
-            console.log(rs);
+            
             if (rs == null) {
                 res.status(200).send({
                     data: rs,
@@ -107,7 +107,7 @@ module.exports={
         try {
   
             const rs = await videoM.getHotVideo(6);
-            console.log(rs);
+   
             if (rs == null) {
                 res.status(200).send({
                     data: rs,
@@ -153,8 +153,9 @@ module.exports={
     },
     getSearchVideo:async(req,res,next)=>{
         try {
-            const {key}=req.query;
-            const rs = await videoM.getSearchVideo(key);
+            console.log(req.body)
+            const {name}=req.body;
+            const rs = await videoM.getSearchVideo(name);
             console.log(rs);
             if (rs == null) {
                 res.status(200).send({

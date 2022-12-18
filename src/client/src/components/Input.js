@@ -7,7 +7,8 @@ const Input = ({
   placeHolder,
   textColor,
   onChange,
-  type
+  type,
+  name
 }) => {
   return (
     <div className={`pt-8 grid grid-flow-row ${containerTheme} text-${textColor}`}>
@@ -22,6 +23,7 @@ const Input = ({
         className={`rounded-2xl h-10 w-auto ${inputTheme} pl-4`}
         placeholder={placeHolder}
         onChange={onChange}
+        name={name}
         type={type?type:'text'}
       />
     </div>
