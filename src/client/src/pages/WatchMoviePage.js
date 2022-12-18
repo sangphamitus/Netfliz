@@ -28,22 +28,8 @@ function WatchMoviePage() {
         )
     },[])
   
-    return(
-    
-        <div className="App bg-[#082032]">
-            <NavBar />
-            <div>
-         
-                         
-         
-             <iframe className='w-full h-[35rem] mb-14' src={movie.link} title={movie.name}
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
-            </div>
+  
 
-
-  React.useEffect(() => {
-    fetchMovieData();
-  }, []);
 
   return (
     <div className="App bg-[#082032]">
