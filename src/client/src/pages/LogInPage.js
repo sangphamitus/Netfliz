@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
-import { Text } from "../components/Text";
-import { Form } from "../components/Form"
-import { NavBar } from '../components/NavBar';
-import { Footer} from '../components/Footer';
-import axios from 'axios'
+import { Button, Input, Text, Form, NavBar, Footer } from "../components";
 
+import axios from "axios";
 
 function LogInPage() {
   const navigate = useNavigate();
@@ -27,18 +22,12 @@ function LogInPage() {
         remember: true,
       })
 
-      .then( 
-           res => {
-            localStorage.setItem (
-            "uid",res.data.data
-            )
-           console.log(res.data.data)
-            window.location.href="/"
-       
-          }
-      )
-    }
-    
+      .then((res) => {
+        localStorage.setItem("uid", res.data.data);
+        console.log(res.data.data);
+        window.location.href = "/";
+      });
+  };
 
   const usernameChangeHandler = (event) => {
     setUsername(event.target.value);
@@ -52,14 +41,12 @@ function LogInPage() {
         <NavBar isLogin={"none"} allowSearch={false} />
       </div>
       <div className="flex justify-center py-20">
-        <Form formClass={"w-full"}>
+        <Form formClass={"w-full"} onSubmit={submitClickHandler}>
           <Text
             customTheme="text-[3.5rem] text-pink-600 font-button"
             isHeader={true}
             text={"SIGN IN"}
           />
-
-
           <Input
             id="username"
             labelText={"USERNAME"}
@@ -89,8 +76,8 @@ function LogInPage() {
             />
           </div>
           <Button
+            type="submit"
             theme={"h-16 p-3 bg-pink-600 rounded-2xl w-full h-full mt-20"}
-            onClick={submitClickHandler}
           >
             <Text
               customTheme="text-[3.5rem] leading-none text-gray-200 font-button"

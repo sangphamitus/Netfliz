@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
-import { Text } from "../components/Text";
-import { Form } from "../components/Form";
-import { NavBar } from "../components/NavBar";
-import { Footer } from "../components/Footer";
 import axios from "axios";
+import { Button, Input, Text, Form, NavBar, Footer } from "../components";
 
 function SignUpPage() {
   const [username, setUsername] = useState("");
@@ -49,7 +44,6 @@ function SignUpPage() {
     setRepassword(event.target.value);
   };
 
-
   return (
     <div className="bg-local ... bg-login-background">
       <NavBar isLogin={"none"} allowSearch={false} />
@@ -86,7 +80,6 @@ function SignUpPage() {
             />
           </Button>
         </Form>
-
       </div>
       <Footer />
     </div>

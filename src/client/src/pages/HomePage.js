@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavBar } from "../components/NavBar";
-import { Footer } from "../components/Footer";
-import { Banner } from "../components/Banner";
-import { ListMovies } from "../components/ListMovies";
+import { NavBar, Footer, Banner, ListMovies } from "../components";
 import axios from "axios";
 
 function HomePage() {
@@ -28,7 +25,6 @@ function HomePage() {
 
   return (
     <div className="App bg-[#082032]">
-
       <div className="fixed top-0 overflow-hidden w-full z-10">
         <NavBar isLogin={false} allowSearch={true} />
       </div>
