@@ -35,16 +35,9 @@ function WatchMoviePage() {
     <div className="App bg-[#082032]">
       <NavBar isLogin={false} />
       <div>
-        <iframe
-          className="w-full h-[35rem] mb-14"
-          src="https://www.youtube.com/embed/QQbzxrBbGz8"
-          title="Test video for Netfliz"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-
+      <iframe className='w-full h-[35rem] mb-14' src={movie.link} title={movie.name}
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+            </div>
       <ListMovies title={"EPISODES"} />
 
       <div className="bg-[#E5E5E5] w-auto min-h-[18rem] h-auto my-10 mx-5">

@@ -24,11 +24,14 @@ const [isLogin,setIsLogin]= React.useState(false);
     setShowLinks(!showLinks);
   };
 
-  const submit = () => {
+  const submit = (e) => {
+
+    
     navigate({
-      pathname: "/search",
-      search: `?id=${textInput}`,
+      pathname: "/videos/search",
+      search: `?name=${textInput}`,
     });
+
   };
 
   React.useEffect(() => {
@@ -73,6 +76,8 @@ const [isLogin,setIsLogin]= React.useState(false);
       {allowSearch === true && (
         <form
           onSubmit={submit}
+          // method="post"
+          // action="/videos/search"
           className="flex mr-10 max-w-screen-md w-full ml-auto"
         >
           <Input
@@ -80,6 +85,7 @@ const [isLogin,setIsLogin]= React.useState(false);
             placeHolder={"Input movie name or category"}
             containerTheme={"pt-2 mb-2 w-full bg-opacity-25"}
             textColor={"white"}
+            name="name"
             onChange={(e) => setTextInput(e.target.value)}
           ></Input>
           <Button
