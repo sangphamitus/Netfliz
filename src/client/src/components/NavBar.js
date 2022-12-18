@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "./Button";
+
 import { Input } from "./Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,12 +11,14 @@ import {
 import NetflizLogo from "../assets/images/pink2-logo.png";
 import { useNavigate } from "react-router-dom";
 
-const NavBar = ({ isLogin = false, allowSearch = true }) => {
+const NavBar = ({  allowSearch = true }) => {
+const [isLogin,setIsLogin]= React.useState(false);
   const navigate = useNavigate();
   const [showLinks, setShowLinks] = React.useState(false);
   const linksContainerRef = React.useRef(null);
   const linksRef = React.useRef(null);
   const [textInput, setTextInput] = React.useState("");
+
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
@@ -34,7 +37,12 @@ const NavBar = ({ isLogin = false, allowSearch = true }) => {
     } else {
       linksContainerRef.current.style.height = "0px";
     }
+    
   }, [showLinks]);
+
+  useEffect(()=>{
+    setIsLogin(localStorage.getItem("uid")!=null);
+  },[localStorage]);
 
   return (
     <div className="nav-center flex flex-row bg-black bg-opacity-75">
@@ -60,6 +68,7 @@ const NavBar = ({ isLogin = false, allowSearch = true }) => {
           Category
         </Button>
       </div>
+
       {allowSearch === true && (
         <form
           onSubmit={submit}
@@ -111,6 +120,7 @@ const NavBar = ({ isLogin = false, allowSearch = true }) => {
         ) : (
           <div></div>
         )}
+
       </div>
     </div>
   );

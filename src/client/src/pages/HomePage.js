@@ -28,6 +28,7 @@ function HomePage() {
 
   return (
     <div className="App bg-[#082032]">
+
       <div className="fixed top-0 overflow-hidden w-full z-10">
         <NavBar isLogin={false} allowSearch={true} />
       </div>

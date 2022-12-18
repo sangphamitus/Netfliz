@@ -49,6 +49,7 @@ function SignUpPage() {
     setRepassword(event.target.value);
   };
 
+
   return (
     <div className="bg-local ... bg-login-background">
       <NavBar isLogin={"none"} allowSearch={false} />
@@ -85,6 +86,7 @@ function SignUpPage() {
             />
           </Button>
         </Form>
+
       </div>
       <Footer />
     </div>

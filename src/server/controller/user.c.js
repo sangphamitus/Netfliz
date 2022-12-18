@@ -2,7 +2,7 @@ const userM = require('../models/user.m');
 const CryptoJS = require('crypto-js');
 const hashLength = 64;
 const {
-    getClient
+    getClient,db
 } = require("../.config/postgres");
 
 module.exports = {
@@ -61,36 +61,36 @@ module.exports = {
 
             const rs = await userM.loginUser(username, hashedPassword);
 
-
-            if (rs.rows == 0) {
+            if (!rs) {
                 res.status(200).send({
                     data: rs,
                     message: "login failed"
                 });
                 return;
             }
-            const user = rs.rows[0]
-            if (req.body.remember=="true") {
-                var hour = 3600000;
-                req.session.cookie.maxAge = 14 * 24 * hour; //2 weeks
-            } else {
-                req.session.cookie.expires = false;
-            }
-            req.session.regenerate(function (err) {
-                if (err) next(err)
+            const user = rs
+            // if (req.body.remember=="true") {
+            //     var hour = 3600000;
+            //     req.session.cookie.maxAge = 14 * 24 * hour; //2 weeks
+            // } else {
+            //     req.session.cookie.expires = false;
+            // }
+            // req.session.regenerate(function (err) {
+            //     if (err) next(err)
 
-                req.session.uid = user.uid;
-                req.session.permission = user.permission;
+            //     req.session.uid = user.uid;
+            //     req.session.username=username;
+            //     req.session.permission = user.permission;
 
-                req.session.save(function (err) {
-                    if (err) return next(err)
+                // req.session.save(function (err) {
+                //     if (err) return next(err)
                     res.status(200).send({
                         data: user.uid,
                         permission: user.permission,
                         message: "success"
-                    });
-                })
-            })
+                     });
+                // })
+            // })
            
           
         
@@ -101,8 +101,9 @@ module.exports = {
 
     },
     userAuthentication: async (req, res, next) => {
-        console.log(req.session);
-        if(req.session.uid!=null){
+        //console.log(req.session);
+        const{uid}= req.header;
+        if(uid!=null){
             const rs= await userM.validUID(req.session.uid)
             if(rs==true){
                 next();

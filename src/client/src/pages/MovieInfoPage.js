@@ -5,35 +5,47 @@ import { Text } from "../components/Text";
 import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import { Rate } from "../components/Rating";
-
+import {useLocation,useNavigate } from "react-router-dom"
+import axios from "axios";
 function MovieInfoPage() {
-  return (
-    <div className="App bg-[#082032]">
-      <NavBar isLogin={false} />
-      <div className=" relative">
-        <iframe
-          className="w-full h-[620px] relative z-0"
-          src="https://www.youtube.com/embed/BcDK7lkzzsU"
-          title="Smile | Official Trailer (2022 Movie)"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen="true"
-        ></iframe>
-        <div className=" absolute top-[215px] left-[50px] z-[1]">
-          <Text
-            text={"SMILE"}
-            isHeader={true}
-            customTheme={"text-6xl text-white"}
-          />
-          <Rate />
-          <p className="max-w-[250px] text-white font-normal">
-            After witnessing a bizarre, traumatic incident involving a patient,
-            Dr. Rose Cotter starts experiencing frightening occurrences that she
-            can't explain. Rose must confront her troubling past in order to
-            survive and escape her horrifying new reality.
-          </p>
-        </div>
-      </div>
+
+    const [movie,setMovie]=React.useState({});
+    const search = useLocation().search;
+    const navigate=useNavigate();
+    const watchingAccessing= ()=> {
+        navigate(`/WatchMoviePage?vid=${ new URLSearchParams(search).get('vid')}`)
+        
+    }
+    React.useEffect( ()=>
+    {   
+      
+        const vid = new URLSearchParams(search).get('vid');
+     
+        axios.post(`${process.env.REACT_APP_ENDPOINT}videos/get`,{
+            vid:vid
+          }) .then( 
+            res => {
+                console.log(res.data.data)
+                setMovie(res.data.data);
+            }
+        )
+    },[])
+    return (
+        <div className="App bg-[#082032]"  onClick={(e)=>{watchingAccessing()}}>
+            <NavBar />
+            <div className=" relative">
+                <img className="w-full h-[620px] relative z-0" src={movie.image} title={movie.name} 
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="true"></img>
+                <div className=" absolute top-[215px] left-[50px] z-[1]">
+                    <Text text={movie.name} isHeader={true} customTheme={"text-6xl text-white"}/>
+                    <Rate rateinput={movie.ratting}/>
+                    <p className="max-w-[250px] text-white font-normal">
+                   {movie.review}
+                    </p> 
+
+                </div>
+            </div>
+
 
       <div className="bg-[#E5E5E5] w-auto min-h-[18rem] h-auto my-10 mx-5">
         <Text

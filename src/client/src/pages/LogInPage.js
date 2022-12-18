@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { Text } from "../components/Text";
-import { Form } from "../components/Form";
-import { NavBar } from "../components/NavBar";
-import { Footer } from "../components/Footer";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Form } from "../components/Form"
+import { NavBar } from '../components/NavBar';
+import { Footer} from '../components/Footer';
+import axios from 'axios'
+
 
 function LogInPage() {
   const navigate = useNavigate();
@@ -24,10 +26,20 @@ function LogInPage() {
         password,
         remember: true,
       })
-      .then((res) => {
-        console.log(res.data.data);
-      });
-  };
+
+      .then( 
+           res => {
+            localStorage.setItem (
+            "uid",res.data.data
+            )
+           console.log(res.data.data)
+            window.location.href="/"
+       
+          }
+      )
+    }
+    
+
   const usernameChangeHandler = (event) => {
     setUsername(event.target.value);
   };
@@ -46,6 +58,7 @@ function LogInPage() {
             isHeader={true}
             text={"SIGN IN"}
           />
+
 
           <Input
             id="username"

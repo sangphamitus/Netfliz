@@ -6,17 +6,40 @@ import { NavBar } from "../components/NavBar";
 import { Footer } from "../components/Footer";
 import { ListMovies } from "../components/ListMovies";
 
-import axios from "axios";
+import {useLocation,useNavigate } from "react-router-dom"
+import axios from 'axios';
 
-function WatchMoviePage() {
-  const [movie, setMovie] = React.useState();
 
-  const fetchMovieData = async () => {
-    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/`).then((res) => {
-      console.log(res.data.data);
-      setMovie(res.data.data);
-    });
-  };
+function WatchMoviePage() {   
+     const [movie,setMovie]=React.useState({});
+     const search = useLocation().search;
+    React.useEffect( ()=>
+    {   
+      
+        const vid = new URLSearchParams(search).get('vid');
+     
+        axios.post(`${process.env.REACT_APP_ENDPOINT}videos/get`,{
+            vid:vid
+          }) .then( 
+            res => {
+                console.log(res.data.data)
+                setMovie(res.data.data);
+            }
+        )
+    },[])
+  
+    return(
+    
+        <div className="App bg-[#082032]">
+            <NavBar />
+            <div>
+         
+                         
+         
+             <iframe className='w-full h-[35rem] mb-14' src={movie.link} title={movie.name}
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+            </div>
+
 
   React.useEffect(() => {
     fetchMovieData();

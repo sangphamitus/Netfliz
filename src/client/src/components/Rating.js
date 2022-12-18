@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const Rate = () => {
-	const [rate, setRate] = useState(0);
+const Rate = ({rateinput}) => {
+	const [rate, setRate] = useState(parseInt(rateinput));
 	const [hover, setHover] = useState(null);
 
+	
 	return (
 		<div className=" flex text-[20px]">
 		{[...Array(5)].map((star, index) => {

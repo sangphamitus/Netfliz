@@ -32,6 +32,7 @@ function CategoriesPage() {
       <Footer />
     </div>
   );
+
 }
 
 export default {
