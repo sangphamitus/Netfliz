@@ -10,6 +10,7 @@ function MovieInfoPage() {
 
     const [movie,setMovie]=React.useState({});
     const [cmt, setCmt]=React.useState([]);
+    const [inputCmt,setInputCmt]=React.useState("");
     const search = useLocation().search;
     const navigate=useNavigate();
     const watchingAccessing= ()=> {
@@ -19,9 +20,7 @@ function MovieInfoPage() {
     const vid = new URLSearchParams(search).get('vid'); 
     React.useEffect( ()=>
     {   
-      
-      
-     
+          
         axios.post(`${process.env.REACT_APP_ENDPOINT}videos/get`,{
             vid:vid
           }) .then( 
@@ -41,7 +40,29 @@ function MovieInfoPage() {
             setCmt(res.data.data);
         }
     )
-    },[window.location.href]);
+    },[]);
+
+    const postComment=async()=>
+    {
+        if(inputCmt!=="")
+        {
+          axios.post(`${process.env.REACT_APP_ENDPOINT}comments/post`,{
+            
+              vid:vid,
+            
+              username:"Test",
+              content:inputCmt
+              
+            
+          }) .then( 
+            res => {
+                console.log(res.data.data)
+                setCmt(res.data.data);
+            }
+        )
+        }      
+    }
+
     return (
       <div className="App bg-[#082032]">
       <NavBar />
@@ -101,9 +122,10 @@ function MovieInfoPage() {
           isHeader={true}
         />
         <div className="flex px-5 my-5">
-          <Input containerTheme={"min-w-[38rem] pt-0"} />
+          <Input containerTheme={"min-w-[38rem] pt-0"} onChange={(e)=>{setInputCmt(e.target.value)}}/>
           <Button
             theme={"bg-pink-600 rounded-2xl w-auto h-auto px-3 mx-3 px-4"}
+            onClick={postComment}
           >
             <Text
               customTheme="text-[2rem] leading-none text-gray-200 font-button"
@@ -115,10 +137,10 @@ function MovieInfoPage() {
 
         <div>{cmt.map(item=>
   
-            <div>
-              {item.data.map (each=>
+            <div key={item.key}>
+              {item.data.map ((each,i)=>
             {
-              console.log(each)
+             
               return(
                 <div  >
                     <b>{each.username }<i>:{each.content}</i></b>
