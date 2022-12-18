@@ -25,7 +25,7 @@ const ListMovies = ({title,list_movies_data}) => {
 		
 		setlistMovies( Object.values(movies_input).map(item => {
 			return list_movies_data===undefined? (<Card imgSrc={require(`../assets/images/${item}.jpg`)} />)
-			:(<Card imgSrc={item.image} />)
+			:(<Card imgSrc={item.image} vid={item.vid}/>)
 			}))
 	},[list_movies_data])
     return (

@@ -8,6 +8,7 @@ import MovieInfoPage from "./pages/MovieInfoPage";
 import WatchMoviePage from "./pages/WatchMoviePage";
 
 function App() {
+  
   return (
   <div className="App bg-[#082032]">
     <BrowserRouter>

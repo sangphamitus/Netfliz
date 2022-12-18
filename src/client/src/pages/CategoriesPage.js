@@ -34,7 +34,7 @@ function CategoriesPage() {
     },[])
     return (
         <div className="App bg-[#082032]">
-            <NavBar isLogin={false} allowSearch={true}/>
+            <NavBar  allowSearch={true}/>
             <ListMovies title={"ACTION MOVIES"} list_movies_data={actionMovies}/>
             <ListMovies title={"DRAMAS MOVIES"} list_movies_data={dramasMovies}/>
             <Footer />

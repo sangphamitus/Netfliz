@@ -6,5 +6,4 @@ router.post('/register', userC.registerUser,()=>{next()});
 router.post('/login', userC.loginUser,()=>{next()});
 
 
-
 module.exports =router

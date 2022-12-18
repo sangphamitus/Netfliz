@@ -5,17 +5,38 @@ import { Text } from "../components/Text";
 import { NavBar } from '../components/NavBar';
 import { Footer} from '../components/Footer';
 import { ListMovies } from "../components/ListMovies";
-
+import {useLocation,useNavigate } from "react-router-dom"
 import axios from 'axios';
 
-function WatchMoviePage() {
 
+function WatchMoviePage() {   
+     const [movie,setMovie]=React.useState({});
+     const search = useLocation().search;
+    React.useEffect( ()=>
+    {   
+      
+        const vid = new URLSearchParams(search).get('vid');
+     
+        axios.post(`${process.env.REACT_APP_ENDPOINT}videos/get`,{
+            vid:vid
+          }) .then( 
+            res => {
+                console.log(res.data.data)
+                setMovie(res.data.data);
+            }
+        )
+    },[])
+  
     return(
+    
         <div className="App bg-[#082032]">
-            <NavBar isLogin={false}/>
+            <NavBar />
             <div>
-                <iframe className='w-full h-[35rem] mb-14' src="https://www.youtube.com/embed/QQbzxrBbGz8" title="Test video for Netfliz" 
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+         
+                         
+         
+             <iframe className='w-full h-[35rem] mb-14' src={movie.link} title={movie.name}
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
             </div>
 
             <ListMovies title={"EPISODES"} />

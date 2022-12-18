@@ -6,7 +6,7 @@ import { Form } from "../components/Form"
 import { NavBar } from '../components/NavBar';
 import { Footer} from '../components/Footer';
 import axios from 'axios'
-
+import UserProfile from '../components/UserAccount';
 
 function LogInPage() {
     const [username,setUsername]=useState("");
@@ -23,8 +23,12 @@ function LogInPage() {
         remember:true,
       })
       .then( 
-          res => {
-              console.log(res.data.data)
+           res => {
+            localStorage.setItem (
+            "uid",res.data.data
+            )
+           console.log(res.data.data)
+            window.location.href="/"
        
           }
       )
@@ -39,7 +43,7 @@ function LogInPage() {
     }
     return(
       <div className="bg-scroll bg-login-background">
-        <NavBar isLogin={"none"} allowSearch={false}/>
+        <NavBar  allowSearch={false}/>
         <div className='flex justify-center py-20'>
         <Form formClass={'w-full'}>
         <Text

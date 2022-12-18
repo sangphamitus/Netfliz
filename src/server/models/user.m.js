@@ -13,7 +13,7 @@ module.exports = {
         
     var client=db;
     
-        var rs = await db.any(`select * from public.\"Users\" where \"username\" like '${username}'`)
+        var rs = await db.any(`select * from public.\"Users\" where \"username\" like '${username}' or \"email\" like '${username}'`)
       
         if (rs.length == 0) {
           
@@ -33,9 +33,17 @@ module.exports = {
         var client=db;
         
             var rs = await db.any(`select * from public.\"Users\" where \"username\" like '${username}' and \"password\" like '${password}'`)
-          
-           
-            return rs
+            if(rs.length==0)
+            {
+                rs = await db.any(`select * from public.\"Users\" where \"email\" like '${username}' and \"password\" like '${password}'`)
+                if(rs.length==0)
+                {
+                    return null;
+                }
+                return rs;
+            }
+
+            return rs[0];
         },
     validUID: async (uid) => {
         

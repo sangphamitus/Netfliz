@@ -60,7 +60,7 @@ function SignUpPage() {
 
     return(
       <div className="bg-local ... bg-login-background">
-        <NavBar isLogin={"none"} allowSearch={false}/>
+        <NavBar allowSearch={false}/>
         <div className='flex justify-center py-20'>
         <Form formClass={'w-full'}>
              <Text
