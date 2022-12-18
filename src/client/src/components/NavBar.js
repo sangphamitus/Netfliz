@@ -40,7 +40,7 @@ const [isLogin,setIsLogin]= React.useState(false);
     
   }, [showLinks]);
 
-  useEffect(()=>{
+  React.useEffect(()=>{
     setIsLogin(localStorage.getItem("uid")!=null);
   },[localStorage]);
 

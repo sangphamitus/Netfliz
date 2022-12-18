@@ -88,7 +88,7 @@ module.exports = {
                         data: user.uid,
                         permission: user.permission,
                         message: "success"
-                     });
+                     })
                 // })
             // })
            
