@@ -7,6 +7,7 @@ const CryptoJS = require('crypto-js');
 const {
     getClient,db
 }=require("../.config/postgres")
+const userinfoM=require("./userinfo.m");
 module.exports = {
 
     registerUser: async (username, password, email, permission) => {
@@ -23,6 +24,7 @@ module.exports = {
             let query=`insert into  public.\"Users\"(\"uid\",\"username\", \"password\",\"email\",\"permission\") 
             VALUES ('${hashedUsername.slice(0,11)}', '${username}', '${password}', '${email}', ${permission}) `;
             console.log(query)
+            userinfoM.addNewUserinfo({uid:hashedUsername.slice(0,11)});
             rs = await db.any(query);
             return true;
         }
