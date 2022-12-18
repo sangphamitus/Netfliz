@@ -13,7 +13,7 @@ function MovieInfoPage() {
     const search = useLocation().search;
     const navigate=useNavigate();
     const watchingAccessing= ()=> {
-        navigate(`/WatchMoviePage?vid=${ new URLSearchParams(search).get('vid')}`)
+        navigate(`/watch?vid=${ new URLSearchParams(search).get('vid')}`)
         
     }
     React.useEffect( ()=>

@@ -6,7 +6,7 @@ const Card = ({ imgSrc,vid}) => {
 
     const navigate=useNavigate();
     const cardAccessing= ()=> {
-      navigate(`/MovieInfoPage?vid=${vid}`)
+      navigate(`/info?vid=${vid}`)
   
     }
     return (

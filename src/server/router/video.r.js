@@ -9,5 +9,5 @@ router.post('/new', videoC.getNewVideo,()=>{next()});
 router.post('/hot', videoC.getHotVideo,()=>{next()});
 router.post('/get',videoC.getVideo,()=>{next()});
 router.get('/filter',videoC.getFilterVideo,()=>{next()});
-router.get('/search',videoC.getSearchVideo,()=>{next()});
+router.post('/search',videoC.getSearchVideo,()=>{next()});
 module.exports =router
