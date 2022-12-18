@@ -1,10 +1,14 @@
-const Text = ({ text, isHeader, customTheme, Href}) => {
+const Text = ({ text, isHeader, customTheme, Href, ...rest }) => {
   return (
     <>
       {isHeader ? (
-        <h3 className={`font-normal ${customTheme}`}>{text}</h3>
+        <h3 {...rest} className={`font-normal ${customTheme}`}>
+          {text}
+        </h3>
       ) : (
-        <a className={`font-normal ${customTheme}`} href={Href}>{text}</a>
+        <a {...rest} className={`font-normal ${customTheme}`} href={Href}>
+          {text}
+        </a>
       )}
     </>
   );
