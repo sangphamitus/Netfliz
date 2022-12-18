@@ -7,26 +7,43 @@ import { faPlay, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Button, Input, Text, NavBar, Footer, Rate } from "../components";
 
 function MovieInfoPage() {
-  const [movie, setMovie] = React.useState({});
-  const search = useLocation().search;
-  const navigate = useNavigate();
-  const watchingAccessing = () => {
-    navigate(`/watch?vid=${new URLSearchParams(search).get("vid")}`);
-  };
-  React.useEffect(() => {
-    const vid = new URLSearchParams(search).get("vid");
 
-    axios
-      .post(`${process.env.REACT_APP_ENDPOINT}videos/get`, {
-        vid: vid,
-      })
-      .then((res) => {
-        console.log(res.data.data);
-        setMovie(res.data.data);
-      });
-  }, []);
-  return (
-    <div className="App bg-[#082032]">
+    const [movie,setMovie]=React.useState({});
+    const [cmt, setCmt]=React.useState([]);
+    const search = useLocation().search;
+    const navigate=useNavigate();
+    const watchingAccessing= ()=> {
+        navigate(`/watch?vid=${ new URLSearchParams(search).get('vid')}`)
+        
+    }
+    const vid = new URLSearchParams(search).get('vid'); 
+    React.useEffect( ()=>
+    {   
+      
+      
+     
+        axios.post(`${process.env.REACT_APP_ENDPOINT}videos/get`,{
+            vid:vid
+          }) .then( 
+            res => {
+                console.log(res.data.data)
+                setMovie(res.data.data);
+            }
+        )
+       
+    },[])
+    React.useEffect(()=>{
+      axios.post(`${process.env.REACT_APP_ENDPOINT}comments/getpost`,{
+        vid:vid
+      }) .then( 
+        res => {
+            console.log(res.data.data)
+            setCmt(res.data.data);
+        }
+    )
+    },[window.location.href]);
+    return (
+      <div className="App bg-[#082032]">
       <NavBar />
       <div className="relative">
         <img
@@ -96,7 +113,20 @@ function MovieInfoPage() {
           </Button>
         </div>
 
-        <div>{/* show comments */}</div>
+        <div>{cmt.map(item=>
+  
+            <div>
+              {item.data.map (each=>
+            {
+              console.log(each)
+              return(
+                <div  >
+                    <b>{each.username }<i>:{each.content}</i></b>
+                </div>
+            )
+          })}
+            </div>
+          )}</div>
       </div>
 
       <Footer />
