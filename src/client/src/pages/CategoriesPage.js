@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavBar } from "../components/NavBar";
-import { Footer } from "../components/Footer";
-import { ListMovies } from "../components/ListMovies";
+import { NavBar, Footer, ListMovies } from "../components";
 import axios from "axios";
 
 function CategoriesPage() {
@@ -32,7 +30,6 @@ function CategoriesPage() {
       <Footer />
     </div>
   );
-
 }
 
 export default {
