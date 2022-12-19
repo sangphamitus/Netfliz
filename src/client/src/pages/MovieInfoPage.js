@@ -50,7 +50,7 @@ function MovieInfoPage() {
             
               vid:vid,
             
-              username:"Test",
+              username:localStorage.getItem("uid"),
               content:inputCmt
               
             
@@ -58,6 +58,7 @@ function MovieInfoPage() {
             res => {
                 console.log(res.data.data)
                 setCmt(res.data.data);
+                setInputCmt("");
             }
         )
         }      
@@ -168,9 +169,11 @@ function MovieInfoPage() {
               {item.data.map ((each,i)=>
             {
              
-              return(
+                return(
                 <div  >
+                  <p>{new Date(each.timeStamp).toUTCString()}</p>
                     <b>{each.username }<i>:{each.content}</i></b>
+                    <hr/>
                 </div>
             )
           })}

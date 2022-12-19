@@ -6,13 +6,23 @@ import { Button, Input, Text, NavBar, Footer, ListMovies } from "../components";
 
 function WatchMoviePage() {
   const [movie, setMovie] = React.useState({});
+
+  const [newMovies, setNewMovies] = useState([]);
+  const [episode, setEpisode] = useState([]);
   const search = useLocation().search;
   const [cmt, setCmt]=React.useState([]);
   const [inputCmt,setInputCmt]=React.useState("");
   const vid = new URLSearchParams(search).get("vid");
+  const fetchNewMoviesData = async () => {
+    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/new`).then((res) => {
+      console.log(res.data.data);
+      setNewMovies(res.data.data);
+    });
+  };
+
   React.useEffect(() => {
   
-
+    fetchNewMoviesData();
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/get`, {
         vid: vid,
@@ -22,6 +32,19 @@ function WatchMoviePage() {
         setMovie(res.data.data);
       });
   }, []);
+
+  React.useEffect(() => {
+  
+    if(movie.haveEp==null) return;
+
+    axios   .post(`${process.env.REACT_APP_ENDPOINT}videos/getEp`, {
+        eid: movie.haveEp,
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setEpisode(res.data.data);
+      });
+  }, [movie]);
   React.useEffect(()=>{
     axios.post(`${process.env.REACT_APP_ENDPOINT}comments/getpost`,{
       vid:vid
@@ -49,6 +72,9 @@ function WatchMoviePage() {
           res => {
               console.log(res.data.data)
               setCmt(res.data.data);
+
+              setInputCmt("");
+
           }
       )
       }      
@@ -62,11 +88,13 @@ function WatchMoviePage() {
           src={movie.link}
           title={movie.name}
           frameborder="0"
+        
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         ></iframe>
       </div>
-      <ListMovies title={"EPISODES"} />
+      {episode.length&& <ListMovies title={"EPISODES"} list_movies_data={episode} />}
+      
 
       <div className="bg-[#E5E5E5] w-auto min-h-[18rem] h-auto my-10 mx-5">
         <Text
@@ -101,16 +129,20 @@ function WatchMoviePage() {
   {
    
     return(
-      <div  >
-          <b>{each.username }<i>:{each.content}</i></b>
-      </div>
+   
+            <div  >
+                  <p>{new Date(each.timeStamp).toUTCString()}</p>
+                    <b>{each.username }<i>:{each.content}</i></b>
+                    <hr/>
+                </div>
+
   )
 })}
   </div>
 )}</div>
       </div>
 
-      <ListMovies title={"New movies"} />
+      <ListMovies title={"NEW MOVIES"} list_movies_data={newMovies} />
 
       <div className="h-[57rem]" />
 

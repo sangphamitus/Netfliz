@@ -32,7 +32,7 @@ module.exports = {
 
         
             const data=await commentM.getComment({vid});
-         
+            
             res.status(200).send(
                 {
                     data:data,
