@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
-import { Text } from "../components/Text";
-import { NavBar } from "../components/NavBar";
-import { Footer } from "../components/Footer";
-import { Card } from "../components/Card";
-import { ListMovies } from "../components/ListMovies";
+import React from "react";
+import {
+  Button,
+  Input,
+  Text,
+  NavBar,
+  Footer,
+  Card,
+  ListMovies,
+} from "../components";
 import ProfileImage from "../assets/images/profile.png";
 import JohnWick from "../assets/images/John Wick - Movie Post.jpg";
 

@@ -9,7 +9,8 @@ module.exports = {
            // const username=req.session.username;
     
             if(cid===undefined) cid= null;
-            const data=commentM.addComment({vid,cid,username,content});
+            const rs=await commentM.addComment({vid,cid,username,content});
+            const data=await commentM.getComment({vid});
             res.status(200).send(
                 {
                     data:data,

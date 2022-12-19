@@ -1,29 +1,26 @@
 import axios from "axios";
 import React from "react";
-import { Footer } from "../components/Footer";
-import { NavBar } from "../components/NavBar";
-import { ResultItem } from "../components/ResultItem";
-import { Text } from "../components/Text";
-import TestImg from "../assets/images/download.jpg";
+import { Footer, NavBar, ResultItem, Text } from "../components";
 
 function ResultPage() {
   const [result, setResult] = React.useState([]);
-  let value=decodeURI(window.location.search).split("?")[1].split("=");
+  let value = decodeURI(window.location.search).split("?")[1].split("=");
   const fetchSearchResultData = async () => {
-    console.log(value[1])
-    console.log(`${process.env.REACT_APP_ENDPOINT}videos/search`)
-    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/search`,
-    {
-      name:value[1].replace("+"," ")
-    }).then((res) => {
-      console.log(res.data.data);
-      setResult(res.data.data);
-    });
+    console.log(value[1]);
+    console.log(`${process.env.REACT_APP_ENDPOINT}videos/search`);
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}videos/search`, {
+        name: value[1].replace("+", " "),
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setResult(res.data.data);
+      });
   };
 
-  React.useEffect(()=>{
-      fetchSearchResultData();
-  },[]);
+  React.useEffect(() => {
+    fetchSearchResultData();
+  }, []);
   return (
     <div className="bg-scroll bg-[#082032]">
       <div className="fixed top-0 overflow-hidden w-full z-10">
@@ -33,11 +30,19 @@ function ResultPage() {
         <div className="border-b-2 border-spacing-1 mb-7">
           <Text
             customTheme="text-6xl font-button text-[#CD0574]"
-            text={`RESULTS FOR "${value[1].replace("+"," ")}"`}
+            text={`RESULTS FOR "${value[1].replace("+", " ")}"`}
           />
         </div>
-        
-         { result&& result.map(each=> <ResultItem key={each.vid} vid={each.vid} movieName={each.name} imgSrc={each.image}/>)}
+
+        {result &&
+          result.map((each) => (
+            <ResultItem
+              key={each.vid}
+              vid={each.vid}
+              movieName={each.name}
+              imgSrc={each.image}
+            />
+          ))}
         {/* <ResultItem
           movieName="EVERYTHING everywhere all at once"
           imgSrc={TestImg}
