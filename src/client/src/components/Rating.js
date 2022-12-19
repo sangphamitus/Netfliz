@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { Text } from "./Text";
 
-const Rate = () => {
-	const [rate, setRate] = useState(0);
+const Rate = ({rateinput}) => {
+	const [rate, setRate] = useState(parseInt(rateinput));
 	const [hover, setHover] = useState(null);
 
+	
 	return (	
 		<div className=" text-[20px] ">
 			<Text text={rate} isHeader={false} customTheme={"text-white pr-[5px]"}/>
