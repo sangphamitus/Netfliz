@@ -21,6 +21,10 @@ const [isLogin,setIsLogin]= React.useState(false);
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
+    navigate({
+      pathname: "/profile",
+    
+    });
   };
 
   const submit = (e) => {
@@ -44,7 +48,7 @@ const [isLogin,setIsLogin]= React.useState(false);
   }, [showLinks]);
 
   React.useEffect(()=>{
-    setIsLogin(localStorage.getItem("uid")!=null);
+    setIsLogin(localStorage.getItem("uid")!==null&&localStorage.getItem("uid")!=="null");
   },[localStorage]);
 
   return (

@@ -63,6 +63,21 @@ function MovieInfoPage() {
         }      
     }
 
+    const postAddList=async()=>
+    {
+    axios.post(`${process.env.REACT_APP_ENDPOINT}userinfo/addMovie`,{
+            
+              vid:vid,
+              uid:localStorage.getItem("uid"),
+              img:movie.image,
+    
+          }) .then( 
+            res => {
+                console.log(res.data.messages)
+              
+            })
+    }
+
     return (
       <div className="App bg-[#082032]">
       <NavBar />
@@ -82,7 +97,10 @@ function MovieInfoPage() {
             className="pl"
             customTheme={"text-6xl text-white mb-48"}
           />
-          <div className="mb-10 flex flex-row">
+          {
+            localStorage.getItem("uid")!==null&&localStorage.getItem("uid")!=="null" &&
+    (
+           <div className="mb-10 flex flex-row">
             <Button
               theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
               onClick={(e) => {
@@ -98,6 +116,7 @@ function MovieInfoPage() {
             </Button>
             <Button
               theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
+              onClick={postAddList}
             >
               <FontAwesomeIcon icon={faPlus} className="pb-1" />
               <Text
@@ -107,6 +126,9 @@ function MovieInfoPage() {
               />
             </Button>
           </div>
+          )
+          }
+         
         </div>
       </div>
 
@@ -121,7 +143,10 @@ function MovieInfoPage() {
           customTheme={"text-[2rem] px-5"}
           isHeader={true}
         />
-        <div className="flex px-5 my-5">
+        {
+          localStorage.getItem("uid")!==null&&localStorage.getItem("uid")!=="null" &&
+    (
+          <div className="flex px-5 my-5">
           <Input containerTheme={"min-w-[38rem] pt-0"} onChange={(e)=>{setInputCmt(e.target.value)}}/>
           <Button
             theme={"bg-pink-600 rounded-2xl w-auto h-auto px-3 mx-3 px-4"}
@@ -133,8 +158,10 @@ function MovieInfoPage() {
               text="Comment"
             />
           </Button>
-        </div>
+        </div>)
 
+        }
+      
         <div>{cmt.map(item=>
   
             <div key={item.key}>

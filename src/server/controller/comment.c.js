@@ -5,6 +5,7 @@ module.exports = {
     {
         
         try{
+            console.log(req.header)
             let {vid,cid,username,content} = req.body;
            // const username=req.session.username;
     
