@@ -7,9 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Form } from "../components/Form";
 import { Input } from "../components/Input";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ChangeMovieInfoPage() {
+    const navigate = useNavigate();
     return (
         <div className="App bg-[#082032]">
             <NavBar isLogin={true} allowSearch={true}/>
@@ -158,8 +159,12 @@ function ChangeMovieInfoPage() {
                     </Button>
                     <Button
                         theme={"bg-pink-600 rounded-[5px] w-[100px] h-10 ml-[850px]"}
+                        onClick={() => navigate({ pathname: "/admin" })}
                     >
-                        <Link className="text-white font-button text-[25px]" to='/AdminPage'>BACK</Link>
+                        <Text 
+                            text={"BACK"}
+                            customTheme="text-white font-button text-[25px]"
+                        />
                     </Button>
                 </div>
             </Form>
