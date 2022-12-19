@@ -174,5 +174,80 @@ module.exports={
             console.log(err);
             next(err);
         } 
+    },
+    createEpisode:async(req,res,next)=>{
+
+        try {
+          
+            const {name}=req.body;
+            const rs = await videoM.createEpisode(name);
+          
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "unavailable video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        } 
+    }, 
+    addToEpisode:async(req,res,next)=>{
+
+        try {
+          
+            const {eid,vid}=req.body;
+            const rs = await videoM.addToEpisode(eid,vid);
+          
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "unavailable video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        } 
+    },
+    getEpisode:async(req,res,next)=>{
+
+        try {
+          
+            const {eid}=req.body;
+            const rs = await videoM.getEpisode(eid)
+          
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "unavailable video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        } 
     }
 }

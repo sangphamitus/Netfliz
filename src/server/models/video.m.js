@@ -138,5 +138,48 @@ module.exports = {
           }
         
          
-    }
+    },
+    createEpisode:async(name)=>{
+
+    
+        const eid = CryptoJS.SHA256(name+(new Date()).toUTCString(), {
+            outputLength: 10 
+        }).toString(CryptoJS.enc.Hex).slice(0,10);
+        const id = CryptoJS.SHA256((new Date()).toUTCString(), {
+            outputLength: 10 
+        }).toString(CryptoJS.enc.Hex).slice(0,10);
+        let query="";
+        query=`insert into  public.\"Episode\"(\"id\",\"eid\",\"collectionName\") 
+             VALUES ('${id}','${eid}','${name}')`;
+         db.any(query);
+
+         return eid;
+
+         
+    },
+    addToEpisode:async(eid,vid)=>{
+
+
+       query=`UPDATE public."Videos"
+       SET "haveEp"= '${eid}'
+       WHERE "vid"= '${vid}'
+       returning*;`
+
+       const rs= await db.any(query);
+         return rs;
+
+         
+    },
+    getEpisode:async(eid)=>{
+
+
+        let query=`SELECT *
+        FROM public."Videos"
+        WHERE "haveEp" = '${eid}'`
+ 
+        const rs=  db.any(query);
+          return rs;
+ 
+          
+     },
 }

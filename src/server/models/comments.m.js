@@ -1,6 +1,7 @@
 const {admin,db} =require('../.config/firebase');
 const CryptoJS = require('crypto-js');
 const hashLength = 64;
+const userinfoM= require("../models/userinfo.m")
 module.exports= 
 {
     addComment: async({vid,cid,username,content})=>{
@@ -9,26 +10,28 @@ module.exports=
         outputLength: 10 
     }).toString(CryptoJS.enc.Hex).slice(0,10);
     const cmts = db.collection('comments').doc(vid);
-   
-    console.log({vid,cid,username,content})
+    const account=await userinfoM.getUserinfo({uid:username});
+    console.log(account);
+
+//    console.log({vid,cid,username,content})
     if(cid==null)
     {
         cmts.collection(currCid).doc(currCid).set({
             cid:currCid,
-           username,
+           username:account.name,
            content,
            like:0,
-          timeStamp:new Date()
+          timeStamp:(new Date()).toUTCString()
         })
    
     }
     else{
         cmts.collection(cid).doc(currCid).set({
             cid:currCid,
-            username,
+            username:account.name,
             content,
             like:0,
-           timeStamp:new Date()
+           timeStamp:(new Date()).toUTCString()
          })
     }
  
