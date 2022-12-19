@@ -168,4 +168,9 @@ function ChangeMovieInfoPage() {
     )
 }
 
-export default ChangeMovieInfoPage;
+export default {
+    routeProps: {
+      path: "/changemovie",
+      main: ChangeMovieInfoPage,
+    },
+  };
