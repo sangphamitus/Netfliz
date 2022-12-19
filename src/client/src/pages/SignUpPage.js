@@ -62,7 +62,7 @@ function SignUpPage() {
       <div className="bg-local ... bg-login-background">
         <NavBar isLogin={"none"} allowSearch={false}/>
         <div className='flex justify-center py-20'>
-        <Form formClass={'w-full'}>
+        <Form formClass={'w-[640px]'}>
              <Text
               customTheme="text-[3.5rem] text-pink-600 font-button"
               isHeader={true}
