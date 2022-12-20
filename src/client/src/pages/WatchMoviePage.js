@@ -22,41 +22,6 @@ function WatchMoviePage() {
     });
   };
 
-  React.useEffect(() => {
-    fetchNewMoviesData();
-    axios
-      .post(`${process.env.REACT_APP_ENDPOINT}videos/get`, {
-        vid: vid,
-      })
-      .then((res) => {
-        console.log(res.data.data);
-        setMovie(res.data.data);
-      });
-  }, []);
-
-  React.useEffect(() => {
-    if (movie.haveEp == null) return;
-
-    axios
-      .post(`${process.env.REACT_APP_ENDPOINT}videos/getEp`, {
-        eid: movie.haveEp,
-      })
-      .then((res) => {
-        console.log(res.data.data);
-        setEpisode(res.data.data);
-      });
-  }, [movie]);
-  React.useEffect(() => {
-    axios
-      .post(`${process.env.REACT_APP_ENDPOINT}comments/getpost`, {
-        vid: vid,
-      })
-      .then((res) => {
-        console.log(res.data.data);
-        setCmt(res.data.data);
-      });
-  }, []);
-
   const postComment = async () => {
     if (inputCmt !== "") {
       axios
@@ -74,6 +39,42 @@ function WatchMoviePage() {
         });
     }
   };
+
+  React.useEffect(() => {
+    fetchNewMoviesData();
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}videos/get`, {
+        vid: vid,
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setMovie(res.data.data);
+      });
+  }, []);
+
+  React.useEffect(() => {
+    if (movie.haveEp == null) return;
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}videos/getEp`, {
+        eid: movie.haveEp,
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setEpisode(res.data.data);
+      });
+  }, [movie]);
+
+  React.useEffect(() => {
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}comments/getpost`, {
+        vid: vid,
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setCmt(res.data.data);
+      });
+  }, []);
+
   return (
     <div className="App bg-[#082032]">
       <NavBar isLogin={false} />
@@ -87,7 +88,8 @@ function WatchMoviePage() {
           allowfullscreen
         ></iframe>
       </div>
-      {episode.length && (
+
+      {episode.length > 0 && (
         <ListMovies title={"EPISODES"} list_movies_data={episode} />
       )}
 
