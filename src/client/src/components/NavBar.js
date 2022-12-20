@@ -11,7 +11,8 @@ import {
 import NetflizLogo from "../assets/images/pink2-logo.png";
 import { useNavigate } from "react-router-dom";
 
-const NavBar = ({  allowSearch = true }) => {
+
+const NavBar = ({is_login, allowSearch = true }) => {
 const [isLogin,setIsLogin]= React.useState(false);
   const navigate = useNavigate();
   const [showLinks, setShowLinks] = React.useState(false);
@@ -52,7 +53,8 @@ const [isLogin,setIsLogin]= React.useState(false);
   },[localStorage]);
 
   return (
-    <div className="nav-center flex flex-row bg-black bg-opacity-75">
+    <div className="nav-center flex flex-row justify-between bg-black bg-opacity-75">
+      <div className="flex flex-row">
       <div className="nav-header px-6">
         <button className="nav-toggle hidden" onClick={toggleLinks}>
           <FontAwesomeIcon icon={faBars} />
@@ -75,6 +77,7 @@ const [isLogin,setIsLogin]= React.useState(false);
           Category
         </Button>
       </div>
+      </div>
 
       {allowSearch === true && (
         <form
@@ -94,45 +97,46 @@ const [isLogin,setIsLogin]= React.useState(false);
           <Button
             className="nav-toggle"
             type="submit"
-            onClick={toggleLinks}
-            theme="mt-2 w-14 rounded-full ml-0"
+            onClick={submit}
+            theme="w-14 rounded-full ml-0"
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} inverse size="2x" />
           </Button>
         </form>
       )}
-      <div>
-        {isLogin === false ? (
-          <div className="mr-0 ml-auto">
-            <Button
-              theme={
-                "bg-gray-200 p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-[#CD0574]"
-              }
-              onClick={() => navigate({ pathname: "/login" })}
-            >
-              LOGIN
-            </Button>
-            <Button
-              theme={
-                "bg-[#CD0574] p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-gray-200"
-              }
-              onClick={() => navigate({ pathname: "/signup" })}
-            >
-              SIGNUP
-            </Button>
-          </div>
-        ) : isLogin === true ? (
-          <div className="mr-3 ml-auto mt-2 p-1 w-10 rounded-full">
-            <button className="nav-toggle" onClick={toggleLinks}>
-              <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
-            </button>
-          </div>
-        ) : (
-          <div></div>
-        )}
 
+      <div>
+      {is_login === false ? (
+        <div className="mr-0 ml-auto">
+          <Button
+            theme={
+              "bg-gray-200 p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-[#CD0574]"
+            }
+            onClick={() => navigate({ pathname: "/login" })}
+          >
+            LOGIN
+          </Button>
+          <Button
+            theme={
+              "bg-[#CD0574] p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-gray-200"
+            }
+            onClick={() => navigate({ pathname: "/signup" })}
+          >
+            SIGNUP
+          </Button>
+        </div>
+      ) : is_login === true ? (
+        <div className="mr-3 ml-auto mt-2 p-1 w-10 rounded-full">
+          <button className="nav-toggle" onClick={toggleLinks}>
+            <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
+          </button>
+        </div>
+      ) : (
+        <div> </div>
+      )}
       </div>
-    </div>
+      </div>
+
   );
 };
 export { NavBar };

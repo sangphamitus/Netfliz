@@ -6,6 +6,7 @@ import MovieInfoPage from "./pages/MovieInfoPage";
 import WatchMoviePage from "./pages/WatchMoviePage";
 import ResultPage from "./pages/ResultPage";
 import ProfilePage from "./pages/ProfilePage";
+import AdminDeleteMoviePage from "./pages/AdminDeleteMoviePage";
 
 export default [
   HomePage,
@@ -16,4 +17,5 @@ export default [
   WatchMoviePage,
   ResultPage,
   ProfilePage,
+  AdminDeleteMoviePage
 ];
