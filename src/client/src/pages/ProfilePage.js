@@ -14,29 +14,26 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function ProfilePage() {
-  const navigate= useNavigate();
-  const [info,SetInfo]=React.useState({});
-  const uid= localStorage.getItem("uid");
-  const logOut=()=>{
+  const navigate = useNavigate();
+  const [info, SetInfo] = React.useState({});
+  const uid = localStorage.getItem("uid");
+  const logOut = () => {
     localStorage.removeItem("uid");
     navigate({
       pathname: "/",
-    
     });
-  }
-  React.useEffect(()=>{
-    axios.post(`${process.env.REACT_APP_ENDPOINT}userinfo/get`,{
-      uid
-    }).then(res=>  
-      {
-        console.log(res.data.data)
+  };
+
+  React.useEffect(() => {
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}userinfo/get`, {
+        uid,
+      })
+      .then((res) => {
+        console.log(res.data.data);
         SetInfo(res.data.data);
-      } 
-       
-      )
-
-  },[])
-
+      });
+  }, []);
 
   return (
     <div className="App bg-[#082032]">
@@ -62,7 +59,6 @@ function ProfilePage() {
               isHeader={false}
               customTheme={"text-white font-button text-2xl "}
             />
-           
           </div>
           <div className="grid text-right mb-4 pr-4 mt-auto">
             <a className={"text-white font-button text-sm "}>CHANGE PROFILE</a>
@@ -92,26 +88,30 @@ function ProfilePage() {
           />
         </div> */}
       </div>
-      <div className="mx-36 py-14 h-[2000px]">
+      <div className="mx-36 py-14">
         <Text
           text={"Your playlists"}
           isHeader={true}
           customTheme={"text-pink-600 font-button text-4xl "}
         />
-        <div className="grid items-center justify-between grid-cols-3 grid-rows-4 my-5">
-          {info.listMovie&&
-            info.listMovie.map((each,i)=>  {
-       
-            return (
-            <Card key={i} imgSrc={each.img} vid={each.vid} className={"max-w-xs mt-8"} />
-            )
-          })
-          }
-        
-       
+        <div className="grid items-center justify-between grid-cols-3 my-5">
+          {info.listMovie &&
+            info.listMovie.map((each, i) => {
+              return (
+                <Card
+                  key={i}
+                  imgSrc={each.img}
+                  vid={each.vid}
+                  className={"max-w-xs mt-8"}
+                />
+              );
+            })}
         </div>
-        <Button theme={"bg-[#CD0574] ml-auto w-20 rounded-md"} onClick={logOut}>
-          <p className="text-2xl font-button text-gray-200">LOG OUT</p>
+        <Button
+          theme="bg-[#CD0574] ml-auto w-24 h-12 rounded-none flex justify-center items-center"
+          onClick={logOut}
+        >
+          <p className="text-2xl font-button text-black">LOG OUT</p>
         </Button>
       </div>
       <Footer />
