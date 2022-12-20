@@ -37,7 +37,7 @@ function ProfilePage() {
 
   return (
     <div className="App bg-[#082032]">
-      <NavBar isLogin={false} />
+      <NavBar />
       <div className="flex mx-36 py-14 border-b-2">
         <div>
           <img src={ProfileImage} alt="profileImage" className="w-72" />
