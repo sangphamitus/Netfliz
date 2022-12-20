@@ -14,8 +14,7 @@ function SignUpPage() {
     console.log(`${username} - ${password}`);
     console.log("clicked");
     if (repassword === password) {
-      axios
-        .post(`${process.env.REACT_APP_ENDPOINT}users/register`, {
+      axios.post(`${process.env.REACT_APP_ENDPOINT}users/register`, {
           username,
           password,
           email,

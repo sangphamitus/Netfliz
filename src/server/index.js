@@ -35,6 +35,7 @@ app.get("/", require("./controller/redirect.c"),errorHandler);
 app.use("/users", require("./router/user.r"),errorHandler);
 app.use("/videos", require("./router/video.r"),errorHandler);
 app.use("/comments",require("./router/comments.r"),errorHandler);
+app.use("/userinfo",require("./router/userinfo.r"),errorHandler);
 app.get('/logout',(req,res,next)=>{
     console.log(req.body);
     try{

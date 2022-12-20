@@ -5,6 +5,7 @@ module.exports = {
     {
         
         try{
+            console.log(req.header)
             let {vid,cid,username,content} = req.body;
            // const username=req.session.username;
     
@@ -31,7 +32,7 @@ module.exports = {
 
         
             const data=await commentM.getComment({vid});
-         
+            
             res.status(200).send(
                 {
                     data:data,
