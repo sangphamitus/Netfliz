@@ -53,7 +53,8 @@ const [isLogin,setIsLogin]= React.useState(false);
   },[localStorage]);
 
   return (
-    <div className="nav-center flex flex-row bg-black bg-opacity-75">
+    <div className="nav-center flex flex-row justify-between bg-black bg-opacity-75">
+      <div className="flex flex-row">
       <div className="nav-header px-6">
         <button className="nav-toggle hidden" onClick={toggleLinks}>
           <FontAwesomeIcon icon={faBars} />
@@ -76,6 +77,7 @@ const [isLogin,setIsLogin]= React.useState(false);
           Category
         </Button>
       </div>
+      </div>
 
       {allowSearch === true && (
         <form
@@ -95,8 +97,8 @@ const [isLogin,setIsLogin]= React.useState(false);
           <Button
             className="nav-toggle"
             type="submit"
-            onClick={toggleLinks}
-            theme="mt-2 w-14 rounded-full ml-0"
+            onClick={submit}
+            theme="w-14 rounded-full ml-0"
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} inverse size="2x" />
           </Button>

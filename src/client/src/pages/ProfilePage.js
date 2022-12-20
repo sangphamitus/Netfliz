@@ -92,14 +92,14 @@ function ProfilePage() {
           />
         </div> */}
       </div>
-      <div className="mx-36 py-14 h-[2000px]">
+      <div className="mx-36 py-14 h-auto">
         <Text
           text={"Your playlists"}
           isHeader={true}
           customTheme={"text-pink-600 font-button text-4xl "}
         />
         <div className="grid items-center justify-between grid-cols-3 grid-rows-4 my-5">
-          {info.listMovie&&
+          {info.listMovie &&
             info.listMovie.map((each,i)=>  {
        
             return (
