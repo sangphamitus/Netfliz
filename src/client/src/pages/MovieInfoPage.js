@@ -153,7 +153,7 @@ function MovieInfoPage() {
             </div>
           )}
 
-        <div>
+        <div className="my-5">
           {cmt.map((item) => (
             <div key={item.key} className="pl-5 flex flex-row space-x-3">
               <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
