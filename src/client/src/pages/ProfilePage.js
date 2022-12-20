@@ -42,27 +42,27 @@ function ProfilePage() {
         <div>
           <img src={ProfileImage} alt="profileImage" className="w-72" />
         </div>
-        <div className="">
-          <div className="pl-12 pr-4  text-left grid">
+        <div className="flex flex-col justify-between">
+          <div className="pl-12 pr-4 text-left flex flex-col">
             <Text
               text={`NAME: ${info.name}`}
               isHeader={false}
-              customTheme={"text-white font-button text-2xl "}
+              customTheme={"text-white font-button text-2xl"}
             />
             <Text
               text={`Date of birth: ${info.dob}`}
               isHeader={false}
-              customTheme={"text-white font-button text-2xl "}
+              customTheme={"text-white font-button text-2xl"}
             />
             <Text
               text={`ID: ${info.uid}`}
               isHeader={false}
-              customTheme={"text-white font-button text-2xl "}
+              customTheme={"text-white font-button text-2xl"}
             />
           </div>
-          <div className="grid text-right mb-4 pr-4 mt-auto">
-            <a className={"text-white font-button text-sm "}>CHANGE PROFILE</a>
-            <a className={"text-white font-button text-sm "}>CHANGE PASSWORD</a>
+          <div className="flex flex-col pl-12">
+            <a className="text-white font-button text-sm">CHANGE PROFILE</a>
+            <a className="text-white font-button text-sm">CHANGE PASSWORD</a>
           </div>
         </div>
         {/* <div className="h-[181px] grid">
