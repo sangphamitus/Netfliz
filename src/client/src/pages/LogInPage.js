@@ -41,7 +41,7 @@ function LogInPage() {
         <NavBar allowSearch={false} />
       </div>
       <div className="flex justify-center py-20">
-        <Form formClass={"w-[640px]"} onSubmit={submitClickHandler}>
+        <Form formClass={"w-full"} onSubmit={submitClickHandler}>
           <Text
             customTheme="text-[3.5rem] text-pink-600 font-button"
             isHeader={true}
