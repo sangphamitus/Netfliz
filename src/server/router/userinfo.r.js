@@ -5,6 +5,7 @@ const userInfoC= require('../controller/userinfo.c')
 router.post('/add', userInfoC.addNewUserinfo,()=>{next()});
 router.post('/get',userInfoC.getNewUserinfo,()=>{next()});
 router.post('/addMovie',userInfoC.addMovieToInfo,()=>{next()});
+router.post('/rmMovie',userInfoC.removeMovieToInfo,()=>{next()});
 
 
 module.exports =router
