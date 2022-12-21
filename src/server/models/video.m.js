@@ -61,7 +61,6 @@ module.exports = {
         
          var rs = await db.one(`select * from public.\"Videos\" where \"vid\" like '${vid}'`)
           
-         console.log(rs)
         return rs;
     },
     getNewVideo:async(number)=> {
@@ -117,7 +116,7 @@ module.exports = {
             return null;
           }
           else{
-            return rs.rows;
+            return rs;
           }
         
          

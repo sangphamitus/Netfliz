@@ -128,9 +128,9 @@ module.exports={
     },
     getFilterVideo:async(req,res,next)=>{
         try {
-            const {type}=req.query;
-            console.log(req.query);
+            const {type}=req.body;
             const spliter= type.split(',');
+            console.log(spliter);
             const rs = await videoM.getFilterVideo(spliter);
             console.log(rs);
             if (rs == null) {
