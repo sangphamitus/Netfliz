@@ -38,7 +38,7 @@ function LogInPage() {
   return (
     <div className="bg-scroll bg-login-background">
       <div className="fixed top-0 overflow-hidden w-full z-10">
-        <NavBar isLogin={"none"} allowSearch={false} />
+        <NavBar allowSearch={false} />
       </div>
       <div className="flex justify-center py-20">
         <Form formClass={"w-[640px]"} onSubmit={submitClickHandler}>

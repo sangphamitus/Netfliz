@@ -14,7 +14,8 @@ function SignUpPage() {
     console.log(`${username} - ${password}`);
     console.log("clicked");
     if (repassword === password) {
-      axios.post(`${process.env.REACT_APP_ENDPOINT}users/register`, {
+      axios
+        .post(`${process.env.REACT_APP_ENDPOINT}users/register`, {
           username,
           password,
           email,
@@ -45,7 +46,7 @@ function SignUpPage() {
 
   return (
     <div className="bg-local ... bg-login-background">
-      <NavBar isLogin={"none"} allowSearch={false} />
+      <NavBar allowSearch={false} />
       <div className="flex justify-center py-20">
         <Form formClass={"w-[640px]"}>
           <Text
