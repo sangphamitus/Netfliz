@@ -77,7 +77,7 @@ function WatchMoviePage() {
 
   return (
     <div className="App bg-[#082032]">
-      <NavBar isLogin={false} />
+      <NavBar />
       <div>
         <iframe
           className="w-full h-[35rem] mb-14"

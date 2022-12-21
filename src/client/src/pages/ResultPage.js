@@ -24,7 +24,7 @@ function ResultPage() {
   return (
     <div className="bg-scroll bg-[#082032]">
       <div className="fixed top-0 overflow-hidden w-full z-10">
-        <NavBar isLogin={"none"} />
+        <NavBar />
       </div>
       <div className="flex flex-col py-28 px-11">
         <div className="border-b-2 border-spacing-1 mb-7">

@@ -88,9 +88,8 @@ const NavBar = ({ allowSearch = true }) => {
             onChange={(e) => setTextInput(e.target.value)}
           ></Input>
           <Button
-            className="nav-toggle"
             type="submit"
-            onClick={toggleLinks}
+            onClick={submit}
             theme="mt-2 w-14 rounded-full ml-0"
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} inverse size="2x" />
