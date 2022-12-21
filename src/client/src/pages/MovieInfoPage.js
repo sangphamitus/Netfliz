@@ -155,7 +155,7 @@ function MovieInfoPage() {
 
         <div className="my-5">
           {cmt.map((item) => (
-            <div key={item.key} className="pl-5 flex flex-row space-x-3">
+            <div key={item.key} className="pl-5 flex flex-row space-x-3 my-5">
               <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
               {item.data.map((each, i) => {
                 return (
