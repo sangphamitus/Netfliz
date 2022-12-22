@@ -58,7 +58,9 @@ function AdminDeleteMovie() {
         </form>
         <div className="grid items-center justify-between grid-cols-3 grid-rows-4 my-5"></div>
       </div>
-      <div>{/*chỗ này để danh sách tất cả phim */}</div>
+      <div className="grid items-center justify-between grid-cols-3 my-5">
+          
+      </div>
       <div>{/* chố này để cái chuyển trang*/}</div>
       <Footer />
     </div>
