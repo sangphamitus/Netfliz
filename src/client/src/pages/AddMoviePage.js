@@ -4,9 +4,7 @@ import {
   Input,
   Text,
   NavBar,
-  Footer,
-  Card,
-  ListMovies,
+  Footer
 } from "../components";
 
 function AddMoviePage() {   
@@ -150,36 +148,33 @@ function AddMoviePage() {
             isHeader={false}
             customTheme={"text-white font-button text-4xl w-56"}
             />
+            <div className="relative lg:max-w-sm">
+                <select className=" p-2.5 text-2xl text-black bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
+                    <option>Action</option>
+                    <option>Romance</option>
+                    <option>Dramas</option>
+                    <option>Anime</option>
+                </select>
           </div>
-          <a href>
-            Category
-            <i className="text-3xl"></i>
-          </a>
-          <ul className="hidden absolute top-full bg-white shadow-black text-black">
-            <li className="block"><a href>action</a></li>
-            <li className="block"><a href>romance</a></li>
-            <li className="block"><a href>haiten</a></li>
-          </ul>
         </div>
-        <div className="flex py-6 h-28">
+
+      </div>
+
+      <div className="flex py-6 h-28">
         <Button
-          theme={
-            "bg-[#CD0574] w-32 rounded-md text-2xl font-button text-gray-200 ml-12"
-          }
+          theme={"bg-[#CD0574] w-32 rounded-md text-2xl font-button text-gray-200 ml-12"}
         >
         SAVE
         </Button>
         <Button
-          theme={
-            "bg-[#CD0574] w-32 rounded-md text-2xl font-button text-gray-200 mr-12 ml-auto"
-          }
+          theme={"bg-[#CD0574] w-32 rounded-md text-2xl font-button text-gray-200 mr-12 ml-auto"}
         >
         BACK
         </Button>
         </div>
         
         <Footer/>
-      </div>
+    </div>
     )
 
 }
