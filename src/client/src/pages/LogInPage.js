@@ -24,8 +24,16 @@ function LogInPage() {
 
       .then((res) => {
         localStorage.setItem("uid", res.data.data);
+        localStorage.setItem("per",res.data.permission);
         console.log(res.data.data);
-        window.location.href = "/";
+        if(res.data.permission)
+        {
+
+          window.location.href="/admin"
+        }
+         else
+          window.location.href = "/";
+
       });
   };
 
@@ -38,7 +46,7 @@ function LogInPage() {
   return (
     <div className="bg-scroll bg-login-background">
       <div className="fixed top-0 overflow-hidden w-full z-10">
-        <NavBar isLogin={"none"} allowSearch={false} />
+        <NavBar allowSearch={false} />
       </div>
       <div className="flex justify-center py-20">
         <Form formClass={"w-full"} onSubmit={submitClickHandler}>

@@ -48,10 +48,23 @@ module.exports=
 
         return false;
     },
-    removeMovieToInfo:async({uid,vid,img})=>{
-        const usrinfo = db.collection('userinfo').doc(uid);
-         
-        return await usrinfo.get();
+    removeMovieToInfo:async({uid,vid})=>{
+        const usrinfo = await db.collection('userinfo').doc(uid).get();
+         const rs=usrinfo.data();
+
+         let {listMovie}= rs;
+      
+         const filteredItems = listMovie.filter(item => item.vid !== vid)
+         const usrinfo22 = db.collection('userinfo').doc(uid);
+         console.log(filteredItems)
+        usrinfo22.set({
+            name:rs.name,
+            uid:rs.uid,
+            dob:rs.dob,
+          listMovie:filteredItems,
+           timeStamp:rs.timeStamp
+         })
+        return rs;
     }
 
 }

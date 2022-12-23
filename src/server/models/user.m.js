@@ -60,6 +60,14 @@ module.exports = {
                 return true;
             }
         },
+    checkAuthen:async (uid)=>{
+        
+        var rs = await db.one(`select * from public.\"Users\" where \"uid\" like '${uid}' `)
+        
+
+        return rs;
+    }
+    
 
 
 

@@ -8,9 +8,13 @@ const Input = ({
   textColor,
   onChange,
   type,
-  name
+  name,
+  readonly,
+  valuetext
 }) => {
+
   return (
+    
     <div className={`pt-8 grid grid-flow-row ${containerTheme} text-${textColor}`}>
       {labelText && (
         <label
@@ -19,13 +23,27 @@ const Input = ({
           {labelText}
         </label>
       )}
-      <input
-        className={`rounded-2xl h-10 w-auto ${inputTheme} pl-4`}
-        placeholder={placeHolder}
-        onChange={onChange}
-        name={name}
-        type={type?type:'text'}
-      />
+      {
+        readonly?(
+          <input
+          className={`rounded-2xl h-10 w-auto ${inputTheme} pl-4`}
+          placeholder={placeHolder}
+          value={valuetext}
+          name={name}
+    
+          readOnly/>
+        ):(
+          <input
+          className={`rounded-2xl h-10 w-auto ${inputTheme} pl-4`}
+          placeholder={placeHolder}
+          onChange={onChange}
+          name={name}
+          type={type?type:'text'}
+          value={valuetext}
+        />
+        )
+      }
+   
     </div>
   );
 };

@@ -1,18 +1,16 @@
 import React from "react";
-import { Button } from "./Button";
-
-import { Input } from "./Input";
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
   faBars,
   faCircleUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { Button, Input } from "./";
 import NetflizLogo from "../assets/images/pink2-logo.png";
-import { useNavigate } from "react-router-dom";
 
-const NavBar = ({  allowSearch = true }) => {
-const [isLogin,setIsLogin]= React.useState(false);
+const NavBar = ({ allowSearch = true }) => {
+  const [isLogin, setIsLogin] = React.useState(false);
   const navigate = useNavigate();
   const [showLinks, setShowLinks] = React.useState(false);
   const linksContainerRef = React.useRef(null);
@@ -23,18 +21,14 @@ const [isLogin,setIsLogin]= React.useState(false);
     setShowLinks(!showLinks);
     navigate({
       pathname: "/profile",
-    
     });
   };
 
   const submit = (e) => {
-
-    
     navigate({
       pathname: "/videos/search",
       search: `?name=${textInput}`,
     });
-
   };
 
   React.useEffect(() => {
@@ -44,12 +38,14 @@ const [isLogin,setIsLogin]= React.useState(false);
     } else {
       linksContainerRef.current.style.height = "0px";
     }
-    
   }, [showLinks]);
 
-  React.useEffect(()=>{
-    setIsLogin(localStorage.getItem("uid")!==null&&localStorage.getItem("uid")!=="null");
-  },[localStorage]);
+  React.useEffect(() => {
+    setIsLogin(
+      localStorage.getItem("uid") !== null &&
+        localStorage.getItem("uid") !== "null"
+    );
+  }, [localStorage]);
 
   return (
     <div className="nav-center flex flex-row bg-black bg-opacity-75">
@@ -92,9 +88,8 @@ const [isLogin,setIsLogin]= React.useState(false);
             onChange={(e) => setTextInput(e.target.value)}
           ></Input>
           <Button
-            className="nav-toggle"
             type="submit"
-            onClick={toggleLinks}
+            onClick={submit}
             theme="mt-2 w-14 rounded-full ml-0"
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} inverse size="2x" />
@@ -130,7 +125,6 @@ const [isLogin,setIsLogin]= React.useState(false);
         ) : (
           <div></div>
         )}
-
       </div>
     </div>
   );

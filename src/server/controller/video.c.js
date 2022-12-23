@@ -128,9 +128,9 @@ module.exports={
     },
     getFilterVideo:async(req,res,next)=>{
         try {
-            const {type}=req.query;
-            console.log(req.query);
+            const {type}=req.body;
             const spliter= type.split(',');
+            console.log(spliter);
             const rs = await videoM.getFilterVideo(spliter);
             console.log(rs);
             if (rs == null) {
@@ -232,6 +232,56 @@ module.exports={
             const {eid}=req.body;
             const rs = await videoM.getEpisode(eid)
           
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "unavailable video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        } 
+    }
+    ,getAllEpisode:async(req,res,next)=>{
+        try {
+          
+            
+            const rs = await videoM.getAllEpisode();
+          
+            console.log(rs);
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "unavailable video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        } 
+    },
+    changeVideo:async(req,res,next)=> {
+        try {
+            const {vid,link,name,image,ratting,haveEp,review,type}=req.body
+            
+            const rs = await videoM.changeMovieInfo({vid,link,name,image,ratting,haveEp,review,type});
+          
+            console.log(rs);
             if (rs == null) {
                 res.status(200).send({
                     data: rs,
