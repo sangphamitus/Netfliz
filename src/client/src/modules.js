@@ -9,6 +9,7 @@ import ProfilePage from "./pages/ProfilePage";
 import AdminPage from "./pages/AdminPage";
 import ChangeMovieInfoPage from "./pages/ChangeMovieInfoPage";
 import AdminDeleteMoviePage from "./pages/AdminDeleteMoviePage";
+import AddMoviePage from "./pages/AddMoviePage";
 
 export default [
   HomePage,
@@ -21,5 +22,6 @@ export default [
   ProfilePage,
   AdminDeleteMoviePage,
   AdminPage,
-  ChangeMovieInfoPage
+  ChangeMovieInfoPage,
+  AddMoviePage
 ];
