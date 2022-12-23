@@ -61,7 +61,6 @@ module.exports = {
         
          var rs = await db.one(`select * from public.\"Videos\" where \"vid\" like '${vid}'`)
           
-         console.log(rs)
         return rs;
     },
     getNewVideo:async(number)=> {
@@ -117,7 +116,7 @@ module.exports = {
             return null;
           }
           else{
-            return rs.rows;
+            return rs;
           }
         
          
@@ -182,4 +181,23 @@ module.exports = {
  
           
      },
+     getAllEpisode:async()=>{
+        let query=`SELECT *
+        FROM public."Episode"
+    `
+ 
+        const rs=  db.any(query);
+          return rs;
+ 
+     },
+    changeMovieInfo:async({vid,link,name,image,ratting,haveEp,review,type})=>{
+     
+        const rs=  db.any(`UPDATE public."Videos"
+        SET "link"=$2, "name"=$3, "image"=$4, "ratting"=$5, "haveEp"=$6, "review"=$7, "type"=$8
+        WHERE "vid" like $1`,[vid,link,name,image,ratting,haveEp,review,type]);
+          
+        return await  getVideo(vid);
+ 
+     }
+
 }

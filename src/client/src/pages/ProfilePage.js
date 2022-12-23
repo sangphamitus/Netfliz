@@ -34,7 +34,18 @@ function ProfilePage() {
         SetInfo(res.data.data);
       });
   }, []);
-
+  const rmMovie=async(vid)=>{
+    axios
+    .post(`${process.env.REACT_APP_ENDPOINT}userinfo/rmMovie`, {
+      uid,
+      vid:vid
+    })
+    .then((res) => {
+      console.log(res.data.data);
+      SetInfo(res.data.data);
+    });
+    window.location.href="/profile"
+  }
   return (
     <div className="App bg-[#082032]">
       <NavBar />
@@ -102,6 +113,11 @@ function ProfilePage() {
                   key={i}
                   imgSrc={each.img}
                   vid={each.vid}
+                  canEdit={true}
+                  onTrashClick={(e)=>{
+                    rmMovie(each.vid)
+                  
+                  }}
                   className={"max-w-xs mt-8"}
                 />
               );

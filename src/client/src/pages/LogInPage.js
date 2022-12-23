@@ -24,8 +24,16 @@ function LogInPage() {
 
       .then((res) => {
         localStorage.setItem("uid", res.data.data);
+        localStorage.setItem("per",res.data.permission);
         console.log(res.data.data);
-        window.location.href = "/";
+        if(res.data.permission)
+        {
+
+          window.location.href="/admin"
+        }
+         else
+          window.location.href = "/";
+
       });
   };
 

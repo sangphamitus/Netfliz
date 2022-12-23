@@ -84,11 +84,14 @@ module.exports = {
 
                 // req.session.save(function (err) {
                 //     if (err) return next(err)
+               
                     res.status(200).send({
                         data: user.uid,
                         permission: user.permission,
                         message: "success"
                      })
+                
+                   
                 // })
             // })
            
@@ -102,40 +105,30 @@ module.exports = {
     },
     userAuthentication: async (req, res, next) => {
         //console.log(req.session);
-        const{uid}= req.header;
+        try
+        {
+            console.log(req.headers )
+        const{uid}= req.headers;
         if(uid!=null){
-            const rs= await userM.validUID(req.session.uid)
-            if(rs==true){
-                next();
-            }
-            else
-            {
-            res.send(`
-            <div>
-            <h1>Please login</h1>
-            <form action="/users/login" method="post">
-                <input type="text" name="username" />
-                <input type="text" name="password" />
-                <input type="text" name="remember"  />
-                <button type="submit" >Submit</button>
-            </form>
-            </div>
-            `)
+            const rs= await userM.checkAuthen(uid)
+            console.log(rs);
+         
+            res.status(200).send(
 
-            }
+                {
+                    permission:rs.permission
+                }
+            )
+          
         }
         else{
-               res.send(`
-            <div>
-            <h1>Please login</h1>
-            <form action="/users/login" method="post">
-            <input type="text" name="username" />
-            <input type="text" name="password" />
-            <input type="text" name="remember"  />
-            <button type="submit" >Submit</button>
-        </form>
-            </div>
-            `)
+            res.redirect("/");
         }
+
+    }
+    catch(e)
+    {
+        res.redirect("/");
+    }
     }
 }
