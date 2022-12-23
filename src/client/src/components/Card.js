@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Card = ({ imgSrc, vid, onClick, canEdit }) => {
+const Card = ({ imgSrc, vid, onClick, canEdit=false, onTrashClick}) => {
   const navigate = useNavigate();
   
   const cardAccessing = () => {
@@ -17,12 +17,15 @@ const Card = ({ imgSrc, vid, onClick, canEdit }) => {
         cardAccessing()
       }}
     >
-      <button className="trash-icon">
+      {canEdit&&    <button className="trash-icon"
+      onClick={onTrashClick}>
         <FontAwesomeIcon
           icon={faTrash}
+        
           className="cursor-pointer text-white hover:text-[#CD0574]"
         />
-      </button>
+      </button>}
+  
 
       <img
         className="card-img object-cover object-center h-fit w-96"
