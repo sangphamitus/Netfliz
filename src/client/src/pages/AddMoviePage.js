@@ -148,14 +148,30 @@ function AddMoviePage() {
             isHeader={false}
             customTheme={"text-white font-button text-4xl w-56"}
             />
-            <div className="relative lg:max-w-sm">
+            <div className="relative lg:max-w-sm px-8">
                 <select className=" p-2.5 text-2xl text-black bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
                     <option>Action</option>
                     <option>Romance</option>
                     <option>Dramas</option>
                     <option>Anime</option>
                 </select>
-          </div>
+            </div>
+            <div className="relative lg:max-w-sm px-8">
+                <select className=" p-2.5 text-2xl text-black bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
+                    <option>Action</option>
+                    <option>Romance</option>
+                    <option>Dramas</option>
+                    <option>Anime</option>
+                </select>
+            </div>
+            <div className="relative lg:max-w-sm px-8">
+                <select className=" p-2.5 text-2xl text-black bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
+                    <option>Action</option>
+                    <option>Romance</option>
+                    <option>Dramas</option>
+                    <option>Anime</option>
+                </select>
+            </div>
         </div>
 
       </div>
