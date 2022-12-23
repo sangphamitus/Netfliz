@@ -14,4 +14,6 @@ router.post('/search',videoC.getSearchVideo,()=>{next()});
 router.post('/createEp',videoC.createEpisode,()=>{next()});
 router.post('/addEp',videoC.addToEpisode,()=>{next()});
 router.post('/getEp',videoC.getEpisode,()=>{next()});
+router.post('/getAllEp',videoC.getAllEpisode,()=>{next()});
+router.post('/changeVideo',videoC.changeVideo,()=>{next()});
 module.exports =router

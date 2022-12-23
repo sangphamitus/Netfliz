@@ -250,4 +250,54 @@ module.exports={
             next(err);
         } 
     }
+    ,getAllEpisode:async(req,res,next)=>{
+        try {
+          
+            
+            const rs = await videoM.getAllEpisode();
+          
+            console.log(rs);
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "unavailable video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        } 
+    },
+    changeVideo:async(req,res,next)=> {
+        try {
+            const {vid,link,name,image,ratting,haveEp,review,type}=req.body
+            
+            const rs = await videoM.changeMovieInfo({vid,link,name,image,ratting,haveEp,review,type});
+          
+            console.log(rs);
+            if (rs == null) {
+                res.status(200).send({
+                    data: rs,
+                    message: "unavailable video"
+                });
+            } else {
+                res.status(200).send({
+                    data: rs,
+                    message: "success"
+                });
+
+            }
+            
+        } catch (err) {
+            console.log(err);
+            next(err);
+        } 
+    }
 }

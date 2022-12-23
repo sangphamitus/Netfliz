@@ -108,10 +108,11 @@ function AdminDeleteMovie() {
       <div className="grid items-center justify-between grid-cols-3 my-5">
           {movies.length>0 &&
             movies.map((each, i) => {
+            
               return (
                 <Card
                   key={i}
-                  imgSrc={each.img}
+                  imgSrc={each.image}
                   vid={each.vid}
                   className={"max-w-xs mt-8"}
                 />
