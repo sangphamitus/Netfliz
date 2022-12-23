@@ -17,13 +17,60 @@ function AdminDeleteMovie() {
   const navigate = useNavigate();
   const [textInput, setTextInput] = React.useState("");
   const [showLinks, setShowLinks] = React.useState(false);
-  const submit = (e) => {
-    navigate({
-      //pathname: "/videos/search",
-      search: `?name=${textInput}`,
-    });
-  };
+  const [movies, setMovies] = React.useState([]);
+  const submit = async(e) => {
 
+    if (textInput.length>0)
+    {
+    axios
+    .post(`${process.env.REACT_APP_ENDPOINT}videos/search`, {
+      name: textInput,
+    })
+    .then((res) => {
+      console.log(res.data.data);
+      setMovies(res.data.data);
+    });
+  }
+  else{
+    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/getall`)
+    .then((res) => {
+      console.log(res.data.data);
+      setMovies(res.data.data);
+    });
+  }
+  setTextInput("");
+  };
+  React.useEffect(()=> {
+    if(localStorage.getItem("per")!=="true")
+    {
+        window.location.href="/"
+    }
+    else{
+      try
+      {
+        let value = decodeURI(window.location.search).split("?")[1].split("=");
+        axios
+      .post(`${process.env.REACT_APP_ENDPOINT}videos/search`, {
+        name: value[1].replace("+", " "),
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setMovies(res.data.data);
+      });
+      }
+      catch(err)
+      {
+        axios.post(`${process.env.REACT_APP_ENDPOINT}videos/getall`)
+        .then((res) => {
+          console.log(res.data.data);
+          setMovies(res.data.data);
+        });
+  
+      }
+
+      
+    }
+},[])
   return (
     <div className="App bg-[#082032]">
       <NavBar is_login={true} allowSearch={false} />
@@ -58,7 +105,20 @@ function AdminDeleteMovie() {
         </form>
         <div className="grid items-center justify-between grid-cols-3 grid-rows-4 my-5"></div>
       </div>
-      <div>{/*chỗ này để danh sách tất cả phim */}</div>
+      <div className="grid items-center justify-between grid-cols-3 my-5">
+          {movies.length>0 &&
+            movies.map((each, i) => {
+            
+              return (
+                <Card
+                  key={i}
+                  imgSrc={each.image}
+                  vid={each.vid}
+                  className={"max-w-xs mt-8"}
+                />
+              );
+            })}
+        </div>
       <div>{/* chố này để cái chuyển trang*/}</div>
       <Footer />
     </div>
@@ -67,7 +127,7 @@ function AdminDeleteMovie() {
 
 export default {
   routeProps: {
-    path: "/adminDelete",
+    path: "/deletemovie",
     main: AdminDeleteMovie,
   },
 };

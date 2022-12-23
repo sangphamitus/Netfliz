@@ -3,16 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-const Card = ({ imgSrc, vid, canEdit }) => {
+const Card = ({ imgSrc, vid, onClick, canEdit }) => {
   const navigate = useNavigate();
+  
   const cardAccessing = () => {
     navigate(`/info?vid=${vid}`);
   };
+  
   return (
     <div
       className="card bg-center bg-no-repeat overflow-hidden pr-6"
-      onClick={(e) => {
-        cardAccessing();
+      onClick={onClick ? onClick : (e) => {
+        cardAccessing()
       }}
     >
       <button className="trash-icon">
