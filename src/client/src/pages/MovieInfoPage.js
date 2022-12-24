@@ -8,7 +8,15 @@ import {
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Button, Input, Text, NavBar, Footer, Rate } from "../components";
+import {
+  Button,
+  Input,
+  Text,
+  NavBar,
+  Footer,
+  Rate,
+  Comment,
+} from "../components";
 
 function MovieInfoPage() {
   const [movie, setMovie] = React.useState({});
@@ -125,7 +133,7 @@ function MovieInfoPage() {
         <p className="text-white font-normal h-full">{movie.review}</p>
       </div>
 
-      <div className="bg-[#2D2F3D] min-h-[18rem] h-full my-10 mx-5">
+      <div className="bg-[#2D2F3D] min-h-[18rem] h-full my-10 mx-5 pb-3">
         <Text
           text="Comments"
           customTheme="text-[2rem] px-5 text-white"
@@ -155,23 +163,7 @@ function MovieInfoPage() {
 
         <div className="my-5">
           {cmt.map((item) => {
-            return (
-              <div key={item.key} className="pl-5 flex flex-row space-x-3 my-5">
-                <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
-                {item.data.map((each, i) => {
-                  console.log(each);
-                  return (
-                    <div
-                      key={i}
-                      className="flex flex-col text-white bg-gray-400 w-fit p-2 max-w-7xl"
-                    >
-                      <h6 className="font-semibold">{each.name}</h6>
-                      <p>{each.content}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            );
+            return <Comment key={item.key} item={item} />;
           })}
         </div>
       </div>
