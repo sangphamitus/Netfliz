@@ -8,18 +8,15 @@ const {
     getClient,db
 }=require("../.config/postgres");
 module.exports = {
-    addVideo: async (name ,url,image,ratting) => {
-        const vid = CryptoJS.SHA256(url, {
+    addVideo: async({link,name,image,ratting,haveEp,review,type}) => {
+        const vid = CryptoJS.SHA256(link, {
             outputLength: 10 
         }).toString(CryptoJS.enc.Hex).slice(0,10);
-        var client=db;
-
             var rs = await db.any(`select * from public.\"Videos\" where \"vid\" like '${vid}'`)
-            
             if(rs.length==0)
             {let query="";
-               query=`insert into  public.\"Videos\"(\"vid\",\"link\",\"name\") 
-                    VALUES ('${vid}','${url}','${name}')`;
+               query=`insert into  public.\"Videos\"(\"vid\",\"link\",\"name\",\"haveEp\",\"review\",\"type\") 
+                    VALUES ('${vid}','${link}','${name}','${haveEp}','${review}','${type}')`;
                 db.any(query);
               let  update=""
                 if(image!=null)
@@ -39,7 +36,10 @@ module.exports = {
                 where "vid"='${vid}'`;
            
                 db.any(query);
-                return {'vid':vid,'url':url,'name':name,'image':image,'ratting':ratting};
+                var ress = await db.one(`select * from public.\"Videos\" where \"vid\" like '${vid}'`)
+          
+                return ress;
+            
             }
             else{
                 console.log("Video trung khop");
@@ -195,7 +195,24 @@ module.exports = {
         const rs=  db.any(`UPDATE public."Videos"
         SET "link"=$2, "name"=$3, "image"=$4, "ratting"=$5, "haveEp"=$6, "review"=$7, "type"=$8
         WHERE "vid" like $1`,[vid,link,name,image,ratting,haveEp,review,type]);
-          
+        let  update=""
+        if(image!=null)
+        {   
+           update+=`"image"='${image}'`
+        }
+        if(ratting!= null)
+        {
+            if(update.length!=0)
+            {
+                update+=",";
+            } 
+            update+=`"ratting"=${ratting}`
+        }
+        query=`UPDATE public."Videos" 
+        set ${update}  
+        where "vid"='${vid}'`;
+   
+        db.any(query);
         return await  getVideo(vid);
  
      }

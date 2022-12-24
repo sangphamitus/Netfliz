@@ -171,7 +171,9 @@ function ChangeMovieInfoPage() {
               customTheme={"text-white font-button text-[25px] whitespace-nowrap"}
           />
       </div>
-      <Input id="video_link" containerTheme={"w-full"} valuetext={isChosen.vid}  readonly={true}></Input>
+      <Input
+       inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25 border-2 rounded-xl text-white"}
+      id="video_link" containerTheme={"w-full"} valuetext={isChosen.vid}  readonly={true}></Input>
   </div>
   <div className=" flex">
       <div className="pt-8 p-4 mb-2">
@@ -180,7 +182,9 @@ function ChangeMovieInfoPage() {
               customTheme={"text-white font-button text-[25px] whitespace-nowrap"}
           />
       </div>
-      <Input id="movie_name" containerTheme={"w-full"} valuetext={isChosen.name} onChange={(e)=>
+      <Input
+       inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25 border-2 rounded-xl text-white"}
+      id="movie_name" containerTheme={"w-full"} valuetext={isChosen.name} onChange={(e)=>
         {
  
           setIsChosen({...isChosen,name:e.target.value})}
@@ -193,7 +197,9 @@ function ChangeMovieInfoPage() {
               customTheme={"text-white font-button text-[25px] whitespace-nowrap"}
           />
       </div>
-      <Input id="movie_content" containerTheme={"w-full"}  valuetext={isChosen.review} onChange={(e)=>setIsChosen({...isChosen,review:e.target.value})} ></Input>
+      <Input
+       inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25 border-2 rounded-xl text-white"}
+      id="movie_content" containerTheme={"w-full"}  valuetext={isChosen.review} onChange={(e)=>setIsChosen({...isChosen,review:e.target.value})} ></Input>
   </div>
   <div className=" flex">
       <div className="pt-8 p-4 mb-2">
@@ -202,7 +208,9 @@ function ChangeMovieInfoPage() {
               customTheme={"text-white font-button text-[25px] whitespace-nowrap"}
           />
       </div>
-      <Input id="data_release" containerTheme={"w-full"} valuetext={isChosen.ratting} onChange={(e)=>setIsChosen({...isChosen,ratting:e.target.value})} > </Input>
+      <Input
+       inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25 border-2 rounded-xl text-white"}
+      id="data_release" containerTheme={"w-full"} valuetext={isChosen.ratting} onChange={(e)=>setIsChosen({...isChosen,ratting:e.target.value})} > </Input>
   </div>
   <div className=" flex">
       <div className="pt-8 p-4 mb-2">
@@ -211,7 +219,9 @@ function ChangeMovieInfoPage() {
               customTheme={"text-white font-button text-[25px] whitespace-nowrap"}
           />
       </div>
-      <Input id="cast" containerTheme={"w-full"} valuetext={isChosen.image} onChange={(e)=>setIsChosen({...isChosen,image:e.target.value})} ></Input>
+      <Input
+       inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25 border-2 rounded-xl text-white"}
+      id="cast" containerTheme={"w-full"} valuetext={isChosen.image} onChange={(e)=>setIsChosen({...isChosen,image:e.target.value})} ></Input>
   </div>
   <div className=" flex">
       <div className="pt-8 p-4 mb-2">
@@ -220,7 +230,9 @@ function ChangeMovieInfoPage() {
               customTheme={"text-white font-button text-[25px] whitespace-nowrap"}
           />
       </div>
-      <Input id="director" containerTheme={"w-full"} valuetext={isChosen.link} onChange={(e)=>setIsChosen({...isChosen,link:e.target.value})} ></Input>
+      <Input 
+       inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25 border-2 rounded-xl text-white"}
+      id="director" containerTheme={"w-full"} valuetext={isChosen.link} onChange={(e)=>setIsChosen({...isChosen,link:e.target.value})} ></Input>
   </div>
   
   <div className=" flex">
@@ -320,7 +332,9 @@ function ChangeMovieInfoPage() {
           />
          </div>
            
-          <Input id="Episode_name" containerTheme={"w-full"} valuetext={collectionName} onChange={(e)=>setCollectionName(e.target.value)} ></Input>
+          <Input 
+           inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25 border-2 rounded-xl text-white"}
+          id="Episode_name" containerTheme={"w-full"} valuetext={collectionName} onChange={(e)=>setCollectionName(e.target.value)} ></Input>
        
         </div>
         <div className="  ">

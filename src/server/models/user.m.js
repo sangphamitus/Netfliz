@@ -88,7 +88,7 @@ module.exports = {
             var rs = await db.any(`UPDATE public."Users"
             SET "password"=$3
             WHERE "uid" like $1 and "password" like $2 `,[uid,hashedPassword,hashedPasswordVer2])
-            return true
+           
         }
         catch(e)
         {
