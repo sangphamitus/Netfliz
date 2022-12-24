@@ -29,13 +29,24 @@ function theme() {
 
 const navBar = (theme) => ({
   ".menu-nav": {
+    width: "100%",
+    backgroundColor: "rgba(0,0,0, 0.75)",
+    color: "white",
     overflowY: "scroll",
     listStyle: "none",
     overflow: "hidden",
     maxWidth: "290px",
     zIndex: 9,
     display: "none",
+    ".menu-item": {
+      color: "white",
+      width: "100%",
+    },
+    ".menu-item:hover": {
+      color: "#CD0574",
+    },
   },
+
   ".show-menu": {
     display: "block",
   },
