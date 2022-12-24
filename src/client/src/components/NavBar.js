@@ -13,9 +13,8 @@ const NavBar = ({ allowSearch = true }) => {
   const [isLogin, setIsLogin] = React.useState(false);
   const navigate = useNavigate();
   const [showLinks, setShowLinks] = React.useState(false);
-  const linksContainerRef = React.useRef(null);
-  const linksRef = React.useRef(null);
   const [textInput, setTextInput] = React.useState("");
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
@@ -31,14 +30,9 @@ const NavBar = ({ allowSearch = true }) => {
     });
   };
 
-  React.useEffect(() => {
-    const linksHeight = linksRef.current.getBoundingClientRect().height;
-    if (showLinks) {
-      linksContainerRef.current.style.height = `${linksHeight}px`;
-    } else {
-      linksContainerRef.current.style.height = "0px";
-    }
-  }, [showLinks]);
+  const navButton = () => {
+    setNavbarOpen(!navbarOpen);
+  };
 
   React.useEffect(() => {
     setIsLogin(
@@ -49,23 +43,30 @@ const NavBar = ({ allowSearch = true }) => {
 
   return (
     <div className="nav-center flex flex-row bg-black bg-opacity-75">
-      <div className="nav-header px-6">
-        <button className="nav-toggle hidden" onClick={toggleLinks}>
-          <FontAwesomeIcon icon={faBars} />
+      <div className="nav-header px-6 flex items-center">
+        <button className="nav-toggle hidden max-sm:block" onClick={navButton}>
+          <FontAwesomeIcon
+            icon={faBars}
+            className="text-[30px] cursor-pointer text-white hover:text-[#CD0574]"
+          />
         </button>
         <img
           src={NetflizLogo}
-          className="logo w-[140px] max-w-none cursor-pointer"
+          className="logo w-[140px] max-sm:hidden max-w-none cursor-pointer"
           alt="logo"
           onClick={() => navigate({ pathname: "/" })}
         />
       </div>
-      <div className="links-container" ref={linksContainerRef}>
-        <ul className="links" ref={linksRef}></ul>
-      </div>
-      <div className="nav-header px-6">
+      <div className="">
+        <ul className={`menu-nav ${navbarOpen ? "show-menu" : ""}`}>
+          <li>Heelo</li>
+          <li>asdsadsad</li>
+          <li>asdsadsadasdasdsa</li>
+        </ul>
         <Button
-          theme={"bg-opacity-100 mb-2 mt-3 text-2xl font-button text-[#CD0574]"}
+          theme={
+            "bg-opacity-100 mb-2 mt-3 text-2xl max-sm:hidden font-button text-[#CD0574]"
+          }
           onClick={() => navigate({ pathname: "/categories" })}
         >
           Category
@@ -75,7 +76,7 @@ const NavBar = ({ allowSearch = true }) => {
       {allowSearch === true && (
         <form
           onSubmit={submit}
-          className="flex mr-10 max-w-screen-md w-full ml-auto"
+          className="flex mr-10 max-w-screen-md w-full ml-auto max-sm:hidden"
         >
           <Input
             inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25"}

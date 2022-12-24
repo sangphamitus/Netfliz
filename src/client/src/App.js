@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import modules from "./modules";
 
 function App() {
-
   const group = modules.map((x) => x.routeProps);
 
   return (
