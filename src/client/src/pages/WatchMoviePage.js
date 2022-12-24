@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { Button, Input, Text, NavBar, Footer, ListMovies } from "../components";
+import {
+  Button,
+  Input,
+  Text,
+  NavBar,
+  Footer,
+  ListMovies,
+  Comment,
+} from "../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -122,22 +130,9 @@ function WatchMoviePage() {
           )}
 
         <div className="my-5">
-          {cmt.map((item) => (
-            <div key={item.key} className="pl-5 flex flex-row space-x-3 my-5">
-              <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
-              {item.data.map((each, i) => {
-                return (
-                  <div
-                    key={i}
-                    className="flex flex-col text-white bg-gray-400 w-fit p-2"
-                  >
-                    <h6 className="font-semibold">{each.name}</h6>
-                    <p>{each.content}</p>
-                  </div>
-                );
-              })}
-            </div>
-          ))}
+          {cmt.map((item) => {
+            return <Comment key={item.key} item={item} />;
+          })}
         </div>
       </div>
 

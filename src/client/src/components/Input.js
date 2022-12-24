@@ -10,12 +10,12 @@ const Input = ({
   type,
   name,
   readonly,
-  valuetext
+  valuetext,
 }) => {
-
   return (
-    
-    <div className={`pt-8 grid grid-flow-row ${containerTheme} text-${textColor}`}>
+    <div
+      className={`pt-8 grid grid-flow-row ${containerTheme} text-${textColor}`}
+    >
       {labelText && (
         <label
           className={`font-normal text-4xl font-button mb-2 text-gray-200 ${labelTheme}`}
@@ -23,27 +23,24 @@ const Input = ({
           {labelText}
         </label>
       )}
-      {
-        readonly?(
-          <input
-          className={`rounded-2xl h-10 w-auto ${inputTheme} pl-4`}
+      {readonly ? (
+        <textarea
+          className={`rounded-2xl min-h-10 w-auto ${inputTheme} pl-4`}
           placeholder={placeHolder}
           value={valuetext}
           name={name}
-    
-          readOnly/>
-        ):(
-          <input
-          className={`rounded-2xl h-10 w-auto ${inputTheme} pl-4`}
+          readOnly
+        />
+      ) : (
+        <textarea
+          className={`rounded-2xl min-h-10 w-auto ${inputTheme} pl-4`}
           placeholder={placeHolder}
           onChange={onChange}
           name={name}
-          type={type?type:'text'}
+          type={type ? type : "text"}
           value={valuetext}
         />
-        )
-      }
-   
+      )}
     </div>
   );
 };
