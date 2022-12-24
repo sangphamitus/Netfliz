@@ -16,6 +16,23 @@ module.exports=
          const result=docs.data();
     return result;
     },
+    changeUserinfo: async({uid,name,dob})=>{
+      const docs= await db.collection('userinfo').doc(uid).get();
+      const result=docs.data();
+      const usrinfo = db.collection('userinfo').doc(uid);
+           usrinfo.set({
+              name,
+              uid,
+              dob,
+              listMovie:result.listMovie,
+              timeStamp:result.timeStamp
+           })
+           const docs2= await db.collection('userinfo').doc(uid).get();
+           const result2=docs2.data();
+      return result2;
+      }
+    ,
+
     getUserinfo:async({uid})=>{
     
         const docs= await db.collection('userinfo').doc(uid).get();

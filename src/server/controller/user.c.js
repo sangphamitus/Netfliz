@@ -130,5 +130,27 @@ module.exports = {
     {
         res.redirect("/");
     }
+    },
+    changePassword:async (req,res,next)=>{
+        try
+        {
+            console.log(req.body )
+            const{uid,password,newpassword}= req.body;
+           
+            const rs= await userM.changePassword({uid,password,newpassword})
+            console.log(rs);
+         
+            res.status(200).send(
+
+                {       
+                    result:rs
+                }
+            )
+          
+      } catch (err) {
+            console.log(err);
+            next(err);
+        }
     }
+    
 }
