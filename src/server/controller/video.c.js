@@ -3,21 +3,16 @@ const videoM = require("../models/video.m");
 module.exports={
     addVideo:async (req, res, next) => {
         try {
-            const {
-                name,
-                url,
-                image,
-                ratting
-            } = req.body;
+            const {link,name,image,ratting,haveEp,review,type} = req.body;
         
-            
+            console.log(req.body)
            
-            const rs = await videoM.addVideo(name,url,image,ratting);
+            const rs = await videoM.addVideo({link,name,image,ratting,haveEp,review,type});
            
             if (rs == null) {
                 res.status(200).send({
                     data: rs,
-                    message: "available video"
+                    message: "unavailable video"
                 });
             } else {
                 res.status(200).send({
