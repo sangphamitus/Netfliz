@@ -24,7 +24,7 @@ const Input = ({
         </label>
       )}
       {readonly ? (
-        <textarea
+        <input
           className={`rounded-2xl min-h-10 w-auto ${inputTheme} pl-4`}
           placeholder={placeHolder}
           value={valuetext}
@@ -32,7 +32,7 @@ const Input = ({
           readOnly
         />
       ) : (
-        <textarea
+        <input
           className={`rounded-2xl min-h-10 w-auto ${inputTheme} pl-4`}
           placeholder={placeHolder}
           onChange={onChange}
