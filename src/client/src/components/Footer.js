@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="bg-[#2C394B] py-14 px-14 flex flex-row justify-between">
+    <div className="bg-[#2C394B] py-14 px-14 flex flex-row max-sm:flex-col justify-between">
       <div>
         <ul>
           <li style={{ listStyle: "none" }}>

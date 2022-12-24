@@ -75,8 +75,6 @@ const NavBar = ({ allowSearch = true }) => {
       {allowSearch === true && (
         <form
           onSubmit={submit}
-          // method="post"
-          // action="/videos/search"
           className="flex mr-10 max-w-screen-md w-full ml-auto"
         >
           <Input
@@ -96,36 +94,34 @@ const NavBar = ({ allowSearch = true }) => {
           </Button>
         </form>
       )}
-      <div>
-        {isLogin === false ? (
-          <div className="mr-0 ml-auto">
-            <Button
-              theme={
-                "bg-gray-200 p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-[#CD0574]"
-              }
-              onClick={() => navigate({ pathname: "/login" })}
-            >
-              LOGIN
-            </Button>
-            <Button
-              theme={
-                "bg-[#CD0574] p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-gray-200"
-              }
-              onClick={() => navigate({ pathname: "/signup" })}
-            >
-              SIGNUP
-            </Button>
-          </div>
-        ) : isLogin === true ? (
-          <div className="mr-3 ml-auto mt-2 p-1 w-10 rounded-full">
-            <button className="nav-toggle" onClick={toggleLinks}>
-              <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
-            </button>
-          </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
+      {isLogin === false ? (
+        <div className="mr-0 ml-auto">
+          <Button
+            theme={
+              "bg-gray-200 p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-[#CD0574]"
+            }
+            onClick={() => navigate({ pathname: "/login" })}
+          >
+            LOGIN
+          </Button>
+          <Button
+            theme={
+              "bg-[#CD0574] p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-gray-200"
+            }
+            onClick={() => navigate({ pathname: "/signup" })}
+          >
+            SIGNUP
+          </Button>
+        </div>
+      ) : isLogin === true ? (
+        <div className="mr-3 ml-auto mt-2 p-1 w-10 rounded-full">
+          <button className="nav-toggle" onClick={toggleLinks}>
+            <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
+          </button>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
