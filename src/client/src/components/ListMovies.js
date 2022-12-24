@@ -39,7 +39,7 @@ const ListMovies = ({ title, list_movies_data }) => {
     );
   }, [list_movies_data]);
   return (
-    <div>
+    <div className="w-full">
       <Text
         text={title}
         customTheme="text-[2rem] text-pink-600 font-button px-5"

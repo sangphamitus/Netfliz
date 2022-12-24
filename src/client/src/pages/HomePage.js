@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavBar, Footer, Banner, ListMovies } from "../components";
 import axios from "axios";
 
-
 function HomePage() {
   const [newMovies, setNewMovies] = useState([]);
   const [hotMovies, setHotMovies] = useState([]);
