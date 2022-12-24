@@ -7,6 +7,7 @@ const CryptoJS = require('crypto-js');
 const {
     getClient,db
 }=require("../.config/postgres")
+const hashLength = 64;
 const userinfoM=require("./userinfo.m");
 module.exports = {
 
@@ -66,6 +67,36 @@ module.exports = {
         
 
         return rs;
+    }
+    ,
+    changePassword:async({uid,password,newpassword})=>
+    { 
+        var rs = await db.one(`select * from public.\"Users\" where \"uid\" like '${uid}' `)
+        console.log(rs)
+      
+        try
+        {
+            const salt = rs.username;
+
+            const hashedPassword = CryptoJS.SHA256(password + salt, {
+                outputLength: hashLength * 4
+            }).toString(CryptoJS.enc.Hex);
+
+            const hashedPasswordVer2 = CryptoJS.SHA256(newpassword + salt, {
+                outputLength: hashLength * 4
+            }).toString(CryptoJS.enc.Hex);
+            var rs = await db.any(`UPDATE public."Users"
+            SET "password"=$3
+            WHERE "uid" like $1 and "password" like $2 `,[uid,hashedPassword,hashedPasswordVer2])
+            return true
+        }
+        catch(e)
+        {
+            return false;
+        }
+      
+    return true;
+
     }
     
 

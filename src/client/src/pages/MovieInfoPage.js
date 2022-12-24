@@ -47,7 +47,7 @@ function MovieInfoPage() {
         .post(`${process.env.REACT_APP_ENDPOINT}comments/post`, {
           vid: vid,
 
-          username: localStorage.getItem("uid"),
+          uid: localStorage.getItem("uid"),
           content: inputCmt,
         })
         .then((res) => {
@@ -154,22 +154,27 @@ function MovieInfoPage() {
           )}
 
         <div className="my-5">
-          {cmt.map((item) => (
+          {cmt.map((item) => 
+          {
+      
+          return(
             <div key={item.key} className="pl-5 flex flex-row space-x-3 my-5">
               <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
               {item.data.map((each, i) => {
+                console.log (each)
                 return (
                   <div
                     key={i}
                     className="flex flex-col text-white bg-gray-400 w-fit p-2"
                   >
-                    <h6 className="font-semibold">{each.username}</h6>
+                    <h6 className="font-semibold">{each.name}</h6>
                     <p>{each.content}</p>
                   </div>
                 );
               })}
-            </div>
-          ))}
+            </div>)
+          }
+          )}
         </div>
       </div>
 

@@ -28,7 +28,7 @@ function WatchMoviePage() {
         .post(`${process.env.REACT_APP_ENDPOINT}comments/post`, {
           vid: vid,
 
-          username: "Test",
+          uid: localStorage.getItem("uid"),
           content: inputCmt,
         })
         .then((res) => {
@@ -131,7 +131,7 @@ function WatchMoviePage() {
                     key={i}
                     className="flex flex-col text-white bg-gray-400 w-fit p-2"
                   >
-                    <h6 className="font-semibold">{each.username}</h6>
+                    <h6 className="font-semibold">{each.name}</h6>
                     <p>{each.content}</p>
                   </div>
                 );

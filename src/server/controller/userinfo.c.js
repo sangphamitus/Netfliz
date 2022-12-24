@@ -36,6 +36,25 @@ module.exports=
             next(err);
         }
     },
+    changeUserinfo: async(req,res,next)=>{
+        try{
+            console.log(req.body)
+            const {uid,name,dob}=req.body;
+
+            const rs  =await userInfoM.changeUserinfo({uid,name,dob});
+            res.status(200).send(
+             {
+                 data:rs,
+                 messages:"successed"
+             }
+            )
+        }
+        catch(err)
+        {
+            next(err);
+        }
+        }
+      ,
     addMovieToInfo:async(req,res,next)=>{
         try{
             

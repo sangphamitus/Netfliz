@@ -1,16 +1,18 @@
 const {admin,db} =require('../.config/firebase');
 const CryptoJS = require('crypto-js');
+
 const hashLength = 64;
-const userinfoM= require("../models/userinfo.m")
+const userinfoM= require("../models/userinfo.m");
+
 module.exports= 
 {
-    addComment: async({vid,cid,username,content})=>{
+    addComment: async({vid,cid,uid,content})=>{
 
-    const currCid=  CryptoJS.SHA256(username+(new Date()), {
+    const currCid=  CryptoJS.SHA256(uid+(new Date()), {
         outputLength: 10 
     }).toString(CryptoJS.enc.Hex).slice(0,10);
     const cmts = db.collection('comments').doc(vid);
-    const account=await userinfoM.getUserinfo({uid:username});
+    const account=await userinfoM.getUserinfo({uid:uid});
     console.log(account);
 
 //    console.log({vid,cid,username,content})
@@ -18,7 +20,7 @@ module.exports=
     {
         cmts.collection(currCid).doc(currCid).set({
             cid:currCid,
-           username:account.name,
+           uid:account.uid,
            content,
            like:0,
           timeStamp:(new Date()).toUTCString()
@@ -28,7 +30,7 @@ module.exports=
     else{
         cmts.collection(cid).doc(currCid).set({
             cid:currCid,
-            username:account.name,
+            uid:account.uid,
             content,
             like:0,
            timeStamp:(new Date()).toUTCString()
@@ -44,12 +46,18 @@ module.exports=
             {
                 const docs=await db.collection(`comments`).doc(vid).collection(collection.id).get();
                
-                const result=docs.docs.map(doc=>doc.data());
-               
+                const result=await docs.docs.map((doc)=>
+                    {
+                              
+                       return doc.data()
+                    });
+           
+            
                 return {key:collection.id,data:result};
             }))
        
-        console.log(rs);
+        
+        
         return rs;
     }
 
