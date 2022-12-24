@@ -42,7 +42,7 @@ const NavBar = ({ allowSearch = true }) => {
   }, [localStorage]);
 
   return (
-    <div>
+    <div className="fixed top-0 overflow-hidden w-full z-10">
       <div className="nav-center flex flex-row justify-between bg-black bg-opacity-75">
         <div className="nav-header flex items-center w-full pl-2">
           <button
