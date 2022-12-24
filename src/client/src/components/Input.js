@@ -1,11 +1,11 @@
 import React from "react";
 const Input = ({
-  inputTheme,
+  inputTheme = "",
   labelText,
-  labelTheme,
-  containerTheme,
+  labelTheme = "",
+  containerTheme = "",
   placeHolder,
-  textColor,
+  textColor = "",
   onChange,
   type,
   name,

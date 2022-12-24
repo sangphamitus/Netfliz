@@ -22,9 +22,24 @@ function theme() {
   return plugin(function ({ addComponents, theme }) {
     addComponents({
       ...card(theme),
+      ...navBar(theme),
     });
   });
 }
+
+const navBar = (theme) => ({
+  ".menu-nav": {
+    overflowY: "scroll",
+    listStyle: "none",
+    overflow: "hidden",
+    maxWidth: "290px",
+    zIndex: 9,
+    display: "none",
+  },
+  ".show-menu": {
+    display: "block",
+  },
+});
 
 const card = (theme) => ({
   ".card": {
