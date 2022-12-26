@@ -114,7 +114,7 @@ const NavBar = ({ allowSearch = true }) => {
             </Button>
           </div>
         ) : isLogin === true ? (
-          <div className="flex flex-row">
+          <div className="flex flex-row mr-2">
             <Button
               theme={
                 "bg-[#CD0574] p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-gray-200"
