@@ -24,7 +24,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="App bg-[#082032]">
+    <div className="App bg-[#082032] pt-0">
       <NavBar allowSearch={true} />
       <Banner />
       <ListMovies title={"NEW MOVIES"} list_movies_data={newMovies} />

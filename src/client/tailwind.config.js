@@ -21,11 +21,18 @@ module.exports = {
 function theme() {
   return plugin(function ({ addComponents, theme }) {
     addComponents({
+      ...app(theme),
       ...card(theme),
       ...navBar(theme),
     });
   });
 }
+
+const app = (theme) => ({
+  ".App": {
+    paddingTop: "5rem",
+  },
+});
 
 const navBar = (theme) => ({
   ".menu-nav": {

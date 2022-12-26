@@ -84,7 +84,7 @@ function WatchMoviePage() {
   }, []);
 
   return (
-    <div className="App bg-[#082032]">
+    <div className="App bg-[#082032] pt-12">
       <NavBar />
       <div>
         <iframe
@@ -101,7 +101,7 @@ function WatchMoviePage() {
         <ListMovies title={"EPISODES"} list_movies_data={episode} />
       )}
 
-      <div className="bg-[#2D2F3D] min-h-[18rem] h-full my-10 mx-5">
+      <div className="bg-[#2D2F3D] min-h-[18rem] h-full my-10 mx-5 pb-3">
         <Text
           text="Comments"
           customTheme="text-[2rem] px-5 text-white"
@@ -111,7 +111,7 @@ function WatchMoviePage() {
           localStorage.getItem("uid") !== "null" && (
             <div className="flex px-5 my-5">
               <Input
-                containerTheme="w-full pt-0"
+                containerTheme="w-full pt-0 h-12"
                 onChange={(e) => {
                   setInputCmt(e.target.value);
                 }}
@@ -137,8 +137,6 @@ function WatchMoviePage() {
       </div>
 
       <ListMovies title={"NEW MOVIES"} list_movies_data={newMovies} />
-
-      <div className="h-[57rem]" />
 
       <Footer />
     </div>

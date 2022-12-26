@@ -13,9 +13,7 @@ const Input = ({
   valuetext,
 }) => {
   return (
-    <div
-      className={`pt-8 grid grid-flow-row ${containerTheme} text-${textColor}`}
-    >
+    <div className={`grid grid-flow-row ${containerTheme} text-${textColor}`}>
       {labelText && (
         <label
           className={`font-normal text-4xl font-button mb-2 text-gray-200 ${labelTheme}`}
@@ -25,7 +23,7 @@ const Input = ({
       )}
       {readonly ? (
         <input
-          className={`rounded-2xl min-h-10 w-auto ${inputTheme} pl-4`}
+          className={`rounded-2xl min-h-10 ${inputTheme} pl-4`}
           placeholder={placeHolder}
           value={valuetext}
           name={name}
@@ -33,7 +31,7 @@ const Input = ({
         />
       ) : (
         <input
-          className={`rounded-2xl min-h-10 w-auto ${inputTheme} pl-4`}
+          className={`rounded-2xl min-h-10 ${inputTheme} pl-4`}
           placeholder={placeHolder}
           onChange={onChange}
           name={name}

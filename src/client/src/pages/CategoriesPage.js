@@ -10,44 +10,54 @@ function CategoriesPage() {
   const [animeMovies, setAnimeMovies] = useState([]);
 
   const fetchActionMoviesData = async () => {
-    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/filter`,{
-      type:"action"
-    }).then((res) => {
-      console.log(res.data.data);
-      setActionMovies(res.data.data);
-    });
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}videos/filter`, {
+        type: "action",
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setActionMovies(res.data.data);
+      });
   };
   const fetchDramasMoviesData = async () => {
-    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/filter`,{
-      type:"dramas"
-    }).then((res) => {
-      console.log(res.data.data);
-      setDramasMovies(res.data.data);
-    });
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}videos/filter`, {
+        type: "dramas",
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setDramasMovies(res.data.data);
+      });
   };
   const fetchRomanceMoviesData = async () => {
-    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/filter`,{
-      type:"romance"
-    }).then((res) => {
-      console.log(res.data.data);
-      setRomanceMovies(res.data.data);
-    });
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}videos/filter`, {
+        type: "romance",
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setRomanceMovies(res.data.data);
+      });
   };
   const fetchComedyMoviesData = async () => {
-    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/filter`,{
-      type:"comedy"
-    }).then((res) => {
-      console.log(res.data.data);
-      setComedyMovies(res.data.data);
-    });
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}videos/filter`, {
+        type: "comedy",
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setComedyMovies(res.data.data);
+      });
   };
   const fetchAnimeMoviesData = async () => {
-    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/filter`,{
-      type:"anime"
-    }).then((res) => {
-      console.log(res.data.data);
-      setAnimeMovies(res.data.data);
-    });
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}videos/filter`, {
+        type: "anime",
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        setAnimeMovies(res.data.data);
+      });
   };
   useEffect(() => {
     fetchActionMoviesData();

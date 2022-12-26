@@ -79,35 +79,40 @@ function MovieInfoPage() {
   };
 
   return (
-    <div className="App bg-[#082032]">
+    <div className="App bg-[#082032] pt-0">
       <NavBar />
       <div className="relative">
         <img
-          className="w-full h-[620px] z-0"
+          className="w-full h-auto max-h-[59rem] z-0"
           src={movie.image}
           title={movie.name}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen={true}
         ></img>
-        <div className="absolute bottom-0 pl-9">
+        <div className="absolute bottom-0 sm:pl-9 pl-2">
           <Text
             text={movie.name}
             isHeader={true}
-            customTheme="text-6xl text-white mb-48"
+            customTheme="text-white sm:pb-44"
+            style={{
+              fontSize: `calc(1.278125rem + 1.5vw)`,
+            }}
           />
           {localStorage.getItem("uid") !== null &&
             localStorage.getItem("uid") !== "null" && (
-              <div className="mb-10 flex flex-row">
+              <div className="sm:mb-10 mb-4 flex flex-row">
                 <Button
-                  theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
+                  theme={
+                    "bg-white w-auto h-auto sm:mx-3 px-4 flex items-center"
+                  }
                   onClick={(e) => {
                     watchingAccessing();
                   }}
                 >
                   <FontAwesomeIcon icon={faPlay} className="pb-1" />
                   <Text
-                    customTheme="text-[2rem] leading-none text-black font-button"
+                    customTheme="sm:text-[2rem] text-xl leading-none text-black font-button"
                     isHeader={false}
                     text="Watch"
                   />
@@ -118,7 +123,7 @@ function MovieInfoPage() {
                 >
                   <FontAwesomeIcon icon={faPlus} className="pb-1" />
                   <Text
-                    customTheme="text-[2rem] leading-none text-black font-button"
+                    customTheme="sm:text-[2rem] text-xl leading-none text-black font-button"
                     isHeader={false}
                     text="List"
                   />
@@ -128,7 +133,7 @@ function MovieInfoPage() {
         </div>
       </div>
 
-      <div className="w-full px-7">
+      <div className="w-full px-7 pt-5">
         <Rate rateinput={movie.ratting} />
         <p className="text-white font-normal h-full">{movie.review}</p>
       </div>
@@ -141,15 +146,19 @@ function MovieInfoPage() {
         />
         {localStorage.getItem("uid") !== null &&
           localStorage.getItem("uid") !== "null" && (
-            <div className="flex px-5 my-5">
+            <form
+              className="flex flex-row max-sm:flex-col max-sm:space-y-3 px-5 my-5"
+              onSubmit={postComment}
+            >
               <Input
-                containerTheme="w-full pt-0"
+                containerTheme="w-full min-w-[0px] h-12"
                 onChange={(e) => {
                   setInputCmt(e.target.value);
                 }}
               />
               <Button
                 theme="bg-pink-600 rounded-2xl w-auto h-auto px-3 mx-3 px-4"
+                type="submit"
                 onClick={postComment}
               >
                 <Text
@@ -158,7 +167,7 @@ function MovieInfoPage() {
                   text="Comment"
                 />
               </Button>
-            </div>
+            </form>
           )}
 
         <div className="my-5">
