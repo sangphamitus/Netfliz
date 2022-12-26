@@ -42,11 +42,11 @@ function LogInPage() {
     <div className="bg-scroll bg-login-background">
       <NavBar allowSearch={false} />
       <div className="flex justify-center py-40">
-        <Form formClass="w-full mx-96" onSubmit={submitClickHandler}>
+        <Form formClass="w-full lg:mx-80" onSubmit={submitClickHandler}>
           <Text
             customTheme="text-[3.5rem] text-pink-600 font-button"
             isHeader={true}
-            text={"SIGN IN"}
+            text="SIGN IN"
           />
           <Input
             id="username"
@@ -54,7 +54,7 @@ function LogInPage() {
             labelText="USERNAME"
             placeHolder="Email or username"
             onChange={usernameChangeHandler}
-          ></Input>
+          />
           <Input
             id="password"
             inputTheme="h-12"
