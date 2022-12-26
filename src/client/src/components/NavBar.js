@@ -124,8 +124,12 @@ const NavBar = ({ allowSearch = true }) => {
         )}
       </div>
       <ul className={`menu-nav w-full ${navbarOpen ? "show-menu" : "hidden"}`}>
-        <li className="menu-item">Home</li>
-        <li className="menu-item">Category</li>
+        <li className="menu-item">
+          <a href="/">Home</a>
+        </li>
+        <li className="menu-item">
+          <a href="/categories">Category</a>
+        </li>
         <li className="menu-item">Search</li>
       </ul>
     </div>

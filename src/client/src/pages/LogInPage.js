@@ -24,16 +24,11 @@ function LogInPage() {
 
       .then((res) => {
         localStorage.setItem("uid", res.data.data);
-        localStorage.setItem("per",res.data.permission);
+        localStorage.setItem("per", res.data.permission);
         console.log(res.data.data);
-        if(res.data.permission)
-        {
-
-          window.location.href="/admin"
-        }
-         else
-          window.location.href = "/";
-
+        if (res.data.permission) {
+          window.location.href = "/admin";
+        } else window.location.href = "/";
       });
   };
 
@@ -45,11 +40,9 @@ function LogInPage() {
   };
   return (
     <div className="bg-scroll bg-login-background">
-      <div className="fixed top-0 overflow-hidden w-full z-10">
-        <NavBar allowSearch={false} />
-      </div>
-      <div className="flex justify-center py-20">
-        <Form formClass={"w-full"} onSubmit={submitClickHandler}>
+      <NavBar allowSearch={false} />
+      <div className="flex justify-center py-40">
+        <Form formClass="w-full mx-96" onSubmit={submitClickHandler}>
           <Text
             customTheme="text-[3.5rem] text-pink-600 font-button"
             isHeader={true}
@@ -57,14 +50,17 @@ function LogInPage() {
           />
           <Input
             id="username"
-            labelText={"USERNAME"}
+            inputTheme="h-12"
+            labelText="USERNAME"
             placeHolder="Email or username"
             onChange={usernameChangeHandler}
           ></Input>
           <Input
             id="password"
-            labelText={"PASSWORD"}
+            inputTheme="h-12"
+            labelText="PASSWORD"
             placeHolder="Password"
+            containerTheme="pt-8"
             type="password"
             onChange={passwordChangeHandler}
           ></Input>
@@ -85,10 +81,10 @@ function LogInPage() {
           </div>
           <Button
             type="submit"
-            theme={"h-16 p-3 bg-pink-600 rounded-2xl w-full h-full mt-20"}
+            theme="p-2 bg-pink-600 rounded-2xl w-full mt-20"
           >
             <Text
-              customTheme="text-[3.5rem] leading-none text-gray-200 font-button"
+              customTheme="text-[2.5rem] leading-none text-gray-200 font-button"
               isHeader={false}
               text="SIGN IN"
             />

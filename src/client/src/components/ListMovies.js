@@ -57,7 +57,7 @@ const ListMovies = ({ title, list_movies_data }) => {
           return (
             <FontAwesomeIcon
               icon={faAngleLeft}
-              className="absolute top-1/4 text-[30px] cursor-pointer left-0 text-white hover:text-[#CD0574]"
+              className="max-sm:hidden absolute top-1/4 text-[30px] cursor-pointer left-0 text-white hover:text-[#CD0574]"
             />
           );
         }}
@@ -65,7 +65,7 @@ const ListMovies = ({ title, list_movies_data }) => {
           return (
             <FontAwesomeIcon
               icon={faAngleRight}
-              className="absolute top-1/4 text-[30px] cursor-pointer right-0 text-white hover:text-[#CD0574]"
+              className="max-sm:hidden absolute top-1/4 text-[30px] cursor-pointer right-0 text-white hover:text-[#CD0574]"
             />
           );
         }}
