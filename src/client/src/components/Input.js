@@ -13,7 +13,7 @@ const Input = ({
   valuetext,
 }) => {
   return (
-    <div className={`grid grid-flow-row ${containerTheme} text-${textColor}`}>
+    <div className={`flex flex-col ${containerTheme} text-${textColor}`}>
       {labelText && (
         <label
           className={`font-normal text-4xl font-button mb-2 text-gray-200 ${labelTheme}`}
