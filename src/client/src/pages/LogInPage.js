@@ -64,18 +64,22 @@ function LogInPage() {
             type="password"
             onChange={passwordChangeHandler}
           ></Input>
-          <div className="grid grid-flow-col pt-2.5">
+          <div className="flex flex-row justify-between pt-2.5">
             <Text
-              className=""
-              customTheme="text-xl text-pink-600 font-medium cursor-pointer"
+              customTheme="text-pink-600 font-medium cursor-pointer"
               isHeader={false}
               text="Forgot password"
+              style={{
+                fontSize: "calc(1rem + .2vw)",
+              }}
             />
             <Text
-              className=""
-              customTheme="text-xl text-pink-600 text-end font-medium cursor-pointer"
+              customTheme="text-pink-600 text-end font-medium cursor-pointer"
               isHeader={false}
               text="Don't have account ?"
+              style={{
+                fontSize: "calc(1rem + .2vw)",
+              }}
               onClick={() => navigate({ pathname: "/signup" })}
             />
           </div>
