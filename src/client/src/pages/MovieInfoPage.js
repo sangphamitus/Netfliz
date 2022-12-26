@@ -96,7 +96,7 @@ function MovieInfoPage() {
             isHeader={true}
             customTheme="text-white sm:pb-44"
             style={{
-              fontSize: `calc(1.278125rem + 1.5vw)`,
+              fontSize: "calc(1rem + 2.5vw)",
             }}
           />
           {localStorage.getItem("uid") !== null &&

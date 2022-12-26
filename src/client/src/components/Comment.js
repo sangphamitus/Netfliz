@@ -14,7 +14,9 @@ const Comment = ({ item, ...rest }) => {
             className="flex flex-col text-white bg-gray-400 w-fit p-2 rounded-2xl"
           >
             <h6 className="font-semibold">{each.name}</h6>
-            <p className="max-h-32 overflow-auto">{each.content}</p>
+            <p className="max-h-32 overflow-x-hidden overflow-y-auto">
+              {each.content}
+            </p>
           </div>
         );
       })}
