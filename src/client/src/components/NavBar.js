@@ -114,7 +114,17 @@ const NavBar = ({ allowSearch = true }) => {
             </Button>
           </div>
         ) : isLogin === true ? (
-          <div className="mr-3 ml-auto mt-2 p-1 w-10 rounded-full">
+          <div className="flex flex-row mr-2">
+            <Button
+              theme={
+                "bg-[#CD0574] p-1 my-2 mr-5 w-20 rounded-md text-2xl font-button text-gray-200"
+              }
+              onClick={() => {
+                navigate({ pathname: "/admin" });
+              }}
+            >
+              Admin
+            </Button>
             <button className="nav-toggle" onClick={toggleLinks}>
               <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
             </button>
