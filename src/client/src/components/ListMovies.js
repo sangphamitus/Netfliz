@@ -8,7 +8,9 @@ import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const responsive = {
-  0: { items: 5 },
+  0: { items: 1 },
+  400: { items: 3 },
+  1024: { items: 5 },
 };
 
 const ListMovies = ({ title, list_movies_data }) => {

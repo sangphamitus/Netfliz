@@ -56,7 +56,10 @@ function SignUpPage() {
     <div className="bg-local bg-login-background">
       <NavBar allowSearch={false} />
       <div className="flex justify-center py-32">
-        <Form formClass="w-full lg:mx-80" onSubmit={submitClickHandler}>
+        <Form
+          formClass="w-full md:mx-36 xl:mx-80"
+          onSubmit={submitClickHandler}
+        >
           <Text
             customTheme="text-[3.5rem] text-pink-600 font-button"
             isHeader={true}
