@@ -109,9 +109,10 @@ function WatchMoviePage() {
         />
         {localStorage.getItem("uid") !== null &&
           localStorage.getItem("uid") !== "null" && (
-            <div className="flex px-5 my-5">
+            <div className="flex flex-row max-sm:flex-col max-sm:items-center max-sm:space-y-3 px-5 my-5">
               <Input
-                containerTheme="w-full pt-0 h-12"
+                containerTheme="w-full min-w-[0px] h-10"
+                inputTheme="h-full"
                 onChange={(e) => {
                   setInputCmt(e.target.value);
                 }}
