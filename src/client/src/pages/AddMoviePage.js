@@ -2,7 +2,8 @@ import React from "react";
 import { Button, Input, Text, NavBar, Footer } from "../components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function AddMoviePage() {
   const [isChosen, setIsChosen] = React.useState({
     link: "",
@@ -17,6 +18,8 @@ function AddMoviePage() {
   const [episodeChosen, setEpisodeChosen] = React.useState(null);
   const [createEp, setCreateEp] = React.useState(false);
   const [collectionName, setCollectionName] = React.useState("");
+  const [upload, setUpload] = React.useState(false);
+  const [file, setFile] = React.useState("");
   const saveSubmit = async (e) => {
     let typeString = "";
     isChosen.type.forEach((each) => {
@@ -72,6 +75,38 @@ function AddMoviePage() {
     }
     getAllEpisode();
   }, []);
+
+  React.useEffect(() => {
+    const temp = process.env.REACT_APP_ENDPOINT.concat("image/temp.jpg");
+    setFile({ imageSrc: temp, imageHash: Date.now() });
+  }, [upload]);
+
+  const imageUpload = async () => {
+    setUpload(false);
+    var formData = new FormData();
+    var imagefile = document.querySelector("#file");
+    formData.append("imageUpload", imagefile.files[0]);
+
+    axios
+      .post(process.env.REACT_APP_ENDPOINT.concat("imageUpload"), formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        if (res.data.messages !== "fail") {
+          console.log(res);
+          setUpload(true);
+
+          toast.success("Uploaded successfully", { autoClose: 2000 });
+          // setInterval(() => {
+          //   window.location.reload();
+          // }, 1000);
+        } else {
+          toast.error("Please try again", { autoClose: 2000 });
+        }
+      });
+  };
 
   return (
     <div className="App bg-[#082032]">
@@ -133,31 +168,41 @@ function AddMoviePage() {
             }
           />
         </div>
-        <div className="flex items-center">
+        <div className="flex">
           <div className="pt-8 p-4 mb-2">
             <Text
-              text="Banner URL:"
+              text={"Banner URL:"}
               customTheme={
                 "text-white font-button text-[25px] whitespace-nowrap"
               }
             />
           </div>
           <Input
-            inputTheme="p-4 h-fit max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
-            id="cast"
-            type="file"
+            inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
+            id="file"
             containerTheme="w-full justify-center"
             valuetext={isChosen.image}
             onChange={(e) =>
               setIsChosen({ ...isChosen, image: e.target.value })
             }
+            type="file"
+            name="imageUpload"
+            accept="image/png, image/jpeg"
           />
-          <Button theme="ml-3 bg-pink-600 rounded-[5px] min-w-fit h-fit w-full max-w-[7rem]">
-            <Text
-              text="UPLOAD"
-              customTheme="text-white font-button text-[25px]"
-            />
+          <Button
+            theme="bg-pink-600 rounded-[5px] w-28 h-10"
+            onClick={() => {
+              setUpload(false);
+              imageUpload();
+            }}
+          >
+            UPLOAD
           </Button>
+          <img
+            key={Date.now()}
+            id="uploadedImg"
+            src={`${file.imageSrc}?${file.imageHash}`}
+          />
         </div>
         <div className="flex">
           <div className="pt-8 p-4 mb-2">
@@ -332,7 +377,7 @@ function AddMoviePage() {
           </Button>
         </div>
       </div>
-
+      <ToastContainer />
       <Footer />
     </div>
   );

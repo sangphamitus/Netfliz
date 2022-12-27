@@ -1,5 +1,6 @@
 import React from "react";
 const Input = ({
+  id,
   inputTheme = "",
   labelText,
   labelTheme = "",
@@ -11,6 +12,7 @@ const Input = ({
   name,
   readonly,
   valuetext,
+  accept
 }) => {
   return (
     <div className={`flex flex-col ${containerTheme} text-${textColor}`}>
@@ -35,8 +37,10 @@ const Input = ({
           placeholder={placeHolder}
           onChange={onChange}
           name={name}
+          id={id}
           type={type ? type : "text"}
           value={valuetext}
+          accept={accept}
         />
       )}
     </div>

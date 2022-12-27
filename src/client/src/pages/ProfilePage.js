@@ -12,6 +12,8 @@ import ProfileImage from "../assets/images/profile.png";
 import JohnWick from "../assets/images/John Wick - Movie Post.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {ToastContainer,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProfilePage() {
   const navigate = useNavigate();
@@ -81,7 +83,7 @@ function ProfilePage() {
         uid,
       })
       .then((res) => {
-        console.log(res.data.data);
+      
         setInfo(res.data.data);
         setInfoChange(res.data.data);
       });
@@ -94,9 +96,18 @@ function ProfilePage() {
       vid:vid
     })
     .then((res) => {
-      console.log(res.data.data);
-      setInfo(res.data.data);
+      
+      if(res.data.messages==="success")
+      {
+        setInfo(res.data.data);
       setInfoChange(res.data.data);
+        toast.success("Removed successfully",{autoClose:2000,position:"bottom-left"});
+      }
+      else{
+        toast.error("Please try again",{autoClose:2000,position:"bottom-left"});
+
+      }
+
     });
     //window.location.href="/profile"
   }
