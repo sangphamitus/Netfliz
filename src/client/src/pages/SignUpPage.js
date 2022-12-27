@@ -45,36 +45,47 @@ function SignUpPage() {
   };
 
   return (
-    <div className="bg-local ... bg-login-background">
+    <div className="bg-local bg-login-background">
       <NavBar allowSearch={false} />
-      <div className="flex justify-center py-20">
-        <Form formClass={"w-full"}>
+      <div className="flex justify-center py-32">
+        <Form formClass="w-full lg:mx-80" onSubmit={submitClickHandler}>
           <Text
             customTheme="text-[3.5rem] text-pink-600 font-button"
             isHeader={true}
-            text={"SIGNUP"}
+            text="SIGNUP"
           />
-          <Input labelText={"EMAIL"} onChange={emailChangeHandler}></Input>
           <Input
-            labelText={"USERNAME"}
+            labelText="EMAIL"
+            inputTheme="h-12"
+            onChange={emailChangeHandler}
+          />
+          <Input
+            labelText="USERNAME"
+            inputTheme="h-12"
+            containerTheme="pt-8"
             onChange={usernameChangeHandler}
-          ></Input>
+          />
           <Input
-            labelText={"PASSWORD"}
+            labelText="PASSWORD"
+            inputTheme="h-12"
+            containerTheme="pt-8"
             onChange={passwordChangeHandler}
             type="password"
-          ></Input>
+          />
           <Input
-            labelText={"CONFIRM PASSWORD"}
+            labelText="CONFIRM PASSWORD"
+            inputTheme="h-12"
+            containerTheme="pt-8"
             onChange={repasswordChangeHandler}
             type="password"
-          ></Input>
+          />
           <Button
-            theme={"h-16 p-3 bg-pink-600 rounded-2xl w-full h-auto mt-20"}
+            type="submit"
+            theme="p-2 bg-pink-600 rounded-2xl w-full mt-20"
             onClick={submitClickHandler}
           >
             <Text
-              customTheme="text-[3.5rem] leading-none text-gray-200 font-button"
+              customTheme="text-[2.5rem] leading-none text-gray-200 font-button"
               isHeader={false}
               text="SIGNUP"
             />

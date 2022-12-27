@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { Button, Input, Text, NavBar, Footer, ListMovies } from "../components";
+import {
+  Button,
+  Input,
+  Text,
+  NavBar,
+  Footer,
+  ListMovies,
+  Comment,
+} from "../components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -76,7 +84,7 @@ function WatchMoviePage() {
   }, []);
 
   return (
-    <div className="App bg-[#082032]">
+    <div className="App bg-[#082032] pt-12">
       <NavBar />
       <div>
         <iframe
@@ -93,7 +101,7 @@ function WatchMoviePage() {
         <ListMovies title={"EPISODES"} list_movies_data={episode} />
       )}
 
-      <div className="bg-[#2D2F3D] min-h-[18rem] h-full my-10 mx-5">
+      <div className="bg-[#2D2F3D] min-h-[18rem] h-full my-10 mx-5 pb-3">
         <Text
           text="Comments"
           customTheme="text-[2rem] px-5 text-white"
@@ -103,7 +111,7 @@ function WatchMoviePage() {
           localStorage.getItem("uid") !== "null" && (
             <div className="flex px-5 my-5">
               <Input
-                containerTheme="w-full pt-0"
+                containerTheme="w-full pt-0 h-12"
                 onChange={(e) => {
                   setInputCmt(e.target.value);
                 }}
@@ -122,28 +130,13 @@ function WatchMoviePage() {
           )}
 
         <div className="my-5">
-          {cmt.map((item) => (
-            <div key={item.key} className="pl-5 flex flex-row space-x-3 my-5">
-              <FontAwesomeIcon icon={faCircleUser} inverse size="2x" />
-              {item.data.map((each, i) => {
-                return (
-                  <div
-                    key={i}
-                    className="flex flex-col text-white bg-gray-400 w-fit p-2"
-                  >
-                    <h6 className="font-semibold">{each.name}</h6>
-                    <p>{each.content}</p>
-                  </div>
-                );
-              })}
-            </div>
-          ))}
+          {cmt.map((item) => {
+            return <Comment key={item.key} item={item} />;
+          })}
         </div>
       </div>
 
       <ListMovies title={"NEW MOVIES"} list_movies_data={newMovies} />
-
-      <div className="h-[57rem]" />
 
       <Footer />
     </div>

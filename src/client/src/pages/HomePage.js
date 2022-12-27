@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavBar, Footer, Banner, ListMovies } from "../components";
 import axios from "axios";
 
-
 function HomePage() {
   const [newMovies, setNewMovies] = useState([]);
   const [hotMovies, setHotMovies] = useState([]);
@@ -25,10 +24,8 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="App bg-[#082032]">
-      <div className="fixed top-0 overflow-hidden w-full z-10">
-        <NavBar allowSearch={true} />
-      </div>
+    <div className="App bg-[#082032] pt-0">
+      <NavBar allowSearch={true} />
       <Banner />
       <ListMovies title={"NEW MOVIES"} list_movies_data={newMovies} />
       <ListMovies title={"HOT MOVIES"} list_movies_data={hotMovies} />

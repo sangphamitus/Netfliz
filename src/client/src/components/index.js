@@ -9,10 +9,12 @@ import { NavBar } from "./NavBar";
 import { Rate } from "./Rating";
 import { ResultItem } from "./ResultItem";
 import { Text } from "./Text";
+import { Comment } from "./Comment";
 import UserProfile from "./UserAccount";
 
 export {
   Banner,
+  Comment,
   Button,
   Card,
   Footer,
