@@ -93,7 +93,7 @@ function MovieInfoPage() {
       <div className="relative">
         <img
           className="w-full h-auto max-h-[59rem] z-0"
-          src={process.env.REACT_APP_ENDPOINT+movie.image}
+          src={process.env.REACT_APP_ENDPOINT+ movie.image}
           title={movie.name}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

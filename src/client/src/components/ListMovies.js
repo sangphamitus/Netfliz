@@ -35,7 +35,7 @@ const ListMovies = ({ title, list_movies_data }) => {
         return list_movies_data === undefined ? (
           <Card imgSrc={require(`../assets/images/${item}.jpg`)} />
         ) : (
-          <Card imgSrc={item.image} vid={item.vid} />
+          <Card imgSrc={process.env.REACT_APP_ENDPOINT+ item.image} vid={item.vid} />
         );
       })
     );

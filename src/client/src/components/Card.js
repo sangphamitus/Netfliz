@@ -29,7 +29,7 @@ const Card = ({ imgSrc, vid, onClick, canEdit=false, onTrashClick}) => {
 
       <img
         className="card-img object-cover object-center h-fit w-96"
-        src={imgSrc}
+        src={process.env.REACT_APP_ENDPOINT+ imgSrc}
         alt="movie-poster"
       />
     </div>

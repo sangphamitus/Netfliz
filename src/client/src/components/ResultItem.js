@@ -22,7 +22,7 @@ const ResultItem = ({ vid,movieName, imgSrc }) => {
         />
       </div>
       <div className="cursor-pointer">
-        <img src={imgSrc} className="max-h-[400px]" />
+        <img src={process.env.REACT_APP_ENDPOINT+ imgSrc} className="max-h-[400px]" />
       </div>
     </div>
   );
