@@ -133,24 +133,31 @@ function AddMoviePage() {
             }
           />
         </div>
-        <div className="flex">
+        <div className="flex items-center">
           <div className="pt-8 p-4 mb-2">
             <Text
-              text={"Banner URL:"}
+              text="Banner URL:"
               customTheme={
                 "text-white font-button text-[25px] whitespace-nowrap"
               }
             />
           </div>
           <Input
-            inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
+            inputTheme="p-4 h-fit max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
             id="cast"
+            type="file"
             containerTheme="w-full justify-center"
             valuetext={isChosen.image}
             onChange={(e) =>
               setIsChosen({ ...isChosen, image: e.target.value })
             }
           />
+          <Button theme="ml-3 bg-pink-600 rounded-[5px] min-w-fit h-fit w-full max-w-[7rem]">
+            <Text
+              text="UPLOAD"
+              customTheme="text-white font-button text-[25px]"
+            />
+          </Button>
         </div>
         <div className="flex">
           <div className="pt-8 p-4 mb-2">
