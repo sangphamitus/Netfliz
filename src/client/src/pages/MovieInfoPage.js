@@ -17,8 +17,8 @@ import {
   Rate,
   Comment,
 } from "../components";
-import {ToastContainer,toast} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MovieInfoPage() {
   const [movie, setMovie] = React.useState({});
@@ -76,13 +76,16 @@ function MovieInfoPage() {
         img: movie.image,
       })
       .then((res) => {
-        if(res.data.messages==="success")
-        {
-          toast.success("Add successfully to your movie list",{autoClose:2000,position:"bottom-left"});
-        }
-        else{
-          toast.error("Add fail, please try again",{autoClose:2000,position:"bottom-left"});
-
+        if (res.data.messages === "success") {
+          toast.success("Add successfully to your movie list", {
+            autoClose: 2000,
+            position: "bottom-left",
+          });
+        } else {
+          toast.error("Add fail, please try again", {
+            autoClose: 2000,
+            position: "bottom-left",
+          });
         }
       });
   };
@@ -93,7 +96,7 @@ function MovieInfoPage() {
       <div className="relative">
         <img
           className="w-full h-auto max-h-[59rem] z-0"
-          src={process.env.REACT_APP_ENDPOINT+ movie.image}
+          src={process.env.REACT_APP_ENDPOINT + movie.image}
           title={movie.name}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -156,17 +159,18 @@ function MovieInfoPage() {
         {localStorage.getItem("uid") !== null &&
           localStorage.getItem("uid") !== "null" && (
             <form
-              className="flex flex-row max-sm:flex-col max-sm:space-y-3 px-5 my-5"
+              className="flex flex-row max-sm:flex-col max-sm:items-center max-sm:space-y-3 px-5 my-5"
               onSubmit={postComment}
             >
               <Input
-                containerTheme="w-full min-w-[0px] h-12"
+                containerTheme="w-full min-w-[0px] h-10"
+                inputTheme="h-full"
                 onChange={(e) => {
                   setInputCmt(e.target.value);
                 }}
               />
               <Button
-                theme="bg-pink-600 rounded-2xl w-auto h-auto px-3 mx-3 px-4"
+                theme="bg-pink-600 rounded-2xl w-auto h-auto px-3 mx-3 px-4 max-sm:w-fit"
                 type="submit"
                 onClick={postComment}
               >
