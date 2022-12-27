@@ -3,9 +3,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCircleUser,
+
+  faHeartCircleMinus,
+  faHeartCirclePlus,
+  
   faPlay,
-  faPlus,
+ 
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -20,36 +23,52 @@ import {
 import {ToastContainer,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function MovieInfoPage() {
   const [movie, setMovie] = React.useState({});
   const [cmt, setCmt] = React.useState([]);
+  const [info, setInfo] = React.useState({listMovie:[ ]});
   const [inputCmt, setInputCmt] = React.useState("");
+  const [added,setAdded]=React.useState(false);
   const search = useLocation().search;
   const navigate = useNavigate();
   const watchingAccessing = () => {
     navigate(`/watch?vid=${new URLSearchParams(search).get("vid")}`);
   };
   const vid = new URLSearchParams(search).get("vid");
+ 
   React.useEffect(() => {
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/get`, {
         vid: vid,
       })
       .then((res) => {
-        console.log(res.data.data);
+     
         setMovie(res.data.data);
       });
-  }, []);
-  React.useEffect(() => {
-    axios
+      
+      axios
       .post(`${process.env.REACT_APP_ENDPOINT}comments/getpost`, {
         vid: vid,
       })
       .then((res) => {
-        console.log(res.data.data);
+      
         setCmt(res.data.data);
       });
   }, []);
+
+  React.useEffect(()=>{
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}userinfo/get`, {
+        uid: localStorage.getItem("uid"),
+      })
+      .then((res) => {
+      
+        setInfo(res.data.data);
+        
+      });
+   
+  },[added])
 
   const postComment = async () => {
     if (inputCmt !== "") {
@@ -61,7 +80,7 @@ function MovieInfoPage() {
           content: inputCmt,
         })
         .then((res) => {
-          console.log(res.data.data);
+         
           setCmt(res.data.data);
           setInputCmt("");
         });
@@ -78,6 +97,7 @@ function MovieInfoPage() {
       .then((res) => {
         if(res.data.messages==="success")
         {
+          setAdded(true);
           toast.success("Add successfully to your movie list",{autoClose:2000,position:"bottom-left"});
         }
         else{
@@ -86,7 +106,29 @@ function MovieInfoPage() {
         }
       });
   };
+  
+  const rmMovie=async()=>{
+    axios
+    .post(`${process.env.REACT_APP_ENDPOINT}userinfo/rmMovie`, {
+      uid: localStorage.getItem("uid"),
+      vid:vid
+    })
+    .then((res) => {
+      if(res.data.messages==="success")
+        {
+          setInfo(res.data.data);
+          setAdded(false);
+          toast.success("Removed successfully",{autoClose:2000,position:"bottom-left"});
+        }
+        else{
+          toast.error("Please try again",{autoClose:2000,position:"bottom-left"});
 
+        }
+
+     
+    });
+    //window.location.href="/profile"
+  }
   return (
     <div className="App bg-[#082032] pt-0">
       <NavBar />
@@ -126,17 +168,32 @@ function MovieInfoPage() {
                     text="Watch"
                   />
                 </Button>
+                { info.listMovie.filter(item=>item.vid===vid).length===0 ?(
                 <Button
-                  theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
-                  onClick={postAddList}
-                >
-                  <FontAwesomeIcon icon={faPlus} className="pb-1" />
-                  <Text
-                    customTheme="sm:text-[2rem] text-xl leading-none text-black font-button"
-                    isHeader={false}
-                    text="List"
-                  />
-                </Button>
+                theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
+                onClick={postAddList}
+              >
+                <FontAwesomeIcon icon={faHeartCirclePlus} className="pb-1" />
+                <Text
+                  customTheme="sm:text-[2rem] text-xl leading-none text-black font-button"
+                  isHeader={false}
+                  text="List"
+                />
+              </Button>):
+              ( <Button
+                theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
+                onClick={rmMovie}
+              >
+                <FontAwesomeIcon icon={faHeartCircleMinus} className="pb-1" />
+                <Text
+                  customTheme="sm:text-[2rem] text-xl leading-none text-black font-button"
+                  isHeader={false}
+                  text="Remove"
+                />
+              </Button>)
+
+                }
+                
               </div>
             )}
         </div>

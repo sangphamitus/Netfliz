@@ -98,7 +98,7 @@ function ProfilePage() {
       setInfo(res.data.data);
       setInfoChange(res.data.data);
     });
-    window.location.href="/profile"
+    //window.location.href="/profile"
   }
   return (
     <div className="App bg-[#082032]">
