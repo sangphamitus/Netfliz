@@ -100,7 +100,7 @@ removeMovieToInfo:async(req,res,next)=>{
             res.status(200).send(
                 {
                     data:rs,
-                    messages:'Add successed'
+                    messages:'success'
                 }
             )
         }
@@ -108,7 +108,7 @@ removeMovieToInfo:async(req,res,next)=>{
             res.status(200).send(
                 {
                  
-                    messages:'Add fail'
+                    messages:'fail'
                 }
             )
         }

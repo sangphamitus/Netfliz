@@ -88,17 +88,19 @@ function ProfilePage() {
   }, []);
   const rmMovie = async (vid) => {
     axios
-      .post(`${process.env.REACT_APP_ENDPOINT}userinfo/rmMovie`, {
-        uid,
-        vid: vid,
-      })
-      .then((res) => {
-        console.log(res.data.data);
-        setInfo(res.data.data);
-        setInfoChange(res.data.data);
-      });
-    window.location.href = "/profile";
-  };
+
+    .post(`${process.env.REACT_APP_ENDPOINT}userinfo/rmMovie`, {
+      uid,
+      vid:vid
+    })
+    .then((res) => {
+      console.log(res.data.data);
+      setInfo(res.data.data);
+      setInfoChange(res.data.data);
+    });
+    //window.location.href="/profile"
+  }
+
   return (
     <div className="App bg-[#082032]">
       <NavBar />

@@ -11,14 +11,13 @@ const Card = ({ imgSrc, vid, onClick, canEdit=false, onTrashClick}) => {
   };
   
   return (
+    
     <div
       className="card bg-center bg-no-repeat overflow-hidden pr-6"
-      onClick={onClick ? onClick : (e) => {
-        cardAccessing()
-      }}
+    
     >
-      {canEdit&&    <button className="trash-icon"
-      onClick={onTrashClick}>
+      {canEdit&&    <button className="trash-icon  z-10"
+      onClick={(e)=>{e.preventDefault();onTrashClick()}}>
         <FontAwesomeIcon
           icon={faTrash}
         
@@ -28,9 +27,12 @@ const Card = ({ imgSrc, vid, onClick, canEdit=false, onTrashClick}) => {
   
 
       <img
-        className="card-img object-cover object-center h-fit w-96"
+        className="card-img cursor-pointer object-cover object-center h-fit w-96"
         src={process.env.REACT_APP_ENDPOINT+ imgSrc}
         alt="movie-poster"
+        onClick={onClick ? onClick : (e) => {
+          cardAccessing()
+        }}
       />
     </div>
   );

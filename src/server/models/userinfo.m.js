@@ -81,7 +81,13 @@ module.exports=
           listMovie:filteredItems,
            timeStamp:rs.timeStamp
          })
-        return rs;
+        return {
+          name:rs.name,
+          uid:rs.uid,
+          dob:rs.dob,
+        listMovie:filteredItems,
+         timeStamp:rs.timeStamp
+       };
     }
 
 }
