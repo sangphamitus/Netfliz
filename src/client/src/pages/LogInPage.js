@@ -42,7 +42,10 @@ function LogInPage() {
     <div className="bg-scroll bg-login-background">
       <NavBar allowSearch={false} />
       <div className="flex justify-center py-40">
-        <Form formClass="w-full lg:mx-80" onSubmit={submitClickHandler}>
+        <Form
+          formClass="w-full md:mx-36 xl:mx-80"
+          onSubmit={submitClickHandler}
+        >
           <Text
             customTheme="text-[3.5rem] text-pink-600 font-button"
             isHeader={true}
@@ -70,7 +73,7 @@ function LogInPage() {
               isHeader={false}
               text="Forgot password"
               style={{
-                fontSize: "calc(1rem + .2vw)",
+                fontSize: "calc(0.5rem + 1vw)",
               }}
             />
             <Text
@@ -78,7 +81,7 @@ function LogInPage() {
               isHeader={false}
               text="Don't have account ?"
               style={{
-                fontSize: "calc(1rem + .2vw)",
+                fontSize: "calc(0.5rem + 1vw)",
               }}
               onClick={() => navigate({ pathname: "/signup" })}
             />
