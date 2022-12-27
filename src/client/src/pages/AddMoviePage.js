@@ -270,17 +270,17 @@ function AddMoviePage() {
         </div>
 
         {createEp && (
-          <div className="flex">
+          <div className="flex flex-wrap">
             <div className="p-4 mb-2">
               <Text
-                text="Create Collection "
+                text="Create Collection"
                 customTheme="text-white font-button text-[25px] whitespace-nowrap"
               />
             </div>
-            <div className="flex p-4 mb-2 justify-center">
+            <div className="flex flex-row p-4 mb-2 justify-center">
               <Text
-                text="Collection Name: "
-                customTheme="text-white font-button text-[25px] whitespace-nowrap"
+                text="Collection Name:"
+                customTheme="text-white font-button text-[25px] whitespace-nowrap pr-3"
               />
               <Input
                 inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
@@ -290,7 +290,7 @@ function AddMoviePage() {
                 onChange={(e) => setCollectionName(e.target.value)}
               />
               <Button
-                theme="ml-3 bg-pink-600 rounded-[5px] w-[200px]"
+                theme="ml-3 bg-pink-600 rounded-[5px] min-w-fit w-full max-w-[7rem]"
                 onClick={(e) => createCollection(e)}
               >
                 <Text
