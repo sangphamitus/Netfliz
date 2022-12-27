@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Button, Input, Text, Form, NavBar, Footer } from "../components";
 
 import axios from "axios";
+import {ToastContainer,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function LogInPage() {
   const navigate = useNavigate();
@@ -23,12 +25,18 @@ function LogInPage() {
       })
 
       .then((res) => {
-        localStorage.setItem("uid", res.data.data);
-        localStorage.setItem("per", res.data.permission);
-        console.log(res.data.data);
-        if (res.data.permission) {
-          window.location.href = "/admin";
-        } else window.location.href = "/";
+        if(res.data.message==="success")
+        {
+          localStorage.setItem("uid", res.data.data);
+          localStorage.setItem("per", res.data.permission);
+          console.log(res.data.data);
+          if (res.data.permission) {
+            window.location.href = "/admin";
+          } else window.location.href = "/";
+        }
+        else{
+            toast.warning(res.data.message,{autoClose:3000})
+        }
       });
   };
 
@@ -95,6 +103,7 @@ function LogInPage() {
           </Button>
         </Form>
       </div>
+      <ToastContainer />
       <Footer />
     </div>
   );

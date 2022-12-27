@@ -67,7 +67,7 @@ module.exports=
             {
                 res.status(200).send(
                     {
-                        messages:'Add successed'
+                        messages:'success'
                     }
                 )
             }
@@ -75,7 +75,7 @@ module.exports=
                 res.status(200).send(
                     {
                      
-                        messages:'Add fail'
+                        messages:'fail'
                     }
                 )
             }

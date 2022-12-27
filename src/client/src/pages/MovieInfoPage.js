@@ -17,6 +17,8 @@ import {
   Rate,
   Comment,
 } from "../components";
+import {ToastContainer,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function MovieInfoPage() {
   const [movie, setMovie] = React.useState({});
@@ -74,7 +76,14 @@ function MovieInfoPage() {
         img: movie.image,
       })
       .then((res) => {
-        console.log(res.data.messages);
+        if(res.data.messages==="success")
+        {
+          toast.success("Add successfully to your movie list",{autoClose:2000,position:"bottom-left"});
+        }
+        else{
+          toast.error("Add fail, please try again",{autoClose:2000,position:"bottom-left"});
+
+        }
       });
   };
 
@@ -84,7 +93,7 @@ function MovieInfoPage() {
       <div className="relative">
         <img
           className="w-full h-auto max-h-[59rem] z-0"
-          src={movie.image}
+          src={process.env.REACT_APP_ENDPOINT+movie.image}
           title={movie.name}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -176,7 +185,7 @@ function MovieInfoPage() {
           })}
         </div>
       </div>
-
+      <ToastContainer />
       <Footer />
     </div>
   );
