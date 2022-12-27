@@ -64,7 +64,7 @@ module.exports = {
             if (!rs) {
                 res.status(200).send({
                     data: rs,
-                    message: "login failed"
+                    message: "Invalid username or password"
                 });
                 return;
             }

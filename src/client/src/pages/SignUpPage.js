@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, Input, Text, Form, NavBar, Footer } from "../components";
+import {ToastContainer,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignUpPage() {
   const [username, setUsername] = useState("");
@@ -24,11 +26,17 @@ function SignUpPage() {
         .then((res) => {
           console.log(res.data.message);
           if (res.data.message === "success") {
-            window.location.href = "/LogIn";
+
+            toast.success("Register account succeed",{autoClose:2000});
+            setTimeout(()=>{window.location.href = "/LogIn";},3000)
+          }
+          else{
+            toast.error("Opps!!"+res.data.message,{autoClose:2000});
+
           }
         });
     } else {
-      console.log("wrong repassword");
+      toast.warning("Please check password again",{autoClose:2000});
     }
   };
   const usernameChangeHandler = (event) => {
@@ -95,6 +103,7 @@ function SignUpPage() {
           </Button>
         </Form>
       </div>
+      <ToastContainer />
       <Footer />
     </div>
   );
