@@ -5,7 +5,17 @@ const CryptoJS = require('crypto-js')
 const { getClient, db } = require('../.config/postgres')
 const fs = require('fs')
 module.exports = {
-  addVideo: async ({ link, name, image, ratting, haveEp, review, type }) => {
+  addVideo: async ({
+    link,
+    name,
+    image,
+    ratting,
+    haveEp,
+    review,
+    type,
+    uid,
+    time,
+  }) => {
     const vid = CryptoJS.SHA256(link, {
       outputLength: 10,
     })
@@ -30,8 +40,8 @@ module.exports = {
       }
 
       db.any(
-        `insert into  public.\"Videos\"(\"vid\",\"link\",\"name\",\"haveEp\",\"review\",\"type\",\"image\",\"ratting\") 
-                VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
+        `insert into  public.\"Videos\"(\"vid\",\"link\",\"name\",\"haveEp\",\"review\",\"type\",\"image\",\"ratting\",\"uid\",\"time\") 
+                VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
         [
           vid,
           link,
@@ -41,6 +51,8 @@ module.exports = {
           type,
           'image/' + vid + '/main.jpg',
           ratting,
+          uid,
+          time,
         ],
       )
 
@@ -185,10 +197,12 @@ module.exports = {
     haveEp,
     review,
     type,
+    uid,
+    time,
   }) => {
     db.any(
       `UPDATE public."Videos"
-        SET "link"=$2, "name"=$3, "image"=$4, "ratting"=$5, "haveEp"=$6, "review"=$7, "type"=$8
+        SET "link"=$2, "name"=$3, "image"=$4, "ratting"=$5, "haveEp"=$6, "review"=$7, "type"=$8,"uid"=$9,"time"=$10
         WHERE "vid" like $1`,
       [
         vid,
@@ -199,6 +213,8 @@ module.exports = {
         haveEp,
         review,
         type,
+        uid,
+        time,
       ],
     )
     if (fs.existsSync('./public/image/temp.jpg')) {

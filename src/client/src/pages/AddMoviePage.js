@@ -29,7 +29,16 @@ function AddMoviePage() {
         }
         typeString += each;
       }
-    });
+    })
+
+    var d2 = new Date(
+      new Date().getUTCFullYear(),
+      new Date().getUTCMonth(),
+      new Date().getUTCDate(),
+      new Date().getUTCHours(),
+      new Date().getUTCMinutes(),
+      new Date().getUTCSeconds(),
+    )
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/add`, {
         link: isChosen.link,
@@ -39,6 +48,8 @@ function AddMoviePage() {
         haveEp: episodeChosen,
         review: isChosen.review,
         type: typeString,
+        uid: localStorage.getItem('uid'),
+        time: d2.toUTCString(),
       })
       .then((res) => {
         if (res.data.message === "success") {
