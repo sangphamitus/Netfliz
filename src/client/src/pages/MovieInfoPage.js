@@ -40,6 +40,7 @@ function MovieInfoPage() {
       })
       .then((res) => {
         setMovie(res.data.data)
+        console.log(res.data.data)
       })
 
     axios
