@@ -84,18 +84,16 @@ function WatchMoviePage() {
   }, []);
 
   return (
-    <div className="App bg-[#082032] pt-12">
+    <div className="App bg-[#082032] pt-14">
       <NavBar />
-      <div>
-        <iframe
-          className="w-full h-[35rem] mb-14"
-          src={movie.link}
-          title={movie.name}
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
+      <iframe
+        className="w-full h-[16rem] sm:h-[27rem] lg:h-[42rem] xl:h-[56rem] sm:mb-14 mb-5"
+        src={movie.link}
+        title={movie.name}
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
 
       {episode.length > 0 && (
         <ListMovies title={"EPISODES"} list_movies_data={episode} />

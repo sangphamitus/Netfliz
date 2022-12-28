@@ -3,12 +3,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-
   faHeartCircleMinus,
   faHeartCirclePlus,
-  
   faPlay,
- 
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -23,52 +20,46 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 function MovieInfoPage() {
   const [movie, setMovie] = React.useState({});
   const [cmt, setCmt] = React.useState([]);
-  const [info, setInfo] = React.useState({listMovie:[ ]});
+  const [info, setInfo] = React.useState({ listMovie: [] });
   const [inputCmt, setInputCmt] = React.useState("");
-  const [added,setAdded]=React.useState(false);
+  const [added, setAdded] = React.useState(false);
   const search = useLocation().search;
   const navigate = useNavigate();
   const watchingAccessing = () => {
     navigate(`/watch?vid=${new URLSearchParams(search).get("vid")}`);
   };
   const vid = new URLSearchParams(search).get("vid");
- 
+
   React.useEffect(() => {
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/get`, {
         vid: vid,
       })
       .then((res) => {
-     
         setMovie(res.data.data);
       });
-      
-      axios
+
+    axios
       .post(`${process.env.REACT_APP_ENDPOINT}comments/getpost`, {
         vid: vid,
       })
       .then((res) => {
-      
         setCmt(res.data.data);
       });
   }, []);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}userinfo/get`, {
         uid: localStorage.getItem("uid"),
       })
       .then((res) => {
-      
         setInfo(res.data.data);
-        
       });
-   
-  },[added])
+  }, [added]);
 
   const postComment = async () => {
     if (inputCmt !== "") {
@@ -80,7 +71,6 @@ function MovieInfoPage() {
           content: inputCmt,
         })
         .then((res) => {
-         
           setCmt(res.data.data);
           setInputCmt("");
         });
@@ -95,42 +85,44 @@ function MovieInfoPage() {
         img: movie.image,
       })
       .then((res) => {
-
-        if(res.data.messages==="success")
-        {
+        if (res.data.messages === "success") {
           setAdded(true);
-          toast.success("Add successfully to your movie list",{autoClose:2000,position:"bottom-left"});
-        }
-        else{
-          toast.error("Add fail, please try again",{autoClose:2000,position:"bottom-left"});
-
-
+          toast.success("Add successfully to your movie list", {
+            autoClose: 2000,
+            position: "bottom-left",
+          });
+        } else {
+          toast.error("Add fail, please try again", {
+            autoClose: 2000,
+            position: "bottom-left",
+          });
         }
       });
   };
-  
-  const rmMovie=async()=>{
+
+  const rmMovie = async () => {
     axios
-    .post(`${process.env.REACT_APP_ENDPOINT}userinfo/rmMovie`, {
-      uid: localStorage.getItem("uid"),
-      vid:vid
-    })
-    .then((res) => {
-      if(res.data.messages==="success")
-        {
+      .post(`${process.env.REACT_APP_ENDPOINT}userinfo/rmMovie`, {
+        uid: localStorage.getItem("uid"),
+        vid: vid,
+      })
+      .then((res) => {
+        if (res.data.messages === "success") {
           setInfo(res.data.data);
           setAdded(false);
-          toast.success("Removed successfully",{autoClose:2000,position:"bottom-left"});
+          toast.success("Removed successfully", {
+            autoClose: 2000,
+            position: "bottom-left",
+          });
+        } else {
+          toast.error("Please try again", {
+            autoClose: 2000,
+            position: "bottom-left",
+          });
         }
-        else{
-          toast.error("Please try again",{autoClose:2000,position:"bottom-left"});
-
-        }
-
-     
-    });
+      });
     //window.location.href="/profile"
-  }
+  };
   return (
     <div className="App bg-[#082032] pt-0">
       <NavBar />
@@ -170,32 +162,38 @@ function MovieInfoPage() {
                     text="Watch"
                   />
                 </Button>
-                { info.listMovie.filter(item=>item.vid===vid).length===0 ?(
-                <Button
-                theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
-                onClick={postAddList}
-              >
-                <FontAwesomeIcon icon={faHeartCirclePlus} className="pb-1" />
-                <Text
-                  customTheme="sm:text-[2rem] text-xl leading-none text-black font-button"
-                  isHeader={false}
-                  text="List"
-                />
-              </Button>):
-              ( <Button
-                theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
-                onClick={rmMovie}
-              >
-                <FontAwesomeIcon icon={faHeartCircleMinus} className="pb-1" />
-                <Text
-                  customTheme="sm:text-[2rem] text-xl leading-none text-black font-button"
-                  isHeader={false}
-                  text="Remove"
-                />
-              </Button>)
-
-                }
-                
+                {info.listMovie.filter((item) => item.vid === vid).length ===
+                0 ? (
+                  <Button
+                    theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
+                    onClick={postAddList}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeartCirclePlus}
+                      className="pb-1"
+                    />
+                    <Text
+                      customTheme="sm:text-[2rem] text-xl leading-none text-black font-button"
+                      isHeader={false}
+                      text="List"
+                    />
+                  </Button>
+                ) : (
+                  <Button
+                    theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
+                    onClick={rmMovie}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeartCircleMinus}
+                      className="pb-1"
+                    />
+                    <Text
+                      customTheme="sm:text-[2rem] text-xl leading-none text-black font-button"
+                      isHeader={false}
+                      text="Remove"
+                    />
+                  </Button>
+                )}
               </div>
             )}
         </div>
@@ -203,7 +201,9 @@ function MovieInfoPage() {
 
       <div className="w-full px-7 pt-5">
         <Rate rateinput={movie.ratting} />
-        <p className="text-white font-normal h-full">{movie.review}</p>
+        <p className="text-white font-normal h-full max-h-44 overflow-y-auto">
+          {movie.review}
+        </p>
       </div>
 
       <div className="bg-[#2D2F3D] min-h-[18rem] h-full my-10 mx-5 pb-3">
