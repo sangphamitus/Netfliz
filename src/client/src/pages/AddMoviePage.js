@@ -207,32 +207,31 @@ function AddMoviePage() {
             }
           />
         </div>
-        <div className="flex">
-          <div className="pt-8 p-4 mb-2">
+        <div className="flex items-center">
+          <div className="flex space-x-7 pt-8 p-4 mb-3">
             <Text
-              text={"Banner URL:"}
-              customTheme={
-                "text-white font-button text-[25px] whitespace-nowrap"
+              text="Banner URL:"
+              customTheme="text-white font-button text-[25px] whitespace-nowrap"
+            />
+            <Input
+              inputTheme="h-fit p-1 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
+              id="file"
+              containerTheme="w-fit justify-center"
+              valuetext={isChosen.image}
+              onChange={(e) =>
+                setIsChosen({
+                  ...isChosen,
+                  image: e.target.value,
+                })
               }
+              type="file"
+              name="imageUpload"
+              accept="image/png, image/jpeg"
             />
           </div>
-          <Input
-            inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
-            id="file"
-            containerTheme="w-full justify-center"
-            valuetext={isChosen.image}
-            onChange={(e) =>
-              setIsChosen({
-                ...isChosen,
-                image: e.target.value,
-              })
-            }
-            type="file"
-            name="imageUpload"
-            accept="image/png, image/jpeg"
-          />
+
           <Button
-            theme="bg-pink-600 rounded-[5px] w-28 h-10"
+            theme="bg-pink-600 rounded-[5px] w-28 h-10 text-white"
             onClick={() => {
               setUpload(false);
               imageUpload();
@@ -240,12 +239,14 @@ function AddMoviePage() {
           >
             UPLOAD
           </Button>
-          <img
-            key={Date.now()}
-            id="uploadedImg"
-            src={`${file.imageSrc}?${file.imageHash}`}
-          />
         </div>
+        <img
+          className="h-full w-auto max-h-72"
+          alt="img-preview"
+          key={Date.now()}
+          id="uploadedImg"
+          src={`${file.imageSrc}?${file.imageHash}`}
+        />
         <div className="flex">
           <div className="pt-8 p-4 mb-2">
             <Text
