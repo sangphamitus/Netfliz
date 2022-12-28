@@ -29,7 +29,7 @@ function AddMoviePage() {
         }
         typeString += each;
       }
-    })
+    });
 
     var d2 = new Date(
       new Date().getUTCFullYear(),
@@ -37,8 +37,8 @@ function AddMoviePage() {
       new Date().getUTCDate(),
       new Date().getUTCHours(),
       new Date().getUTCMinutes(),
-      new Date().getUTCSeconds(),
-    )
+      new Date().getUTCSeconds()
+    );
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/add`, {
         link: isChosen.link,
@@ -48,7 +48,7 @@ function AddMoviePage() {
         haveEp: episodeChosen,
         review: isChosen.review,
         type: typeString,
-        uid: localStorage.getItem('uid'),
+        uid: localStorage.getItem("uid"),
         time: d2.toUTCString(),
       })
       .then((res) => {
@@ -176,7 +176,7 @@ function AddMoviePage() {
         <div className="flex">
           <div className="pt-8 p-4 mb-2">
             <Text
-              text={"Movie Review:"}
+              text="Movie Review:"
               customTheme={
                 "text-white font-button text-[25px] whitespace-nowrap"
               }
@@ -198,7 +198,7 @@ function AddMoviePage() {
         <div className="flex">
           <div className="pt-8 p-4 mb-2">
             <Text
-              text={"Rating:"}
+              text="Rating:"
               customTheme={
                 "text-white font-button text-[25px] whitespace-nowrap"
               }
@@ -208,7 +208,7 @@ function AddMoviePage() {
             inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
             id="data_release"
             containerTheme="w-full justify-center"
-            type={"number"}
+            type="number"
             valuetext={isChosen.ratting}
             onChange={(e) =>
               setIsChosen({
@@ -261,10 +261,8 @@ function AddMoviePage() {
         <div className="flex">
           <div className="pt-8 p-4 mb-2">
             <Text
-              text={"Video URL: "}
-              customTheme={
-                "text-white font-button text-[25px] whitespace-nowrap"
-              }
+              text="Video URL: "
+              customTheme="text-white font-button text-[25px] whitespace-nowrap"
             />
           </div>
           <Input
@@ -287,10 +285,10 @@ function AddMoviePage() {
               customTheme="text-white font-button text-[25px] whitespace-nowrap"
             />
           </div>
-          <div className="flex flex-row flex-wrap space-y-3 w-8 pt-8 p-4 mb-2 ">
+          <div className="flex flex-row flex-wrap space-y-3 w-8 pt-8 p-4 mb-2">
             <select
               id="tags"
-              className=" mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
+              className="bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
               value={isChosen.type[0]}
               onChange={(e) => {
                 setIsChosen({
@@ -353,10 +351,10 @@ function AddMoviePage() {
               }
             />
           </div>
-          <div className="flex w-8 pt-8 p-4 mb-2 ">
+          <div className="flex w-8 pt-8 p-4 mb-2">
             <select
               id="tags"
-              className=" mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
+              className="mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
               value={episodeChosen}
               onChange={(e) => {
                 setEpisodeChosen(e.target.value);
@@ -417,7 +415,7 @@ function AddMoviePage() {
             onClick={saveSubmit}
           >
             <Text
-              text={"SAVE"}
+              text="SAVE"
               customTheme="text-white font-button text-[25px]"
             />
           </Button>
@@ -428,7 +426,7 @@ function AddMoviePage() {
             }}
           >
             <Text
-              text={"BACK"}
+              text="BACK"
               customTheme="text-white font-button text-[25px]"
             />
           </Button>

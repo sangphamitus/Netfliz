@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  Button,
-  Input,
-  Text,
-  NavBar,
-  Footer,
-  Card,
-  ListMovies,
-} from "../components";
+import { Button, Input, Text, NavBar, Footer, Card } from "../components";
 import ProfileImage from "../assets/images/profile.png";
-import JohnWick from "../assets/images/John Wick - Movie Post.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -159,33 +150,35 @@ function ProfilePage() {
                   <div className="pt-8 p-4 mb-2">
                     <Text
                       text="Name:"
-                      customTheme={"text-white font-button whitespace-nowrap"}
+                      customTheme="text-white font-button whitespace-nowrap"
                       style={{
                         fontSize: "calc(.6rem + 1.5vw)",
                       }}
                     />
                   </div>
                   <Input
+                    inputTheme="h-fit p-1 max-w-xl w-full border-2 rounded-xl"
                     id="name_input"
                     containerTheme="w-full justify-center"
                     valuetext={info.name}
                     onChange={(e) => setInfo({ ...info, name: e.target.value })}
                   />
                 </div>
-                <div className=" flex">
+                <div className="flex">
                   <div className="pt-8 p-4 mb-2">
                     <Text
-                      text={"Date of birth:"}
-                      customTheme={"text-white font-button whitespace-nowrap"}
+                      text="Date of birth:"
+                      customTheme="text-white font-button whitespace-nowrap"
                       style={{
                         fontSize: "calc(.6rem + 1.5vw)",
                       }}
                     />
                   </div>
                   <Input
+                    inputTheme="h-fit p-1 max-w-xl w-full border-2 rounded-xl"
                     id="name_input"
                     containerTheme="w-full justify-center"
-                    type={"date"}
+                    type="date"
                     valuetext={info.dob}
                     onChange={(e) => setInfo({ ...info, dob: e.target.value })}
                   />
@@ -193,17 +186,17 @@ function ProfilePage() {
                 <div className=" flex">
                   <div className="pt-8 p-4 mb-2">
                     <Text
-                      text={"ID:"}
-                      customTheme={"text-white font-button whitespace-nowrap"}
+                      text="ID:"
+                      customTheme="text-white font-button whitespace-nowrap"
                       style={{
                         fontSize: "calc(.6rem + 1.5vw)",
                       }}
                     />
                   </div>
                   <Input
+                    inputTheme="h-fit p-1 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
                     id="name_input"
                     containerTheme="w-full justify-center"
-                    type={"date"}
                     valuetext={info.uid}
                     readonly={true}
                   />
@@ -215,15 +208,14 @@ function ProfilePage() {
                 <div className="flex">
                   <div className="pt-8 p-4 mb-2">
                     <Text
-                      text={"Old password:"}
-                      customTheme={
-                        "text-white font-button text-[25px] whitespace-nowrap"
-                      }
+                      text="Old password:"
+                      customTheme="text-white font-button text-[25px] whitespace-nowrap"
                     />
                   </div>
                   <Input
+                    inputTheme="h-fit p-1 max-w-xl w-full border-2 rounded-xl "
+                    containerTheme="w-fit justify-center"
                     id="name_input"
-                    containerTheme={"w-full"}
                     type={"password"}
                     valuetext={password.oldPass}
                     onChange={(e) =>
@@ -234,15 +226,14 @@ function ProfilePage() {
                 <div className="flex">
                   <div className="pt-8 p-4 mb-2">
                     <Text
-                      text={"New password:"}
-                      customTheme={
-                        "text-white font-button text-[25px] whitespace-nowrap"
-                      }
+                      text="New password:"
+                      customTheme="text-white font-button text-[25px] whitespace-nowrap"
                     />
                   </div>
                   <Input
                     id="name_input"
-                    containerTheme={"w-full"}
+                    inputTheme="h-fit p-1 max-w-xl w-full border-2 rounded-xl "
+                    containerTheme="w-fit justify-center"
                     type={"password"}
                     valuetext={password.newPass}
                     onChange={(e) =>
@@ -253,16 +244,15 @@ function ProfilePage() {
                 <div className="flex">
                   <div className="pt-8 p-4 mb-2">
                     <Text
-                      text={"Retype password:"}
-                      customTheme={
-                        "text-white font-button text-[25px] whitespace-nowrap"
-                      }
+                      text="Retype password:"
+                      customTheme="text-white font-button text-[25px] whitespace-nowrap"
                     />
                   </div>
                   <Input
                     id="name_input"
-                    containerTheme={"w-full"}
-                    type={"password"}
+                    inputTheme="h-fit p-1 max-w-xl w-full border-2 rounded-xl "
+                    containerTheme="w-fit justify-center"
+                    type="password"
                     valuetext={password.newrePass}
                     onChange={(e) =>
                       setPassword({ ...password, newrePass: e.target.value })
@@ -344,34 +334,12 @@ function ProfilePage() {
               </div>
             )}
           </div>
-          {/* <div className="h-[181px] grid">
-          <Text
-            text={"User Name"}
-            isHeader={false}
-            customTheme={"text-white font-button text-2xl "}
-          />
-          <Text
-            text={"03/07/2002"}
-            isHeader={false}
-            customTheme={"text-white font-button text-2xl "}
-          />
-          <Text
-            text={"20120385"}
-            isHeader={false}
-            customTheme={"text-white font-button text-2xl "}
-          />
-          <Text
-            text={"tranhoangtin3702@gmail.com"}
-            isHeader={false}
-            customTheme={"text-white font-button text-2xl "}
-          />
-        </div> */}
         </div>
         <div className="py-14">
           <Text
-            text={"Your playlists"}
+            text="Your playlists"
             isHeader={true}
-            customTheme={"text-pink-600 font-button text-4xl "}
+            customTheme="text-pink-600 font-button text-4xl"
           />
           <div className="grid items-center justify-between grid-cols-3 my-5">
             {info.listMovie &&
@@ -398,6 +366,7 @@ function ProfilePage() {
           </Button>
         </div>
       </div>
+      <ToastContainer />
       <Footer />
     </div>
   );
