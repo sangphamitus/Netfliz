@@ -12,8 +12,8 @@ import ProfileImage from "../assets/images/profile.png";
 import JohnWick from "../assets/images/John Wick - Movie Post.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {ToastContainer,toast} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ProfilePage() {
   const navigate = useNavigate();
@@ -83,7 +83,6 @@ function ProfilePage() {
         uid,
       })
       .then((res) => {
-      
         setInfo(res.data.data);
         setInfoChange(res.data.data);
       });
@@ -91,26 +90,27 @@ function ProfilePage() {
   const rmMovie = async (vid) => {
     axios
 
-    .post(`${process.env.REACT_APP_ENDPOINT}userinfo/rmMovie`, {
-      uid,
-      vid:vid
-    })
-    .then((res) => {
-      
-      if(res.data.messages==="success")
-      {
-        setInfo(res.data.data);
-      setInfoChange(res.data.data);
-        toast.success("Removed successfully",{autoClose:2000,position:"bottom-left"});
-      }
-      else{
-        toast.error("Please try again",{autoClose:2000,position:"bottom-left"});
-
-      }
-
-    });
+      .post(`${process.env.REACT_APP_ENDPOINT}userinfo/rmMovie`, {
+        uid,
+        vid: vid,
+      })
+      .then((res) => {
+        if (res.data.messages === "success") {
+          setInfo(res.data.data);
+          setInfoChange(res.data.data);
+          toast.success("Removed successfully", {
+            autoClose: 2000,
+            position: "bottom-left",
+          });
+        } else {
+          toast.error("Please try again", {
+            autoClose: 2000,
+            position: "bottom-left",
+          });
+        }
+      });
     //window.location.href="/profile"
-  }
+  };
 
   return (
     <div className="App bg-[#082032]">
@@ -271,7 +271,7 @@ function ProfilePage() {
                 </div>
                 {password.newPass !== password.newrePass && (
                   <p className="text-white">
-                    password and retype password not match{" "}
+                    password and retype password not match
                   </p>
                 )}
               </div>

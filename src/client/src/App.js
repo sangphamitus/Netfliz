@@ -1,15 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import modules from "./modules";
-import axios from 'axios'
+import modules from "./pages";
+import axios from "axios";
 function App() {
-
-  
   axios.interceptors.request.use(function (config) {
-   
-    config.headers["Access-Control-Allow-Origin"] =  "*";
-     
+    config.headers["Access-Control-Allow-Origin"] = "*";
+
     return config;
-});
+  });
   const group = modules.map((x) => x.routeProps);
 
   return (
