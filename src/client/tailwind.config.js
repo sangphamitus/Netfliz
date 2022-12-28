@@ -65,7 +65,7 @@ const card = (theme) => ({
     ".trash-icon": {
       position: "absolute",
       top: 20,
-      right: 50,
+      right: 160,
       opacity: 0,
     },
   },
