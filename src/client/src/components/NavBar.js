@@ -5,6 +5,9 @@ import {
   faMagnifyingGlass,
   faBars,
   faCircleUser,
+  faHome,
+  faListAlt,
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { Button, Input } from "./";
 import NetflizLogo from "../assets/images/pink2-logo.png";
@@ -135,12 +138,30 @@ const NavBar = ({ allowSearch = true }) => {
       </div>
       <ul className={`menu-nav w-full ${navbarOpen ? "show-menu" : "hidden"}`}>
         <li className="menu-item">
-          <a href="/">Home</a>
+          <div className="flex space-x-2 items-center">
+            <FontAwesomeIcon icon={faHome} inverse size="1x" />
+            <a href="/">Home</a>
+          </div>
         </li>
         <li className="menu-item">
-          <a href="/categories">Category</a>
+          <div className="flex space-x-2 items-center">
+            <FontAwesomeIcon icon={faListAlt} inverse size="1x" />
+            <a href="/categories">Category</a>
+          </div>
         </li>
-        <li className="menu-item">Search</li>
+        <li className="menu-item">
+          <form className="flex space-x-4 items-center" onSubmit={submit}>
+            <input
+              className="w-fit min-h-[2rem] text-black"
+              placeholder="Search ..."
+              name="name"
+              onChange={(e) => setTextInput(e.target.value)}
+            />
+            <button type="submit" onClick={submit}>
+              <FontAwesomeIcon icon={faSearch} inverse size="1x" />
+            </button>
+          </form>
+        </li>
       </ul>
     </div>
   );

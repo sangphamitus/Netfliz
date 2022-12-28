@@ -27,8 +27,11 @@ function ResultPage() {
       <div className="flex flex-col py-28 px-11">
         <div className="border-b-2 border-spacing-1 mb-7">
           <Text
-            customTheme="text-6xl font-button text-[#CD0574]"
+            customTheme="font-button text-[#CD0574]"
             text={`RESULTS FOR "${value[1].replace("+", " ")}"`}
+            style={{
+              fontSize: "calc(3rem + 1.5vw)",
+            }}
           />
         </div>
 
@@ -41,14 +44,6 @@ function ResultPage() {
               imgSrc={each.image}
             />
           ))}
-        {/* <ResultItem
-          movieName="EVERYTHING everywhere all at once"
-          imgSrc={TestImg}
-        />
-        <ResultItem
-          movieName="EVERYTHING everywhere all at once"
-          imgSrc={TestImg}
-        /> */}
       </div>
       <Footer />
     </div>
