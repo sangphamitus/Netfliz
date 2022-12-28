@@ -46,12 +46,9 @@ const NavBar = ({ allowSearch = true }) => {
 
   return (
     <div className="fixed top-0 overflow-hidden w-full z-10">
-      <div className="nav-center flex flex-row justify-between bg-black bg-opacity-75">
-        <div className="nav-header flex items-center w-full pl-2">
-          <button
-            className="nav-toggle hidden max-sm:block"
-            onClick={navButton}
-          >
+      <div className="flex flex-row justify-between bg-black bg-opacity-75">
+        <div className="flex items-center w-full pl-2">
+          <button className="hidden max-[800px]:block" onClick={navButton}>
             <FontAwesomeIcon
               icon={faBars}
               className="text-[30px] cursor-pointer text-white hover:text-[#CD0574]"
@@ -59,14 +56,14 @@ const NavBar = ({ allowSearch = true }) => {
           </button>
           <img
             src={NetflizLogo}
-            className="logo w-[140px] max-sm:hidden max-w-none cursor-pointer"
+            className="logo w-[140px] max-[800px]:hidden max-w-none cursor-pointer"
             alt="logo"
             onClick={() => navigate({ pathname: "/" })}
           />
 
           <Button
             theme={
-              "bg-opacity-100 mb-2 mt-3 text-2xl max-sm:hidden font-button text-[#CD0574]"
+              "bg-opacity-100 mb-2 mt-3 text-2xl max-[800px]:hidden font-button text-[#CD0574]"
             }
             onClick={() => navigate({ pathname: "/categories" })}
           >
@@ -76,12 +73,12 @@ const NavBar = ({ allowSearch = true }) => {
           {allowSearch === true && (
             <form
               onSubmit={submit}
-              className="flex mr-10 max-w-screen-md w-full ml-auto max-sm:hidden"
+              className="flex mr-10 max-w-screen-md w-full ml-auto max-[800px]:hidden"
             >
               <Input
-                inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25"}
-                placeHolder={"Input movie name or category"}
-                containerTheme={"pt-2 mb-2 w-full bg-opacity-25"}
+                inputTheme="p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25 "
+                placeHolder="Input movie name or category"
+                containerTheme="pt-2 mb-2 w-full bg-opacity-25"
                 textColor={"white"}
                 name="name"
                 onChange={(e) => setTextInput(e.target.value)}

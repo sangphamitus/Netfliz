@@ -201,7 +201,9 @@ function MovieInfoPage() {
 
       <div className="w-full px-7 pt-5">
         <Rate rateinput={movie.ratting} />
-        <p className="text-white font-normal h-full">{movie.review}</p>
+        <p className="text-white font-normal h-full max-h-44 overflow-y-auto">
+          {movie.review}
+        </p>
       </div>
 
       <div className="bg-[#2D2F3D] min-h-[18rem] h-full my-10 mx-5 pb-3">
