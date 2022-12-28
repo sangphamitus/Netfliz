@@ -3,7 +3,17 @@ const fs = require('fs')
 module.exports = {
   addVideo: async (req, res, next) => {
     try {
-      const { link, name, image, ratting, haveEp, review, type } = req.body
+      const {
+        link,
+        name,
+        image,
+        ratting,
+        haveEp,
+        review,
+        type,
+        uid,
+        time,
+      } = req.body
 
       console.log(req.body)
 
@@ -15,6 +25,8 @@ module.exports = {
         haveEp,
         review,
         type,
+        uid,
+        time,
       })
 
       if (rs == null) {
@@ -249,7 +261,18 @@ module.exports = {
   },
   changeVideo: async (req, res, next) => {
     try {
-      const { vid, link, name, image, ratting, haveEp, review, type } = req.body
+      const {
+        vid,
+        link,
+        name,
+        image,
+        ratting,
+        haveEp,
+        review,
+        type,
+        uid,
+        time,
+      } = req.body
 
       const rs = await videoM.changeMovieInfo({
         vid,
@@ -260,6 +283,8 @@ module.exports = {
         haveEp,
         review,
         type,
+        uid,
+        time,
       })
 
       console.log(rs)

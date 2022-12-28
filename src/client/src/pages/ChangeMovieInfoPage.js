@@ -73,6 +73,15 @@ function ChangeMovieInfoPage() {
         typeString += each
       }
     })
+  
+    var d2 = new Date(
+      new Date().getUTCFullYear(),
+      new Date().getUTCMonth(),
+      new Date().getUTCDate(),
+      new Date().getUTCHours(),
+      new Date().getUTCMinutes(),
+      new Date().getUTCSeconds(),
+    )
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/changeVideo`, {
         vid: isChosen.vid,
@@ -83,6 +92,8 @@ function ChangeMovieInfoPage() {
         haveEp: episodeChosen,
         review: isChosen.review,
         type: typeString,
+        uid: localStorage.getItem('uid'),
+        time: d2.toUTCString(),
       })
       .then((res) => {
         if (res.data.message === 'success') {
