@@ -1,12 +1,12 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faHeartCircleMinus,
   faHeartCirclePlus,
   faPlay,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons'
 
 import {
   Button,
@@ -16,22 +16,22 @@ import {
   Footer,
   Rate,
   Comment,
-} from "../components";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+} from '../components'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function MovieInfoPage() {
-  const [movie, setMovie] = React.useState({});
-  const [cmt, setCmt] = React.useState([]);
-  const [info, setInfo] = React.useState({ listMovie: [] });
-  const [inputCmt, setInputCmt] = React.useState("");
-  const [added, setAdded] = React.useState(false);
-  const search = useLocation().search;
-  const navigate = useNavigate();
+  const [movie, setMovie] = React.useState({})
+  const [cmt, setCmt] = React.useState([])
+  const [info, setInfo] = React.useState({ listMovie: [] })
+  const [inputCmt, setInputCmt] = React.useState('')
+  const [added, setAdded] = React.useState(false)
+  const search = useLocation().search
+  const navigate = useNavigate()
   const watchingAccessing = () => {
-    navigate(`/watch?vid=${new URLSearchParams(search).get("vid")}`);
-  };
-  const vid = new URLSearchParams(search).get("vid");
+    navigate(`/watch?vid=${new URLSearchParams(search).get('vid')}`)
+  }
+  const vid = new URLSearchParams(search).get('vid')
 
   React.useEffect(() => {
     axios
@@ -39,90 +39,90 @@ function MovieInfoPage() {
         vid: vid,
       })
       .then((res) => {
-        setMovie(res.data.data);
-      });
+        setMovie(res.data.data)
+      })
 
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}comments/getpost`, {
         vid: vid,
       })
       .then((res) => {
-        setCmt(res.data.data);
-      });
-  }, []);
+        setCmt(res.data.data)
+      })
+  }, [vid])
 
   React.useEffect(() => {
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}userinfo/get`, {
-        uid: localStorage.getItem("uid"),
+        uid: localStorage.getItem('uid'),
       })
       .then((res) => {
-        setInfo(res.data.data);
-      });
-  }, [added]);
+        setInfo(res.data.data)
+      })
+  }, [added])
 
   const postComment = async () => {
-    if (inputCmt !== "") {
+    if (inputCmt !== '') {
       axios
         .post(`${process.env.REACT_APP_ENDPOINT}comments/post`, {
           vid: vid,
 
-          uid: localStorage.getItem("uid"),
+          uid: localStorage.getItem('uid'),
           content: inputCmt,
         })
         .then((res) => {
-          setCmt(res.data.data);
-          setInputCmt("");
-        });
+          setCmt(res.data.data)
+          setInputCmt('')
+        })
     }
-  };
+  }
 
   const postAddList = async () => {
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}userinfo/addMovie`, {
         vid: vid,
-        uid: localStorage.getItem("uid"),
+        uid: localStorage.getItem('uid'),
         img: movie.image,
       })
       .then((res) => {
-        if (res.data.messages === "success") {
-          setAdded(true);
-          toast.success("Add successfully to your movie list", {
+        if (res.data.messages === 'success') {
+          setAdded(true)
+          toast.success('Add successfully to your movie list', {
             autoClose: 2000,
-            position: "bottom-left",
-          });
+            position: 'bottom-left',
+          })
         } else {
-          toast.error("Add fail, please try again", {
+          toast.error('Add fail, please try again', {
             autoClose: 2000,
-            position: "bottom-left",
-          });
+            position: 'bottom-left',
+          })
         }
-      });
-  };
+      })
+  }
 
   const rmMovie = async () => {
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}userinfo/rmMovie`, {
-        uid: localStorage.getItem("uid"),
+        uid: localStorage.getItem('uid'),
         vid: vid,
       })
       .then((res) => {
-        if (res.data.messages === "success") {
-          setInfo(res.data.data);
-          setAdded(false);
-          toast.success("Removed successfully", {
+        if (res.data.messages === 'success') {
+          setInfo(res.data.data)
+          setAdded(false)
+          toast.success('Removed successfully', {
             autoClose: 2000,
-            position: "bottom-left",
-          });
+            position: 'bottom-left',
+          })
         } else {
-          toast.error("Please try again", {
+          toast.error('Please try again', {
             autoClose: 2000,
-            position: "bottom-left",
-          });
+            position: 'bottom-left',
+          })
         }
-      });
+      })
     //window.location.href="/profile"
-  };
+  }
   return (
     <div className="App bg-[#082032] pt-0">
       <NavBar />
@@ -141,18 +141,18 @@ function MovieInfoPage() {
             isHeader={true}
             customTheme="text-white sm:pb-44"
             style={{
-              fontSize: "calc(1rem + 2.5vw)",
+              fontSize: 'calc(1rem + 2.5vw)',
             }}
           />
-          {localStorage.getItem("uid") !== null &&
-            localStorage.getItem("uid") !== "null" && (
+          {localStorage.getItem('uid') !== null &&
+            localStorage.getItem('uid') !== 'null' && (
               <div className="sm:mb-10 mb-4 flex flex-row">
                 <Button
                   theme={
-                    "bg-white w-auto h-auto sm:mx-3 px-4 flex items-center"
+                    'bg-white w-auto h-auto sm:mx-3 px-4 flex items-center'
                   }
                   onClick={(e) => {
-                    watchingAccessing();
+                    watchingAccessing()
                   }}
                 >
                   <FontAwesomeIcon icon={faPlay} className="pb-1" />
@@ -165,7 +165,7 @@ function MovieInfoPage() {
                 {info.listMovie.filter((item) => item.vid === vid).length ===
                 0 ? (
                   <Button
-                    theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
+                    theme={'bg-white w-auto h-auto mx-3 px-4 flex items-center'}
                     onClick={postAddList}
                   >
                     <FontAwesomeIcon
@@ -180,7 +180,7 @@ function MovieInfoPage() {
                   </Button>
                 ) : (
                   <Button
-                    theme={"bg-white w-auto h-auto mx-3 px-4 flex items-center"}
+                    theme={'bg-white w-auto h-auto mx-3 px-4 flex items-center'}
                     onClick={rmMovie}
                   >
                     <FontAwesomeIcon
@@ -212,8 +212,8 @@ function MovieInfoPage() {
           customTheme="text-[2rem] px-5 text-white"
           isHeader={true}
         />
-        {localStorage.getItem("uid") !== null &&
-          localStorage.getItem("uid") !== "null" && (
+        {localStorage.getItem('uid') !== null &&
+          localStorage.getItem('uid') !== 'null' && (
             <form
               className="flex flex-row max-sm:flex-col max-sm:items-center max-sm:space-y-3 px-5 my-5"
               onSubmit={postComment}
@@ -222,7 +222,7 @@ function MovieInfoPage() {
                 containerTheme="w-full min-w-[0px] h-10"
                 inputTheme="h-full"
                 onChange={(e) => {
-                  setInputCmt(e.target.value);
+                  setInputCmt(e.target.value)
                 }}
               />
               <Button
@@ -241,19 +241,19 @@ function MovieInfoPage() {
 
         <div className="my-5">
           {cmt.map((item) => {
-            return <Comment key={item.key} item={item} />;
+            return <Comment key={item.key} item={item} />
           })}
         </div>
       </div>
       <ToastContainer />
       <Footer />
     </div>
-  );
+  )
 }
 
 export default {
   routeProps: {
-    path: "/info",
+    path: '/info',
     main: MovieInfoPage,
   },
-};
+}
