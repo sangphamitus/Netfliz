@@ -1,47 +1,36 @@
-import React from "react";
-import {
-  Button,
-  Input,
-  Text,
-  NavBar,
-  Footer
-} from "../components";
-import {
-  useNavigate
-} from "react-router-dom";
-import axios from "axios";
-import {
-  ToastContainer,
-  toast
-} from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react'
+import { Button, Input, Text, NavBar, Footer } from '../components'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function AddMoviePage() {
   const [isChosen, setIsChosen] = React.useState({
-    link: "",
-    name: "",
-    image: "",
+    link: '',
+    name: '',
+    image: '',
     ratting: 0,
     haveEp: null,
-    review: "",
+    review: '',
     type: [null, null, null],
-  });
-  const [allEpisode, setAllEpisode] = React.useState([]);
-  const [episodeChosen, setEpisodeChosen] = React.useState(null);
-  const [createEp, setCreateEp] = React.useState(false);
-  const [collectionName, setCollectionName] = React.useState("");
-  const [upload, setUpload] = React.useState(false);
-  const [file, setFile] = React.useState({});
+  })
+  const [allEpisode, setAllEpisode] = React.useState([])
+  const [episodeChosen, setEpisodeChosen] = React.useState(null)
+  const [createEp, setCreateEp] = React.useState(false)
+  const [collectionName, setCollectionName] = React.useState('')
+  const [upload, setUpload] = React.useState(false)
+  const [file, setFile] = React.useState({})
   const saveSubmit = async (e) => {
-    let typeString = "";
+    let typeString = ''
     isChosen.type.forEach((each) => {
-      if (each !== "null") {
+      if (each !== 'null') {
         if (typeString.length > 0) {
-          typeString += ",";
+          typeString += ','
         }
-        typeString += each;
+        typeString += each
       }
-    });
+    })
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/add`, {
         link: isChosen.link,
@@ -53,477 +42,396 @@ function AddMoviePage() {
         type: typeString,
       })
       .then((res) => {
-
-        if (res.data.message === "success") {
-          toast.success("Add video successfully", {
+        if (res.data.message === 'success') {
+          toast.success('Add video successfully', {
             autoClose: 2000,
-            position: 'bottom-left'
+            position: 'bottom-left',
           })
-          getAllEpisode();
-          setCreateEp(false);
+          getAllEpisode()
+          setCreateEp(false)
         } else {
-          toast.error("Please try again", {
+          toast.error('Please try again', {
             autoClose: 2000,
-            position: 'bottom-left'
+            position: 'bottom-left',
           })
-
         }
-      });
+      })
     //vid,link,name,image,ratting,haveEp,review,type
-  };
+  }
   const getAllEpisode = async () => {
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/getAllEp`)
       .then((res) => {
-        console.log(res.data.data);
+        console.log(res.data.data)
 
-        setAllEpisode(res.data.data);
-      });
-  };
+        setAllEpisode(res.data.data)
+      })
+  }
   const createCollection = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (collectionName.length === 0) return;
+    if (collectionName.length === 0) return
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/createEp`, {
         name: collectionName,
       })
       .then((res) => {
-        console.log(res.data.data);
-        if (res.data.message === "success") {
-          toast.success("Created successfully", {
+        console.log(res.data.data)
+        if (res.data.message === 'success') {
+          toast.success('Created successfully', {
             autoClose: 2000,
-            position: 'bottom-left'
+            position: 'bottom-left',
           })
-          getAllEpisode();
-          setCreateEp(false);
+          getAllEpisode()
+          setCreateEp(false)
         } else {
-          toast.error("Please try again", {
+          toast.error('Please try again', {
             autoClose: 2000,
-            position: 'bottom-left'
+            position: 'bottom-left',
           })
-
         }
-
-      });
-  };
+      })
+  }
 
   React.useEffect(() => {
-    if (localStorage.getItem("per") !== "true") {
-      window.location.href = "/";
+    if (localStorage.getItem('per') !== 'true') {
+      window.location.href = '/'
     }
-    getAllEpisode();
-  }, []);
+    getAllEpisode()
+  }, [])
 
   React.useEffect(() => {
-    const temp = process.env.REACT_APP_ENDPOINT.concat("image/temp.jpg");
+    const temp = process.env.REACT_APP_ENDPOINT.concat('image/temp.jpg')
     setFile({
       imageSrc: temp,
-      imageHash: Date.now()
-    });
-  }, [upload]);
+      imageHash: Date.now(),
+    })
+  }, [upload])
 
   const imageUpload = async () => {
-    setUpload(false);
-    var formData = new FormData();
-    var imagefile = document.querySelector("#file");
-    formData.append("imageUpload", imagefile.files[0]);
+    setUpload(false)
+    var formData = new FormData()
+    var imagefile = document.querySelector('#file')
+    formData.append('imageUpload', imagefile.files[0])
 
     axios
-      .post(process.env.REACT_APP_ENDPOINT.concat("imageUpload"), formData, {
+      .post(process.env.REACT_APP_ENDPOINT.concat('imageUpload'), formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       })
       .then((res) => {
-        if (res.data.messages !== "fail") {
-          console.log(res);
-          setUpload(true);
+        if (res.data.messages !== 'fail') {
+          console.log(res)
+          setUpload(true)
 
-          toast.success("Uploaded successfully", {
-            autoClose: 2000
-          });
+          toast.success('Uploaded successfully', {
+            autoClose: 2000,
+          })
           // setInterval(() => {
           //   window.location.reload();
           // }, 1000);
         } else {
-          toast.error("Please try again", {
-            autoClose: 2000
-          });
+          toast.error('Please try again', {
+            autoClose: 2000,
+          })
         }
-      });
-  };
+      })
+  }
 
-  return ( <
-    div className = "App bg-[#082032]" >
-    <
-    NavBar / >
-    <
-    div className = "mx-20 max-sm:mx-0" >
-    <
-    div className = "flex" >
-    <
-    div className = "pt-8 p-4 mb-2" >
-    <
-    Text text = "Movie Name:"
-    customTheme = "text-white font-button text-[25px] whitespace-nowrap" /
-    >
-    <
-    /div> <
-    Input inputTheme = "p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
-    id = "movie_name"
-    containerTheme = "w-full justify-center"
-    valuetext = {
-      isChosen.name
-    }
-    onChange = {
-      (e) => {
-        setIsChosen({
-          ...isChosen,
-          name: e.target.value
-        });
-      }
-    }
-    /> <
-    /div> <
-    div className = "flex" >
-    <
-    div className = "pt-8 p-4 mb-2" >
-    <
-    Text text = {
-      "Movie Review:"
-    }
-    customTheme = {
-      "text-white font-button text-[25px] whitespace-nowrap"
-    }
-    /> <
-    /div> <
-    Input inputTheme = "p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
-    id = "movie_content"
-    containerTheme = "w-full justify-center"
-    valuetext = {
-      isChosen.review
-    }
-    onChange = {
-      (e) =>
-      setIsChosen({
-        ...isChosen,
-        review: e.target.value
-      })
-    }
-    /> <
-    /div> <
-    div className = "flex" >
-    <
-    div className = "pt-8 p-4 mb-2" >
-    <
-    Text text = {
-      "Rating:"
-    }
-    customTheme = {
-      "text-white font-button text-[25px] whitespace-nowrap"
-    }
-    /> <
-    /div> <
-    Input inputTheme = "p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
-    id = "data_release"
-    containerTheme = "w-full justify-center"
-    type = {
-      "number"
-    }
-    valuetext = {
-      isChosen.ratting
-    }
-    onChange = {
-      (e) =>
-      setIsChosen({
-        ...isChosen,
-        ratting: e.target.value
-      })
-    }
-    /> <
-    /div> <
-    div className = "flex" >
-    <
-    div className = "pt-8 p-4 mb-2" >
-    <
-    Text text = {
-      "Banner URL:"
-    }
-    customTheme = {
-      "text-white font-button text-[25px] whitespace-nowrap"
-    }
-    /> <
-    /div> <
-    Input inputTheme = "p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
-    id = "file"
-    containerTheme = "w-full justify-center"
-    valuetext = {
-      isChosen.image
-    }
-    onChange = {
-      (e) =>
-      setIsChosen({
-        ...isChosen,
-        image: e.target.value
-      })
-    }
-    type = "file"
-    name = "imageUpload"
-    accept = "image/png, image/jpeg" /
-    >
-    <
-    Button theme = "bg-pink-600 rounded-[5px] w-28 h-10"
-    onClick = {
-      () => {
-        setUpload(false);
-        imageUpload();
-      }
-    } >
-    UPLOAD <
-    /Button> <
-    img key = {
-      Date.now()
-    }
-    id = "uploadedImg"
-    src = {
-      `${file.imageSrc}?${file.imageHash}`
-    }
-    /> <
-    /div> <
-    div className = "flex" >
-    <
-    div className = "pt-8 p-4 mb-2" >
-    <
-    Text text = {
-      "Video URL: "
-    }
-    customTheme = {
-      "text-white font-button text-[25px] whitespace-nowrap"
-    }
-    /> <
-    /div> <
-    Input inputTheme = "p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
-    id = "director"
-    containerTheme = "w-full justify-center"
-    valuetext = {
-      isChosen.link
-    }
-    onChange = {
-      (e) => setIsChosen({
-        ...isChosen,
-        link: e.target.value
-      })
-    }
-    /> <
-    /div> <
-    div className = "flex" >
-    <
-    div className = "pt-8 p-4 mb-2" >
-    <
-    Text text = "TAGS"
-    customTheme = "text-white font-button text-[25px] whitespace-nowrap" /
-    >
-    <
-    /div> <
-    div className = "flex flex-row flex-wrap space-y-3 w-8 pt-8 p-4 mb-2 " >
-    <
-    select id = "tags"
-    className = " mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
-    value = {
-      isChosen.type[0]
-    }
-    onChange = {
-      (e) => {
-        setIsChosen({
-          ...isChosen,
-          type: [e.target.value, isChosen.type[1], isChosen.type[2]],
-        });
-      }
-    } >
-    <
-    option value = "null" > null < /option> <
-    option value = "action" > Action < /option> <
-    option value = "anime" > Anime < /option> <
-    option value = "comedy" > Comedy < /option> <
-    option value = "dramas" > Dramas < /option> <
-    option value = "romance" > Romance < /option> <
-    /select> <
-    select id = "tags_1"
-    className = " mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
-    value = {
-      isChosen.type[1]
-    }
-    onChange = {
-      (e) => {
-        setIsChosen({
-          ...isChosen,
-          type: [isChosen.type[0], e.target.value, isChosen.type[2]],
-        });
-      }
-    } >
-    <
-    option value = "null" > null < /option> <
-    option value = "action" > Action < /option> <
-    option value = "anime" > Anime < /option> <
-    option value = "comedy" > Comedy < /option> <
-    option value = "dramas" > Dramas < /option> <
-    option value = "romance" > Romance < /option> <
-    /select> <
-    select id = "tags_2"
-    className = " mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
-    value = {
-      isChosen.type[2]
-    }
-    onChange = {
-      (e) => {
-        setIsChosen({
-          ...isChosen,
-          type: [isChosen.type[0], isChosen.type[1], e.target.value],
-        });
-      }
-    } >
-    <
-    option value = "null" > null < /option> <
-    option value = "action" > Action < /option> <
-    option value = "anime" > Anime < /option> <
-    option value = "comedy" > Comedy < /option> <
-    option value = "dramas" > Dramas < /option> <
-    option value = "romance" > Romance < /option> <
-    /select> <
-    /div> <
-    /div> <
-    div className = "flex" >
-    <
-    div className = "pt-8 p-4 mb-2" >
-    <
-    Text text = "Collection:"
-    customTheme = {
-      "text-white font-button text-[25px] whitespace-nowrap"
-    }
-    /> <
-    /div> <
-    div className = "flex w-8 pt-8 p-4 mb-2 " >
-    <
-    select id = "tags"
-    className = " mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
-    value = {
-      episodeChosen
-    }
-    onChange = {
-      (e) => {
-        setEpisodeChosen(e.target.value);
-        if (e.target.value === "addNew") {
-          setCreateEp(true);
-        } else {
-          setCreateEp(false);
-        }
-      }
-    } >
-    <
-    option value = "null" > null < /option> {
-      allEpisode.map((each) => {
-        return ( <
-          option key = {
-            each.id
-          }
-          value = {
-            each.eid
-          } > {
-            each.collectionName
-          } <
-          /option>
-        );
-      })
-    } <
-    option value = "addNew" > +New Episode < /option> <
-    /select> <
-    /div> <
-    /div>
-
-    {
-      createEp && ( <
-        div className = "flex flex-wrap" >
-        <
-        div className = "p-4 mb-2" >
-        <
-        Text text = "Create Collection"
-        customTheme = "text-white font-button text-[25px] whitespace-nowrap" /
-        >
-        <
-        /div> <
-        div className = "flex flex-row p-4 mb-2 justify-center" >
-        <
-        Text text = "Collection Name:"
-        customTheme = "text-white font-button text-[25px] whitespace-nowrap pr-3" /
-        >
-        <
-        Input inputTheme = "p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
-        id = "Episode_name"
-        containerTheme = "w-full justify-center"
-        valuetext = {
-          collectionName
-        }
-        onChange = {
-          (e) => setCollectionName(e.target.value)
-        }
-        /> <
-        Button theme = "ml-3 bg-pink-600 rounded-[5px] min-w-fit w-full max-w-[7rem]"
-        onClick = {
-          (e) => createCollection(e)
-        } >
-        <
-        Text text = "CREATE"
-        customTheme = "text-white font-button text-[25px]" /
-        >
-        <
-        /Button> <
-        /div> <
-        /div>
-      )
-    }
-
-    <
-    div className = "flex py-20 justify-evenly" >
-    <
-    Button theme = "bg-pink-600 rounded-[5px] w-28 h-10"
-    onClick = {
-      saveSubmit
-    } >
-    <
-    Text text = {
-      "SAVE"
-    }
-    customTheme = "text-white font-button text-[25px]" /
-    >
-    <
-    /Button> <
-    Button theme = "bg-pink-600 rounded-[5px] w-28 h-10"
-    onClick = {
-      (e) => {
-        window.location.href = "/admin";
-      }
-    } >
-    <
-    Text text = {
-      "BACK"
-    }
-    customTheme = "text-white font-button text-[25px]" /
-    >
-    <
-    /Button> <
-    /div> <
-    /div> <
-    ToastContainer / >
-    <
-    Footer / >
-    <
-    /div>
-  );
+  return (
+    <div className="App bg-[#082032]">
+      <NavBar />
+      <div className="mx-20 max-sm:mx-0">
+        <div className="flex">
+          <div className="pt-8 p-4 mb-2">
+            <Text
+              text="Movie Name:"
+              customTheme="text-white font-button text-[25px] whitespace-nowrap"
+            />
+          </div>{' '}
+          <Input
+            inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
+            id="movie_name"
+            containerTheme="w-full justify-center"
+            valuetext={isChosen.name}
+            onChange={(e) => {
+              setIsChosen({
+                ...isChosen,
+                name: e.target.value,
+              })
+            }}
+          />{' '}
+        </div>{' '}
+        <div className="flex">
+          <div className="pt-8 p-4 mb-2">
+            <Text
+              text={'Movie Review:'}
+              customTheme={
+                'text-white font-button text-[25px] whitespace-nowrap'
+              }
+            />{' '}
+          </div>{' '}
+          <Input
+            inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
+            id="movie_content"
+            containerTheme="w-full justify-center"
+            valuetext={isChosen.review}
+            onChange={(e) =>
+              setIsChosen({
+                ...isChosen,
+                review: e.target.value,
+              })
+            }
+          />{' '}
+        </div>{' '}
+        <div className="flex">
+          <div className="pt-8 p-4 mb-2">
+            <Text
+              text={'Rating:'}
+              customTheme={
+                'text-white font-button text-[25px] whitespace-nowrap'
+              }
+            />{' '}
+          </div>{' '}
+          <Input
+            inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
+            id="data_release"
+            containerTheme="w-full justify-center"
+            type={'number'}
+            valuetext={isChosen.ratting}
+            onChange={(e) =>
+              setIsChosen({
+                ...isChosen,
+                ratting: e.target.value,
+              })
+            }
+          />{' '}
+        </div>{' '}
+        <div className="flex">
+          <div className="pt-8 p-4 mb-2">
+            <Text
+              text={'Banner URL:'}
+              customTheme={
+                'text-white font-button text-[25px] whitespace-nowrap'
+              }
+            />{' '}
+          </div>{' '}
+          <Input
+            inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
+            id="file"
+            containerTheme="w-full justify-center"
+            valuetext={isChosen.image}
+            onChange={(e) =>
+              setIsChosen({
+                ...isChosen,
+                image: e.target.value,
+              })
+            }
+            type="file"
+            name="imageUpload"
+            accept="image/png, image/jpeg"
+          />
+          <Button
+            theme="bg-pink-600 rounded-[5px] w-28 h-10"
+            onClick={() => {
+              setUpload(false)
+              imageUpload()
+            }}
+          >
+            UPLOAD{' '}
+          </Button>{' '}
+          <img
+            key={Date.now()}
+            id="uploadedImg"
+            src={`${file.imageSrc}?${file.imageHash}`}
+          />{' '}
+        </div>{' '}
+        <div className="flex">
+          <div className="pt-8 p-4 mb-2">
+            <Text
+              text={'Video URL: '}
+              customTheme={
+                'text-white font-button text-[25px] whitespace-nowrap'
+              }
+            />{' '}
+          </div>{' '}
+          <Input
+            inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
+            id="director"
+            containerTheme="w-full justify-center"
+            valuetext={isChosen.link}
+            onChange={(e) =>
+              setIsChosen({
+                ...isChosen,
+                link: e.target.value,
+              })
+            }
+          />{' '}
+        </div>{' '}
+        <div className="flex">
+          <div className="pt-8 p-4 mb-2">
+            <Text
+              text="TAGS"
+              customTheme="text-white font-button text-[25px] whitespace-nowrap"
+            />
+          </div>{' '}
+          <div className="flex flex-row flex-wrap space-y-3 w-8 pt-8 p-4 mb-2 ">
+            <select
+              id="tags"
+              className=" mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
+              value={isChosen.type[0]}
+              onChange={(e) => {
+                setIsChosen({
+                  ...isChosen,
+                  type: [e.target.value, isChosen.type[1], isChosen.type[2]],
+                })
+              }}
+            >
+              <option value="null"> null </option>{' '}
+              <option value="action"> Action </option>{' '}
+              <option value="anime"> Anime </option>{' '}
+              <option value="comedy"> Comedy </option>{' '}
+              <option value="dramas"> Dramas </option>{' '}
+              <option value="romance"> Romance </option>{' '}
+            </select>{' '}
+            <select
+              id="tags_1"
+              className=" mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
+              value={isChosen.type[1]}
+              onChange={(e) => {
+                setIsChosen({
+                  ...isChosen,
+                  type: [isChosen.type[0], e.target.value, isChosen.type[2]],
+                })
+              }}
+            >
+              <option value="null"> null </option>{' '}
+              <option value="action"> Action </option>{' '}
+              <option value="anime"> Anime </option>{' '}
+              <option value="comedy"> Comedy </option>{' '}
+              <option value="dramas"> Dramas </option>{' '}
+              <option value="romance"> Romance </option>{' '}
+            </select>{' '}
+            <select
+              id="tags_2"
+              className=" mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
+              value={isChosen.type[2]}
+              onChange={(e) => {
+                setIsChosen({
+                  ...isChosen,
+                  type: [isChosen.type[0], isChosen.type[1], e.target.value],
+                })
+              }}
+            >
+              <option value="null"> null </option>{' '}
+              <option value="action"> Action </option>{' '}
+              <option value="anime"> Anime </option>{' '}
+              <option value="comedy"> Comedy </option>{' '}
+              <option value="dramas"> Dramas </option>{' '}
+              <option value="romance"> Romance </option>{' '}
+            </select>{' '}
+          </div>{' '}
+        </div>{' '}
+        <div className="flex">
+          <div className="pt-8 p-4 mb-2">
+            <Text
+              text="Collection:"
+              customTheme={
+                'text-white font-button text-[25px] whitespace-nowrap'
+              }
+            />{' '}
+          </div>{' '}
+          <div className="flex w-8 pt-8 p-4 mb-2 ">
+            <select
+              id="tags"
+              className=" mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
+              value={episodeChosen}
+              onChange={(e) => {
+                setEpisodeChosen(e.target.value)
+                if (e.target.value === 'addNew') {
+                  setCreateEp(true)
+                } else {
+                  setCreateEp(false)
+                }
+              }}
+            >
+              <option value="null"> null </option>{' '}
+              {allEpisode.map((each) => {
+                return (
+                  <option key={each.id} value={each.eid}>
+                    {' '}
+                    {each.collectionName}{' '}
+                  </option>
+                )
+              })}{' '}
+              <option value="addNew"> +New Episode </option>{' '}
+            </select>{' '}
+          </div>{' '}
+        </div>
+        {createEp && (
+          <div className="flex flex-wrap">
+            <div className="p-4 mb-2">
+              <Text
+                text="Create Collection"
+                customTheme="text-white font-button text-[25px] whitespace-nowrap"
+              />
+            </div>{' '}
+            <div className="flex flex-row p-4 mb-2 justify-center">
+              <Text
+                text="Collection Name:"
+                customTheme="text-white font-button text-[25px] whitespace-nowrap pr-3"
+              />
+              <Input
+                inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
+                id="Episode_name"
+                containerTheme="w-full justify-center"
+                valuetext={collectionName}
+                onChange={(e) => setCollectionName(e.target.value)}
+              />{' '}
+              <Button
+                theme="ml-3 bg-pink-600 rounded-[5px] min-w-fit w-full max-w-[7rem]"
+                onClick={(e) => createCollection(e)}
+              >
+                <Text
+                  text="CREATE"
+                  customTheme="text-white font-button text-[25px]"
+                />
+              </Button>{' '}
+            </div>{' '}
+          </div>
+        )}
+        <div className="flex py-20 justify-evenly">
+          <Button
+            theme="bg-pink-600 rounded-[5px] w-28 h-10"
+            onClick={saveSubmit}
+          >
+            <Text
+              text={'SAVE'}
+              customTheme="text-white font-button text-[25px]"
+            />
+          </Button>{' '}
+          <Button
+            theme="bg-pink-600 rounded-[5px] w-28 h-10"
+            onClick={(e) => {
+              window.location.href = '/admin'
+            }}
+          >
+            <Text
+              text={'BACK'}
+              customTheme="text-white font-button text-[25px]"
+            />
+          </Button>{' '}
+        </div>{' '}
+      </div>{' '}
+      <ToastContainer />
+      <Footer />
+    </div>
+  )
 }
 export default {
   routeProps: {
-    path: "/addMovie",
+    path: '/addMovie',
     main: AddMoviePage,
   },
-};
+}
