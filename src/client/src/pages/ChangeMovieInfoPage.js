@@ -21,6 +21,15 @@ function ChangeMovieInfoPage() {
   const [upload, setUpload] = React.useState(false);
   const [file, setFile] = React.useState({});
 
+  const categoryType = [
+    { value: "null", text: "null" },
+    { value: "action", text: "Action" },
+    { value: "anime", text: "Anime" },
+    { value: "comedy", text: "Comedy" },
+    { value: "dramas", text: "Dramas" },
+    { value: "romance", text: "Romance" },
+  ];
+
   const getAllEpisode = async () => {
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/getAllEp`)
@@ -261,6 +270,9 @@ function ChangeMovieInfoPage() {
             <Input
               inputTheme="p-4 h-10 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
               id="data_release"
+              type="number"
+              min="0"
+              max="5"
               containerTheme="w-full justify-center"
               valuetext={isChosen.ratting}
               onChange={(e) =>
@@ -340,12 +352,13 @@ function ChangeMovieInfoPage() {
                   setTagsChange([e.target.value, tagsChange[1], tagsChange[2]]);
                 }}
               >
-                <option value="null">null</option>
-                <option value="action">Action</option>
-                <option value="anime">Anime</option>
-                <option value="comedy">Comedy</option>
-                <option value="dramas">Dramas</option>
-                <option value="romance">Romance</option>
+                {categoryType.map((option) => {
+                  return (
+                    <option key={option.value} value={option.value}>
+                      {option.text}
+                    </option>
+                  );
+                })}
               </select>
               <select
                 id="tags_1"
@@ -355,12 +368,13 @@ function ChangeMovieInfoPage() {
                   setTagsChange([tagsChange[0], e.target.value, tagsChange[2]]);
                 }}
               >
-                <option value="null">null</option>
-                <option value="action">Action</option>
-                <option value="anime">Anime</option>
-                <option value="comedy">Comedy</option>
-                <option value="dramas">Dramas</option>
-                <option value="romance">Romance</option>
+                {categoryType.map((option) => {
+                  return (
+                    <option key={option.value} value={option.value}>
+                      {option.text}
+                    </option>
+                  );
+                })}
               </select>
               <select
                 id="tags_2"
@@ -370,12 +384,13 @@ function ChangeMovieInfoPage() {
                   setTagsChange([tagsChange[0], tagsChange[1], e.target.value]);
                 }}
               >
-                <option value="null">null</option>
-                <option value="action">Action</option>
-                <option value="anime">Anime</option>
-                <option value="comedy">Comedy</option>
-                <option value="dramas">Dramas</option>
-                <option value="romance">Romance</option>
+                {categoryType.map((option) => {
+                  return (
+                    <option key={option.value} value={option.value}>
+                      {option.text}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, Input, Text, Form, NavBar, Footer } from "../components";
-import {ToastContainer,toast} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SignUpPage() {
   const [username, setUsername] = useState("");
@@ -26,17 +26,16 @@ function SignUpPage() {
         .then((res) => {
           console.log(res.data.message);
           if (res.data.message === "success") {
-
-            toast.success("Register account succeed",{autoClose:2000});
-            setTimeout(()=>{window.location.href = "/LogIn";},3000)
-          }
-          else{
-            toast.error("Opps!!"+res.data.message,{autoClose:2000});
-
+            toast.success("Register account succeed", { autoClose: 2000 });
+            setTimeout(() => {
+              window.location.href = "/LogIn";
+            }, 3000);
+          } else {
+            toast.error("Opps!!" + res.data.message, { autoClose: 2000 });
           }
         });
     } else {
-      toast.warning("Please check password again",{autoClose:2000});
+      toast.warning("Please check password again", { autoClose: 2000 });
     }
   };
   const usernameChangeHandler = (event) => {
@@ -66,17 +65,20 @@ function SignUpPage() {
             text="SIGNUP"
           />
           <Input
+            id="email"
             labelText="EMAIL"
             inputTheme="h-12"
             onChange={emailChangeHandler}
           />
           <Input
+            id="username"
             labelText="USERNAME"
             inputTheme="h-12"
             containerTheme="pt-8"
             onChange={usernameChangeHandler}
           />
           <Input
+            id="password"
             labelText="PASSWORD"
             inputTheme="h-12"
             containerTheme="pt-8"
@@ -84,6 +86,7 @@ function SignUpPage() {
             type="password"
           />
           <Input
+            id="password_2"
             labelText="CONFIRM PASSWORD"
             inputTheme="h-12"
             containerTheme="pt-8"
