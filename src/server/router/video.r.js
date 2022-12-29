@@ -41,5 +41,7 @@ router.post('/getAllEp', videoC.getAllEpisode, () => {
 router.post('/changeVideo', videoC.changeVideo, () => {
   next()
 })
-
+router.post('/deleteVideo', videoC.deleteVideo, () => {
+  next()
+})
 module.exports = router

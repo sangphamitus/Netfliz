@@ -1,14 +1,15 @@
-import React from "react";
-import { Button, Input, Text, NavBar, Footer } from "../components";
-import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react'
+import { Button, Input, Text, NavBar, Footer } from '../components'
+import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function ManageAdminPage() {
-  const [textInput, setTextInput] = React.useState("");
-  const [users, setUsers] = React.useState([]);
+  const [textInput, setTextInput] = React.useState('')
+  const [users, setUsers] = React.useState([])
+  const [changePermission, setChangePermission] = React.useState([])
 
   // TODO: change to accounts search
   const submit = async (e) => {
@@ -18,20 +19,41 @@ function ManageAdminPage() {
           name: textInput,
         })
         .then((res) => {
-          console.log(res.data.data);
-          setUsers(res.data.data);
-        });
+          console.log(res.data.data)
+          setUsers(res.data.data)
+        })
     } else {
       axios
         .post(`${process.env.REACT_APP_ENDPOINT}videos/getall`)
         .then((res) => {
-          console.log(res.data.data);
-          setUsers(res.data.data);
-        });
+          console.log(res.data.data)
+          setUsers(res.data.data)
+        })
     }
-    setTextInput("");
-  };
+    setTextInput('')
+  }
+  React.useEffect(() => {
+    axios
+      .post(`${process.env.REACT_APP_ENDPOINT}users/getUser`, {
+        uid: localStorage.getItem('uid'),
+      })
+      .then((res) => {
+        console.log(res.data.data)
+        setUsers(res.data.data)
+      })
+  }, [])
 
+  const handleChange = (uid) => {
+    if (changePermission.indexOf(uid) === -1) {
+      setChangePermission([...changePermission, uid])
+    } else {
+      var array = changePermission
+      console.log(array)
+      array.splice(changePermission.indexOf(uid), 1)
+      console.log(array)
+      setChangePermission([...array])
+    }
+  }
   return (
     <div className="App h-screen bg-[#082032]">
       <NavBar />
@@ -68,29 +90,44 @@ function ManageAdminPage() {
       <table className="table w-3/4 mx-64 my-10">
         <thead>
           <th>ID</th>
-          <th>NAME</th>
+          <th>USERNAME</th>
           <th>EMAIL</th>
-          <th>DOB</th>
-          <th></th>
+          <th>ISADMIN</th>
         </thead>
         <tbody>
           {/* Use map here ? */}
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          {users.map((each) => (
+            <tr>
+              <td>{each.uid}</td>
+              <td>{each.username}</td>
+              <td>{each.email}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={
+                    changePermission.indexOf(each.uid) === -1
+                      ? each.permission
+                      : !each.permission
+                  }
+                  onChange={(e) => {
+                    handleChange(each.uid)
+                  }}
+                ></input>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
+      {changePermission.length > 0 && <h1>Hien form</h1>}
 
       <Footer />
       <ToastContainer />
     </div>
-  );
+  )
 }
 export default {
   routeProps: {
-    path: "/addadmin",
+    path: '/addadmin',
     main: ManageAdminPage,
   },
-};
+}

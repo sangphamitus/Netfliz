@@ -307,4 +307,42 @@ module.exports = {
       next(err)
     }
   },
+  deleteFolderRecursive: (path) => {
+    if (fs.existsSync(path)) {
+      fs.readdirSync(path).forEach(function (file, index) {
+        var curPath = path + '/' + file
+        if (fs.lstatSync(curPath).isDirectory()) {
+          // recurse
+          deleteFolderRecursive(curPath)
+        } else {
+          // delete file
+          fs.unlinkSync(curPath)
+        }
+      })
+      fs.rmdirSync(path)
+    }
+  },
+  deleteVideo: async (req, res, next) => {
+    try {
+      const { vid } = req.body
+      const rs = await videoM.deleteVideo({ vid })
+
+      if (rs === false) {
+        res.status(200).send({
+          message: 'fail',
+        })
+      } else {
+        if (deleteFolderRecursive('./public/image/' + vid)) {
+          deleteFolderRecursive('./public/image/' + vid)
+        }
+
+        res.status(200).send({
+          message: 'success',
+        })
+      }
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
 }
