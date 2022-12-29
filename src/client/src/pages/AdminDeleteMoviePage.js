@@ -18,59 +18,50 @@ function AdminDeleteMovie() {
   const [textInput, setTextInput] = React.useState("");
   const [showLinks, setShowLinks] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
-  const submit = async(e) => {
-
-    if (textInput.length>0)
-    {
-    axios
-    .post(`${process.env.REACT_APP_ENDPOINT}videos/search`, {
-      name: textInput,
-    })
-    .then((res) => {
-      console.log(res.data.data);
-      setMovies(res.data.data);
-    });
-  }
-  else{
-    axios.post(`${process.env.REACT_APP_ENDPOINT}videos/getall`)
-    .then((res) => {
-      console.log(res.data.data);
-      setMovies(res.data.data);
-    });
-  }
-  setTextInput("");
-  };
-  React.useEffect(()=> {
-    if(localStorage.getItem("per")!=="true")
-    {
-        window.location.href="/"
-    }
-    else{
-      try
-      {
-        let value = decodeURI(window.location.search).split("?")[1].split("=");
-        axios
-      .post(`${process.env.REACT_APP_ENDPOINT}videos/search`, {
-        name: value[1].replace("+", " "),
-      })
-      .then((res) => {
-        console.log(res.data.data);
-        setMovies(res.data.data);
-      });
-      }
-      catch(err)
-      {
-        axios.post(`${process.env.REACT_APP_ENDPOINT}videos/getall`)
+  const submit = async (e) => {
+    if (textInput.length > 0) {
+      axios
+        .post(`${process.env.REACT_APP_ENDPOINT}videos/search`, {
+          name: textInput,
+        })
         .then((res) => {
           console.log(res.data.data);
           setMovies(res.data.data);
         });
-  
-      }
-
-      
+    } else {
+      axios
+        .post(`${process.env.REACT_APP_ENDPOINT}videos/getall`)
+        .then((res) => {
+          console.log(res.data.data);
+          setMovies(res.data.data);
+        });
     }
-},[])
+    setTextInput("");
+  };
+  React.useEffect(() => {
+    if (localStorage.getItem("per") !== "true") {
+      window.location.href = "/";
+    } else {
+      try {
+        let value = decodeURI(window.location.search).split("?")[1].split("=");
+        axios
+          .post(`${process.env.REACT_APP_ENDPOINT}videos/search`, {
+            name: value[1].replace("+", " "),
+          })
+          .then((res) => {
+            console.log(res.data.data);
+            setMovies(res.data.data);
+          });
+      } catch (err) {
+        axios
+          .post(`${process.env.REACT_APP_ENDPOINT}videos/getall`)
+          .then((res) => {
+            console.log(res.data.data);
+            setMovies(res.data.data);
+          });
+      }
+    }
+  }, []);
   return (
     <div className="App bg-[#082032]">
       <NavBar is_login={true} allowSearch={false} />
@@ -88,7 +79,7 @@ function AdminDeleteMovie() {
         >
           <Input
             inputTheme={"p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25"}
-            placeHolder={"Input movie name or category"}
+            placeholder={"Input movie name or category"}
             containerTheme={"pt-2 mb-2 w-full bg-opacity-25"}
             textColor={"white"}
             name="name"
@@ -106,19 +97,18 @@ function AdminDeleteMovie() {
         <div className="grid items-center justify-between grid-cols-3 grid-rows-4 my-5"></div>
       </div>
       <div className="grid items-center justify-between grid-cols-3 my-5">
-          {movies.length>0 &&
-            movies.map((each, i) => {
-            
-              return (
-                <Card
-                  key={i}
-                  imgSrc={each.image}
-                  vid={each.vid}
-                  className={"max-w-xs mt-8"}
-                />
-              );
-            })}
-        </div>
+        {movies.length > 0 &&
+          movies.map((each, i) => {
+            return (
+              <Card
+                key={i}
+                imgSrc={each.image}
+                vid={each.vid}
+                className={"max-w-xs mt-8"}
+              />
+            );
+          })}
+      </div>
       <div>{/* chố này để cái chuyển trang*/}</div>
       <Footer />
     </div>
