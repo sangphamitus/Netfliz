@@ -24,6 +24,7 @@ function theme() {
       ...app(theme),
       ...card(theme),
       ...navBar(theme),
+      ...table(theme),
     });
   });
 }
@@ -72,6 +73,26 @@ const card = (theme) => ({
   ".card:hover": {
     ".trash-icon": {
       opacity: 1,
+    },
+  },
+});
+
+const table = (theme) => ({
+  ".table": {
+    backgroundColor: "white",
+    borderWidth: 2,
+    borderColor: "black",
+    thead: {
+      th: {
+        borderWidth: 2,
+        borderColor: "black",
+      },
+    },
+    tbody: {
+      td: {
+        borderWidth: 2,
+        borderColor: "black",
+      },
     },
   },
 });
