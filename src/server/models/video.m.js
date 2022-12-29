@@ -236,4 +236,18 @@ module.exports = {
 
     return ress
   },
+  deleteVideo: async({vid})=>
+  {
+    try
+    {
+      db.any(`DELETE FROM public."Videos"
+      WHERE "vid" like $1`,[vid]);
+      return true;
+    }
+    catch(e)
+    {
+      return false;
+    }    
+
+  }
 }
