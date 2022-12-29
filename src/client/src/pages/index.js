@@ -10,6 +10,7 @@ import AdminPage from "./AdminPage";
 import ChangeMovieInfoPage from "./ChangeMovieInfoPage";
 import AdminDeleteMoviePage from "./AdminDeleteMoviePage";
 import AddMoviePage from "./AddMoviePage";
+import WaitingPage from "./404page";
 
 export default [
   HomePage,
@@ -24,4 +25,5 @@ export default [
   AdminPage,
   ChangeMovieInfoPage,
   AddMoviePage,
+  WaitingPage,
 ];

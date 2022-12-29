@@ -20,6 +20,16 @@ function AddMoviePage() {
   const [collectionName, setCollectionName] = React.useState("");
   const [upload, setUpload] = React.useState(false);
   const [file, setFile] = React.useState({});
+
+  const categoryType = [
+    { value: "null", text: "null" },
+    { value: "action", text: "Action" },
+    { value: "anime", text: "Anime" },
+    { value: "comedy", text: "Comedy" },
+    { value: "dramas", text: "Dramas" },
+    { value: "romance", text: "Romance" },
+  ];
+
   const saveSubmit = async (e) => {
     let typeString = "";
     isChosen.type.forEach((each) => {
@@ -209,6 +219,8 @@ function AddMoviePage() {
             id="data_release"
             containerTheme="w-full justify-center"
             type="number"
+            min="0"
+            max="5"
             valuetext={isChosen.ratting}
             onChange={(e) =>
               setIsChosen({
@@ -297,12 +309,13 @@ function AddMoviePage() {
                 });
               }}
             >
-              <option value="null"> null </option>
-              <option value="action"> Action </option>
-              <option value="anime"> Anime </option>
-              <option value="comedy"> Comedy </option>
-              <option value="dramas"> Dramas </option>
-              <option value="romance"> Romance </option>
+              {categoryType.map((option) => {
+                return (
+                  <option key={option.value} value={option.value}>
+                    {option.text}
+                  </option>
+                );
+              })}
             </select>
             <select
               id="tags_1"
@@ -315,12 +328,13 @@ function AddMoviePage() {
                 });
               }}
             >
-              <option value="null"> null </option>
-              <option value="action"> Action </option>
-              <option value="anime"> Anime </option>
-              <option value="comedy"> Comedy </option>
-              <option value="dramas"> Dramas </option>
-              <option value="romance"> Romance </option>
+              {categoryType.map((option) => {
+                return (
+                  <option key={option.value} value={option.value}>
+                    {option.text}
+                  </option>
+                );
+              })}
             </select>
             <select
               id="tags_2"
@@ -333,12 +347,13 @@ function AddMoviePage() {
                 });
               }}
             >
-              <option value="null"> null </option>
-              <option value="action"> Action </option>
-              <option value="anime"> Anime </option>
-              <option value="comedy"> Comedy </option>
-              <option value="dramas"> Dramas </option>
-              <option value="romance"> Romance </option>
+              {categoryType.map((option) => {
+                return (
+                  <option key={option.value} value={option.value}>
+                    {option.text}
+                  </option>
+                );
+              })}
             </select>
           </div>
         </div>
