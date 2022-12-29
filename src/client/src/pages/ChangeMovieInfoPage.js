@@ -491,7 +491,7 @@ function ChangeMovieInfoPage() {
           >
             <Input
               inputTheme="p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25"
-              placeHolder="Input movie name or category"
+              placeholder="Input movie name or category"
               containerTheme="pt-2 mb-2 w-full bg-opacity-25"
               textColor="white"
               name="name"
