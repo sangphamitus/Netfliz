@@ -62,7 +62,9 @@ function MovieInfoPage() {
       })
   }, [added])
 
-  const postComment = async () => {
+  const postComment = async (e) => {
+    e.preventDefault()
+
     if (inputCmt !== '') {
       axios
         .post(`${process.env.REACT_APP_ENDPOINT}comments/post`, {
@@ -230,7 +232,7 @@ function MovieInfoPage() {
               <Button
                 theme="bg-pink-600 rounded-2xl w-auto h-auto px-3 mx-3 px-4 max-sm:w-fit"
                 type="submit"
-                onClick={postComment}
+                onClick={(e) => postComment(e)}
               >
                 <Text
                   customTheme="text-[2rem] leading-none text-gray-200 font-button"
