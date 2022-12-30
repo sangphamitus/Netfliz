@@ -175,6 +175,7 @@ function AddMoviePage() {
             id="movie_name"
             containerTheme="w-full justify-center"
             valuetext={isChosen.name}
+            required
             onChange={(e) => {
               setIsChosen({
                 ...isChosen,
@@ -197,6 +198,7 @@ function AddMoviePage() {
             id="movie_content"
             containerTheme="w-full justify-center"
             valuetext={isChosen.review}
+            required
             onChange={(e) =>
               setIsChosen({
                 ...isChosen,
@@ -222,6 +224,7 @@ function AddMoviePage() {
             min="0"
             max="5"
             valuetext={isChosen.ratting}
+            required
             onChange={(e) =>
               setIsChosen({
                 ...isChosen,
@@ -241,6 +244,7 @@ function AddMoviePage() {
               id="file"
               containerTheme="w-fit justify-center"
               valuetext={isChosen.image}
+              required
               onChange={(e) =>
                 setIsChosen({
                   ...isChosen,
@@ -282,6 +286,7 @@ function AddMoviePage() {
             id="director"
             containerTheme="w-full justify-center"
             valuetext={isChosen.link}
+            required
             onChange={(e) =>
               setIsChosen({
                 ...isChosen,
@@ -302,6 +307,7 @@ function AddMoviePage() {
               id="tags"
               className="bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
               value={isChosen.type[0]}
+              required
               onChange={(e) => {
                 setIsChosen({
                   ...isChosen,

@@ -223,6 +223,7 @@ function ChangeMovieInfoPage() {
               id="video_link"
               containerTheme="w-full justify-center"
               valuetext={isChosen.vid}
+              required
               readonly={true}
             />
           </div>
@@ -238,6 +239,7 @@ function ChangeMovieInfoPage() {
               id="movie_name"
               containerTheme="w-full justify-center"
               valuetext={isChosen.name}
+              required
               onChange={(e) => {
                 setIsChosen({ ...isChosen, name: e.target.value });
               }}
@@ -255,6 +257,7 @@ function ChangeMovieInfoPage() {
               id="movie_content"
               containerTheme="w-full justify-center"
               valuetext={isChosen.review}
+              required
               onChange={(e) =>
                 setIsChosen({ ...isChosen, review: e.target.value })
               }
@@ -275,6 +278,7 @@ function ChangeMovieInfoPage() {
               max="5"
               containerTheme="w-full justify-center"
               valuetext={isChosen.ratting}
+              required
               onChange={(e) =>
                 setIsChosen({ ...isChosen, ratting: e.target.value })
               }
@@ -290,6 +294,7 @@ function ChangeMovieInfoPage() {
                 inputTheme="h-fit p-1 max-w-xl w-full bg-black bg-opacity-25 border-2 rounded-xl text-white"
                 id="file"
                 containerTheme="w-full justify-center"
+                required
                 onChange={(e) =>
                   setIsChosen({
                     ...isChosen,
@@ -331,6 +336,7 @@ function ChangeMovieInfoPage() {
               id="director"
               containerTheme="w-full justify-center"
               valuetext={isChosen.link}
+              required
               onChange={(e) =>
                 setIsChosen({ ...isChosen, link: e.target.value })
               }
@@ -348,6 +354,7 @@ function ChangeMovieInfoPage() {
                 id="tags"
                 className="bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
                 value={tagsChange[0]}
+                required
                 onChange={(e) => {
                   setTagsChange([e.target.value, tagsChange[1], tagsChange[2]]);
                 }}
