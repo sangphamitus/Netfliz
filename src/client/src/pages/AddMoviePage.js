@@ -1,45 +1,45 @@
-import React from 'react'
-import { Button, Input, Text, NavBar, Footer } from '../components'
-import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import React from "react";
+import { Button, Input, Text, NavBar, Footer } from "../components";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddMoviePage() {
   const [isChosen, setIsChosen] = React.useState({
-    link: '',
-    name: '',
-    image: '',
+    link: null,
+    name: null,
+    image: null,
     ratting: 0,
     haveEp: null,
-    review: '',
+    review: "",
     type: [null, null, null],
-  })
-  const [allEpisode, setAllEpisode] = React.useState([])
-  const [episodeChosen, setEpisodeChosen] = React.useState(null)
-  const [createEp, setCreateEp] = React.useState(false)
-  const [collectionName, setCollectionName] = React.useState('')
-  const [upload, setUpload] = React.useState(false)
-  const [file, setFile] = React.useState({})
+  });
+  const [allEpisode, setAllEpisode] = React.useState([]);
+  const [episodeChosen, setEpisodeChosen] = React.useState(null);
+  const [createEp, setCreateEp] = React.useState(false);
+  const [collectionName, setCollectionName] = React.useState("");
+  const [upload, setUpload] = React.useState(false);
+  const [file, setFile] = React.useState({});
 
   const categoryType = [
-    { value: 'null', text: 'null' },
-    { value: 'action', text: 'Action' },
-    { value: 'anime', text: 'Anime' },
-    { value: 'comedy', text: 'Comedy' },
-    { value: 'dramas', text: 'Dramas' },
-    { value: 'romance', text: 'Romance' },
-  ]
+    { value: "null", text: "null" },
+    { value: "action", text: "Action" },
+    { value: "anime", text: "Anime" },
+    { value: "comedy", text: "Comedy" },
+    { value: "dramas", text: "Dramas" },
+    { value: "romance", text: "Romance" },
+  ];
 
   const saveSubmit = async (e) => {
-    let typeString = ''
+    let typeString = "";
     isChosen.type.forEach((each) => {
-      if (each !== 'null') {
+      if (each !== "null") {
         if (typeString.length > 0) {
-          typeString += ','
+          typeString += ",";
         }
-        typeString += each
+        typeString += each;
       }
-    })
+    });
 
     var d2 = new Date(
       new Date().getUTCFullYear(),
@@ -47,8 +47,8 @@ function AddMoviePage() {
       new Date().getUTCDate(),
       new Date().getUTCHours(),
       new Date().getUTCMinutes(),
-      new Date().getUTCSeconds(),
-    )
+      new Date().getUTCSeconds()
+    );
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/add`, {
         link: isChosen.link,
@@ -58,111 +58,111 @@ function AddMoviePage() {
         haveEp: episodeChosen,
         review: isChosen.review,
         type: typeString,
-        uid: localStorage.getItem('uid'),
+        uid: localStorage.getItem("uid"),
         time: d2.toUTCString(),
       })
       .then((res) => {
-        if (res.data.message === 'success') {
-          toast.success('Add video successfully', {
+        if (res.data.message === "success") {
+          toast.success("Add video successfully", {
             autoClose: 2000,
-            position: 'bottom-left',
-          })
-          getAllEpisode()
-          setCreateEp(false)
+            position: "bottom-left",
+          });
+          getAllEpisode();
+          setCreateEp(false);
         } else {
-          toast.error('Please try again', {
+          toast.error("Please try again", {
             autoClose: 2000,
-            position: 'bottom-left',
-          })
+            position: "bottom-left",
+          });
         }
-      })
+      });
     //vid,link,name,image,ratting,haveEp,review,type
-  }
+  };
   const getAllEpisode = async () => {
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/getAllEp`)
       .then((res) => {
-        console.log(res.data.data)
+        console.log(res.data.data);
 
-        setAllEpisode(res.data.data)
-      })
-  }
+        setAllEpisode(res.data.data);
+      });
+  };
   const createCollection = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (collectionName.length === 0) return
+    if (collectionName.length === 0) return;
     axios
       .post(`${process.env.REACT_APP_ENDPOINT}videos/createEp`, {
         name: collectionName,
       })
       .then((res) => {
-        console.log(res.data.data)
-        if (res.data.message === 'success') {
-          toast.success('Created successfully', {
+        console.log(res.data.data);
+        if (res.data.message === "success") {
+          toast.success("Created successfully", {
             autoClose: 2000,
-            position: 'bottom-left',
-          })
-          getAllEpisode()
-          setCreateEp(false)
+            position: "bottom-left",
+          });
+          getAllEpisode();
+          setCreateEp(false);
         } else {
-          toast.error('Please try again', {
+          toast.error("Please try again", {
             autoClose: 2000,
-            position: 'bottom-left',
-          })
+            position: "bottom-left",
+          });
         }
-      })
-  }
+      });
+  };
 
   React.useEffect(() => {
-    if (localStorage.getItem('per') !== 'true') {
-      window.location.href = '/'
+    if (localStorage.getItem("per") !== "true") {
+      window.location.href = "/";
     }
-    getAllEpisode()
-  }, [])
+    getAllEpisode();
+  }, []);
 
   React.useEffect(() => {
-    const temp = process.env.REACT_APP_ENDPOINT.concat('image/temp.jpg')
+    const temp = process.env.REACT_APP_ENDPOINT.concat("image/temp.jpg");
     setFile({
       imageSrc: temp,
       imageHash: Date.now(),
-    })
-  }, [upload])
+    });
+  }, [upload]);
 
   const imageUpload = async () => {
-    setUpload(false)
-    var formData = new FormData()
-    var imagefile = document.querySelector('#file')
-    formData.append('imageUpload', imagefile.files[0])
+    setUpload(false);
+    var formData = new FormData();
+    var imagefile = document.querySelector("#file");
+    formData.append("imageUpload", imagefile.files[0]);
 
     axios
-      .post(process.env.REACT_APP_ENDPOINT.concat('imageUpload'), formData, {
+      .post(process.env.REACT_APP_ENDPOINT.concat("imageUpload"), formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       })
       .then((res) => {
-        if (res.data.messages !== 'fail') {
-          console.log(res)
-          setUpload(true)
+        if (res.data.messages !== "fail") {
+          console.log(res);
+          setUpload(true);
 
-          toast.success('Uploaded successfully', {
+          toast.success("Uploaded successfully", {
             autoClose: 2000,
-          })
+          });
           // setInterval(() => {
           //   window.location.reload();
           // }, 1000);
         } else {
-          toast.error('Please try again', {
+          toast.error("Please try again", {
             autoClose: 2000,
-          })
+          });
         }
-      })
-  }
+      });
+  };
 
   return (
     <div className="App bg-[#082032]">
       <NavBar />
-      <div className="mx-20 max-sm:mx-0">
+      <form className="mx-20 max-sm:mx-0" onSubmit={saveSubmit}>
         <div className="flex">
           <div className="pt-8 p-4 mb-2">
             <Text
@@ -180,7 +180,7 @@ function AddMoviePage() {
               setIsChosen({
                 ...isChosen,
                 name: e.target.value,
-              })
+              });
             }}
           />
         </div>
@@ -189,7 +189,7 @@ function AddMoviePage() {
             <Text
               text="Movie Review:"
               customTheme={
-                'text-white font-button text-[25px] whitespace-nowrap'
+                "text-white font-button text-[25px] whitespace-nowrap"
               }
             />
           </div>
@@ -212,7 +212,7 @@ function AddMoviePage() {
             <Text
               text="Rating:"
               customTheme={
-                'text-white font-button text-[25px] whitespace-nowrap'
+                "text-white font-button text-[25px] whitespace-nowrap"
               }
             />
           </div>
@@ -260,8 +260,8 @@ function AddMoviePage() {
           <Button
             theme="bg-pink-600 rounded-[5px] w-28 h-10 text-white"
             onClick={() => {
-              setUpload(false)
-              imageUpload()
+              setUpload(false);
+              imageUpload();
             }}
           >
             UPLOAD
@@ -312,7 +312,7 @@ function AddMoviePage() {
                 setIsChosen({
                   ...isChosen,
                   type: [e.target.value, isChosen.type[1], isChosen.type[2]],
-                })
+                });
               }}
             >
               {categoryType.map((option) => {
@@ -320,7 +320,7 @@ function AddMoviePage() {
                   <option key={option.value} value={option.value}>
                     {option.text}
                   </option>
-                )
+                );
               })}
             </select>
             <select
@@ -331,7 +331,7 @@ function AddMoviePage() {
                 setIsChosen({
                   ...isChosen,
                   type: [isChosen.type[0], e.target.value, isChosen.type[2]],
-                })
+                });
               }}
             >
               {categoryType.map((option) => {
@@ -339,7 +339,7 @@ function AddMoviePage() {
                   <option key={option.value} value={option.value}>
                     {option.text}
                   </option>
-                )
+                );
               })}
             </select>
             <select
@@ -350,7 +350,7 @@ function AddMoviePage() {
                 setIsChosen({
                   ...isChosen,
                   type: [isChosen.type[0], isChosen.type[1], e.target.value],
-                })
+                });
               }}
             >
               {categoryType.map((option) => {
@@ -358,7 +358,7 @@ function AddMoviePage() {
                   <option key={option.value} value={option.value}>
                     {option.text}
                   </option>
-                )
+                );
               })}
             </select>
           </div>
@@ -368,7 +368,7 @@ function AddMoviePage() {
             <Text
               text="Collection:"
               customTheme={
-                'text-white font-button text-[25px] whitespace-nowrap'
+                "text-white font-button text-[25px] whitespace-nowrap"
               }
             />
           </div>
@@ -378,11 +378,11 @@ function AddMoviePage() {
               className="mr-10 bg-[#082032] rounded-[5px] text-white border-2 border-white border-solid"
               value={episodeChosen}
               onChange={(e) => {
-                setEpisodeChosen(e.target.value)
-                if (e.target.value === 'addNew') {
-                  setCreateEp(true)
+                setEpisodeChosen(e.target.value);
+                if (e.target.value === "addNew") {
+                  setCreateEp(true);
                 } else {
-                  setCreateEp(false)
+                  setCreateEp(false);
                 }
               }}
             >
@@ -392,7 +392,7 @@ function AddMoviePage() {
                   <option key={each.id} value={each.eid}>
                     {each.collectionName}
                   </option>
-                )
+                );
               })}
               <option value="addNew"> +New Episode </option>
             </select>
@@ -431,10 +431,7 @@ function AddMoviePage() {
           </div>
         )}
         <div className="flex py-20 justify-evenly">
-          <Button
-            theme="bg-pink-600 rounded-[5px] w-28 h-10"
-            onClick={saveSubmit}
-          >
+          <Button theme="bg-pink-600 rounded-[5px] w-28 h-10" type="submit">
             <Text
               text="SAVE"
               customTheme="text-white font-button text-[25px]"
@@ -443,7 +440,7 @@ function AddMoviePage() {
           <Button
             theme="bg-pink-600 rounded-[5px] w-28 h-10"
             onClick={(e) => {
-              window.location.href = '/admin'
+              window.location.href = "/admin";
             }}
           >
             <Text
@@ -452,15 +449,15 @@ function AddMoviePage() {
             />
           </Button>
         </div>
-      </div>
+      </form>
       <ToastContainer />
       <Footer />
     </div>
-  )
+  );
 }
 export default {
   routeProps: {
-    path: '/addMovie',
+    path: "/addMovie",
     main: AddMoviePage,
   },
-}
+};
