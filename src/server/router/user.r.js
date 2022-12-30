@@ -18,4 +18,7 @@ router.post('/getUser', userC.getUser, () => {
   next()
 })
 
+router.post('/changePermission', userC.changePermission, () => {
+  next()
+})
 module.exports = router
