@@ -217,7 +217,7 @@ function ManageAdminPage() {
       </div>
 
       {changePermission.length > 0 && (
-        <div>
+        <div className="bg-[#082032] h-fit p-5">
           <Input
             inputTheme="p-4 h-10 max-2w-xl w-auto bg-black bg-opacity-25"
             placeholder="Input movie name or category"
@@ -246,7 +246,7 @@ function ManageAdminPage() {
               setTypeUser({ ...typeUser, password: e.target.value });
             }}
           />
-          <div className="flex py-20 justify-evenly">
+          <div className="flex py-12 justify-evenly">
             <Button
               theme="bg-pink-600 rounded-[5px] w-28 h-10"
               onClick={(e) => saveSubmit(e)}
