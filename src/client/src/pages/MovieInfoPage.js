@@ -222,6 +222,7 @@ function MovieInfoPage() {
               <Input
                 containerTheme="w-full min-w-[0px] h-10"
                 inputTheme="h-full"
+                value={inputCmt}
                 onChange={(e) => {
                   setInputCmt(e.target.value)
                 }}
