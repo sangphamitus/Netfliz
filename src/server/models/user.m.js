@@ -105,4 +105,27 @@ module.exports = {
 
     return rs
   },
+  changePermission: async ({ listUid }) => {
+    try {
+      listUid.forEach(async (item) => {
+        var rs = await db.any(
+          `UPDATE public."Users"
+            SET "permission"=$2
+            WHERE "uid" like $1 `,
+          [item.uid, item.permission],
+        )
+      })
+      return true
+    } catch (e) {
+      return false
+    }
+  },
+  getAdmin: async ({ uid }) => {
+    var rs = await db.any(
+      `select * from public.\"Users\" where \"uid\"  like '${uid}' `,
+    )
+    console.log(rs)
+
+    return rs
+  },
 }

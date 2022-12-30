@@ -139,4 +139,38 @@ module.exports = {
       next(err)
     }
   },
+  changePermission: async (req, res, next) => {
+    try {
+      const { changePermission, username, password } = req.body
+
+      const salt = username
+      const pwSalt = password + salt
+
+      const hashedPassword = CryptoJS.SHA256(pwSalt, {
+        outputLength: hashLength * 4,
+      }).toString(CryptoJS.enc.Hex)
+
+      const rs = await userM.loginUser(username, hashedPassword)
+      console.log(rs)
+      let change = false
+      const reg = await userM.getUser({ uid: rs.uid })
+      if (rs.permission) {
+        change = await userM.changePermission({ listUid: changePermission })
+      }
+
+      if (change) {
+        res.status(200).send({
+          data: reg,
+          message: 'success',
+        })
+      } else {
+        res.status(200).send({
+          message: 'failed',
+        })
+      }
+    } catch (err) {
+      console.log(err)
+      next(err)
+    }
+  },
 }
