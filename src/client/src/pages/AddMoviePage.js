@@ -162,7 +162,7 @@ function AddMoviePage() {
   return (
     <div className="App bg-[#082032]">
       <NavBar />
-      <div className="mx-20 max-sm:mx-0">
+      <form className="mx-20 max-sm:mx-0" onSubmit={saveSubmit}>
         <div className="flex">
           <div className="pt-8 p-4 mb-2">
             <Text
@@ -431,10 +431,7 @@ function AddMoviePage() {
           </div>
         )}
         <div className="flex py-20 justify-evenly">
-          <Button
-            theme="bg-pink-600 rounded-[5px] w-28 h-10"
-            onClick={saveSubmit}
-          >
+          <Button theme="bg-pink-600 rounded-[5px] w-28 h-10" type="submit">
             <Text
               text="SAVE"
               customTheme="text-white font-button text-[25px]"
@@ -452,7 +449,7 @@ function AddMoviePage() {
             />
           </Button>
         </div>
-      </div>
+      </form>
       <ToastContainer />
       <Footer />
     </div>
