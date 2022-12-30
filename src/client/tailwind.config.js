@@ -79,20 +79,39 @@ const card = (theme) => ({
 
 const table = (theme) => ({
   ".table": {
-    backgroundColor: "white",
+    width: "100%",
+    // height: "calc(100% - 60px)",
+    width: "100%",
+
     borderWidth: 2,
     borderColor: "black",
     thead: {
-      th: {
-        borderWidth: 2,
-        borderColor: "black",
+      position: "sticky",
+      top: 0,
+      left: 0,
+      right: 0,
+      tr: {
+        textAlign: "center",
+        th: {
+          position: "relative",
+          borderWidth: 2,
+          borderColor: "black",
+        },
       },
     },
     tbody: {
+      overflowY: "auto",
+      overflowX: "hidden",
+      display: "block",
+      height: "calc(100vh - 500px)",
       td: {
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: "black",
       },
+    },
+
+    tr: {
+      display: "flex",
     },
   },
 });
